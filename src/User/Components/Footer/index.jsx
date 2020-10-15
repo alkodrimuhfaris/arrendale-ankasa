@@ -3,7 +3,8 @@ import {
   Col, Container, Row 
 } from 'reactstrap'
 import { 
-  FaFacebookF, FaTwitter, FaInstagram, FaYoutube, FaCopyright, FaRegCopyright, FaMapPin, FaMapSigns, FaMapMarked, FaMapMarkerAlt, FaMapMarker, FaMapMarkedAlt
+  FaFacebookF, FaTwitter, FaInstagram, FaYoutube, 
+  FaRegCopyright, FaMapMarkerAlt,
 } from 'react-icons/fa'
 
 import logo from '../../Assets/logo.svg'
