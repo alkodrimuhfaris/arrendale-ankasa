@@ -21,7 +21,7 @@
             "to": "JPN",
             "departureTime": "12:33",
             "arrivedTime": "15:21",
-            "longTome": "3 hours 11 minutes",
+            "period": "3 hours 11 minutes",
             "transit": 1,
             "facilities": [
                 "https://",
