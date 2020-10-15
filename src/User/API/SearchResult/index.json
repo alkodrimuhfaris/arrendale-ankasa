@@ -1,0 +1,111 @@
+{
+    "success": true,
+    "message": "Search Result Success",
+    "detailSearch": [
+        {
+            "country": [{"from": "IDN", "to": "JPN"}],
+            "city": [{"from": "Medan", "to": "Tokyo"}]
+        },
+        {
+            "departure": "Monday, 20 July 2020",
+            "passenger": 6,
+            "class": "Economy",
+            "totalTicket": 6
+        }
+    ],
+    "data": [
+        {
+            "logoAirline": "",
+            "airline": "Garuda Indonesia",
+            "from": "IDN",
+            "to": "JPN",
+            "departureTime": "12:33",
+            "arrivedTime": "15:21",
+            "longTome": "3 hours 11 minutes",
+            "transit": 1,
+            "facilities": [
+                "https://",
+                "https://",
+                "https://"
+            ],
+            "price": 21400
+        },
+        {
+            "logoAirline": "",
+            "airline": "Airasia",
+            "from": "IDN",
+            "to": "JPN",
+            "departureTime": "12:33",
+            "comeTime": "15:21",
+            "longTome": "3 hours 11 minutes",
+            "transit": 0,
+            "facilities": [
+                "https://",
+                "https://"
+            ],
+            "price": 21400
+        },
+        {
+            "logoAirline": "",
+            "airline": "LionAir",
+            "from": "IDN",
+            "to": "JPN",
+            "departureTime": "12:33",
+            "comeTime": "15:21",
+            "longTome": "3 hours 11 minutes",
+            "transit": 2,
+            "facilities": [
+                "https://",
+                "https://"
+            ],
+            "price": 21400
+        },
+        {
+            "logoAirline": "",
+            "airline": "Garuda Indonesia",
+            "from": "IDN",
+            "to": "JPN",
+            "departureTime": "12:33",
+            "comeTime": "15:21",
+            "longTome": "3 hours 11 minutes",
+            "transit": 1,
+            "facilities": [
+                "https://",
+                "https://",
+                "https://"
+            ],
+            "price": 21400
+        },
+        {
+            "logoAirline": "",
+            "airline": "Airasia",
+            "from": "IDN",
+            "to": "JPN",
+            "departureTime": "12:33",
+            "comeTime": "15:21",
+            "longTome": "3 hours 11 minutes",
+            "transit": 0,
+            "facilities": [
+                "https://",
+                "https://"
+            ],
+            "price": 21400
+        },
+        {
+            "logoAirline": "",
+            "airline": "LionAir",
+            "from": "IDN",
+            "to": "JPN",
+            "departureTime": "12:33",
+            "comeTime": "15:21",
+            "longTome": "3 hours 11 minutes",
+            "transit": 2,
+            "facilities": [
+                "https://",
+                "https://"
+            ],
+            "price": 21400
+        }
+        
+    ]
+}
