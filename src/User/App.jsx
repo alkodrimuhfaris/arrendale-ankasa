@@ -1,9 +1,16 @@
 import React from "react";
 
+import NavBar from './Components/NavBar'
+import Footer from './Components/Footer'
+
 class App extends React.Component {
     render() {
         return (
-            <div>Hello Word</div>
+            <>
+                <NavBar />
+                <div>Hello Word</div>
+                <Footer />
+            </>
         );
     }
 }
