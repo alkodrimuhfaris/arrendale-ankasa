@@ -15,7 +15,7 @@ export default class Footer extends Component {
   render() {
     return (
       <>
-        <Container>
+        <Container className='my-5'>
           <Row>
             <Col md={4} className='pr-5'>
               <div>
