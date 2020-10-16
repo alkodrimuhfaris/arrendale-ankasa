@@ -12,7 +12,6 @@
     "eslint-plugin-react": "^7.20.0",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
-    "react-icons": "^3.11.0",
     "react-redux": "^7.2.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
@@ -28,9 +27,6 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -43,7 +39,5 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "eslint": "^5.16.0"
-  }
+  "devDependencies": {}
 }
