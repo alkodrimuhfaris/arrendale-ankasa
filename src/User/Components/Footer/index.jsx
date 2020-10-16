@@ -1,15 +1,15 @@
-import React, { Component } from 'react'
-import { 
-  Col, Container, Row 
-} from 'reactstrap'
-import { 
-  FaFacebookF, FaTwitter, FaInstagram, FaYoutube, 
+import React, { Component } from "react";
+import {
+  Col, Container, Row
+} from "reactstrap";
+import {
+  FaFacebookF, FaTwitter, FaInstagram, FaYoutube,
   FaRegCopyright, FaMapMarkerAlt,
-} from 'react-icons/fa'
+} from "react-icons/fa";
 
-import logo from '../../Assets/logo.svg'
-import apple from '../../Assets/apple.png'
-import android from '../../Assets/android.png'
+import logo from "../../Assets/logo.svg";
+import apple from "../../Assets/apple.png";
+import android from "../../Assets/android.png";
 
 export default class Footer extends Component {
   render() {
@@ -85,6 +85,6 @@ export default class Footer extends Component {
           </Row>
         </Container>
       </>
-    )
+    );
   }
 }

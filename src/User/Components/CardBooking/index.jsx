@@ -1,9 +1,10 @@
-import React, { Component } from 'react'
-import './styled/style.css'
+import React, { Component } from "react";
+import { Card, CardBody, Row, Col } from "reactstrap";
+import "./styled/style.css";
 
 
 // import image
-import flight from '../../Assets/flight.svg'
+import flight from "../../Assets/flight.svg";
 
 export default class CardBooking extends Component {
   render() {
@@ -36,6 +37,6 @@ export default class CardBooking extends Component {
           </CardBody>
         </Card>
       </>
-    )
+    );
   }
 }

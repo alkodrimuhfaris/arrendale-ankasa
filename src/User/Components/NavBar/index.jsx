@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 // import { Link } from 'react-router-dom';
-import { 
+import {
   Button, Col, Container, Input, Nav,
   Navbar, NavbarBrand, NavItem, Row,
-} from 'reactstrap'
+} from "reactstrap";
 
-import logo from '../../Assets/logo.svg'
+import logo from "../../Assets/logo.svg";
 
 export default class NavigationBar extends Component {
   constructor(props) {
@@ -32,7 +32,7 @@ export default class NavigationBar extends Component {
               <Col md={3}>
                 <Nav navbar>
                   <NavItem>
-                    <Input className='pl-5' style={{height: 50}} type='search' placeholder='Where you want to go?' />
+                    <Input className='pl-5' style={{ height: 50 }} type='search' placeholder='Where you want to go?' />
                   </NavItem>
                 </Nav>
               </Col>
@@ -67,6 +67,6 @@ export default class NavigationBar extends Component {
           </Container>
         </Navbar>
       </>
-    )
+    );
   }
 }
