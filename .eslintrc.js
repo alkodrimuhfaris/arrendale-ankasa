@@ -1,9 +1,12 @@
-{
+module.exports = {
     "env": {
         "browser": true,
         "es6": true
     },
-    "extends": "eslint:recommended",
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended"
+    ],
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
@@ -20,20 +23,20 @@
     ],
     "rules": {
         "indent": [
-			"error",
-			"space"
+            "error",
+            2
         ],
-		"linebreak-style": [
-			"error",
-			"unix"
+        "linebreak-style": [
+            "error",
+            "unix"
         ],
-		"quotes": [
-			"error",
-			"single"
+        "quotes": [
+            "error",
+            "double"
         ],
-		"semi": [
-			"error",
-			"always"
+        "semi": [
+            "error",
+            "always"
         ]
     }
-}
+};
