@@ -8,3 +8,8 @@
 .btn-1:hover {
   background-color: #1761a7;
 }
+
+.styled-input {
+  border-width: 0;
+  border-bottom-width: 1px;
+}

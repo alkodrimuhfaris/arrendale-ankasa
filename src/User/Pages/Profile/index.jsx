@@ -37,25 +37,41 @@ export default class Profile extends Component {
                               <FormText>
                                 Email
                               </FormText>
-                              <Input aria-label='email' type='email' />
+                              <Input 
+                                className='styled-input' 
+                                aria-label='email' 
+                                type='email'
+                                value='email@mail.com' />
                             </Col>
                             <Col md={6} className='my-2'>
                               <FormText>
                                 Username
                               </FormText>
-                              <Input aria-label='username' type='text' />
+                              <Input 
+                                className='styled-input' 
+                                aria-label='username' 
+                                type='text'
+                                value='Mike' />
                             </Col>
                             <Col md={6} className='my-2'>
                               <FormText>
                                 Phone Number
                               </FormText>
-                              <Input aria-label='phoneNumber' type='text' />
+                              <Input 
+                                className='styled-input' 
+                                aria-label='phoneNumber' 
+                                type='text'
+                                value='086457364982' />
                             </Col>
                             <Col md={6} className='my-2'>
                               <FormText>
                                 City
                               </FormText>
-                              <Input aria-label='city' type='Text' />
+                              <Input 
+                                className='styled-input' 
+                                aria-label='city' 
+                                type='text'
+                                value='Medan' />
                             </Col>
                             <Col md={6} className='my-2 d-flex align-items-center justify-content-end'>
                               <div className='font-weight-bold'
@@ -67,14 +83,22 @@ export default class Profile extends Component {
                               <FormText>
                                 Address
                               </FormText>
-                              <Input aria-label='address' type='text' />
+                              <Input 
+                                className='styled-input' 
+                                aria-label='Address' 
+                                type='text'
+                                value='Medan, Indonesia' />
                             </Col>
                             <Col md={6} className='my-2' />
                             <Col md={6} className='my-2'>
                               <FormText>
                                 Post Code
                               </FormText>
-                              <Input aria-label='postCode' type='text' />
+                              <Input 
+                                className='styled-input' 
+                                aria-label='postcode' 
+                                type='text'
+                                value='55555' />
                             </Col>
                             <Col md={6} className='mt-3' />
                             <Col md={6} className='mt-3 d-flex justify-content-end'>
