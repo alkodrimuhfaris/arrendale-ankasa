@@ -2,14 +2,17 @@ import React from "react";
 import "./style/style.css";
 import {
   Button,
-  Col, Form, Input, Label, Row,
+  Col, Form, Input, Row,
 } from "reactstrap";
 
 // Import image
 import logo from "../../Assets/logo-sm.svg";
+import googleImg from "../../Assets/google.svg";
+import facebookImg from "../../Assets/facebook.svg";
 
 // Import Component
 import AuthSideBar from "../../Components/AuthSideBar";
+import { Link } from "react-router-dom";
 
 class Signup extends React.Component {
   render(){
@@ -27,25 +30,35 @@ class Signup extends React.Component {
             <div className="body-signup d-flex flex-column justify-content-center">
               <Form>
                 <div className="mb-3">
-                  <span className="h2 font-weight-bold">Register</span>
+                  <span className="h2 font-weight-bold">Login</span>
                 </div>
-                <Input type="text" className="border-bottom mb-3" placeholder="Full Name" />
                 <Input type="email" className="border-bottom mb-3" placeholder="Email" />
                 <Input type="password" className="border-bottom mb-3" placeholder="Password" />
-                <Button color="primary" className="shadow mb-3 font-weight-bold" block>Sign Up</Button>
-                <div className="pl-4">
-                  <Label check>
-                    <Input type="checkbox" />{" "}
-                  Accept terms and condition
-                  </Label>
+                <Button color="primary" className="shadow mb-3 font-weight-bold" block>Sign In</Button>
+                <div className="text-center">
+                  <div>
+                    <span>Did you forget your password?</span>
+                  </div>
+                  <div>
+                    <Link to="/forgot-password">
+                      <span>Tap here for reset</span>
+                    </Link>
+                  </div>
                 </div>
               </Form>
               <div>
                 <hr/>
                 <div className="text-center mb-3">
-                  <span>Already have an account?</span>
+                  <span>or sign in with</span>
                 </div>
-                <Button color="outline-primary" className="font-weight-bold" block>Sign In</Button>
+                <div className="d-flex justify-content-center">
+                  <Button color="outline-primary" className="btn-img font-weight-bold mr-3">
+                    <img src={googleImg} alt="google" />
+                  </Button>
+                  <Button color="outline-primary" className="btn-img font-weight-bold">
+                    <img src={facebookImg} alt="facebook"/>
+                  </Button>
+                </div>
               </div>
             </div>
           </Col>
