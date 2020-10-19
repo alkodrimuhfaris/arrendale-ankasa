@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
-// import ForgotPassword from "./Pages/ForgotPassword";
+import ForgotPassword from "./Pages/ForgotPassword";
 // import Explore from "./Pages/Explore";
 import SearchResult from "./Pages/SearchResult/";
 // import FlightDetails from "./Pages/FlightDetails";
@@ -19,7 +19,7 @@ class App extends React.Component {
         <Switch>
           <Route path="/login" component={Login} exact/>
           <Route path="/signup" component={Signup} exact/>
-          {/* <Route path="/auth/forgot-password" component={ForgotPassword} exact/> */}
+          <Route path="/forgot-password" component={ForgotPassword} exact/>
           {/* <Route path="/find" component={Explore} exact/> */}
           {/* <Route path="/find/search/result" component={SearchResult} exact/> */}
           {/* <Route path="/find/flight/details" component={FlightDetails} exact/> */}
