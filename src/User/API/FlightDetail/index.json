@@ -1,0 +1,18 @@
+{
+    "success": true,
+    "message": "Flight Detail with id = 2",
+    "data": [
+        {
+            "logoAirline": "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2F4.bp.blogspot.com%2F-q4XkOlv7vng%2FUI_zscpRsbI%2FAAAAAAAAAK0%2FmH7X6oWzdDQ%2Fw1200-h630-p-k-no-nu%2Fcdr-logo-garuda-indonesia.png&f=1&nofb=1",
+            "airline": "Garuda Indonesia",
+            "from": "Medan (IDN)",
+            "to": "Tokyo (JPN)",
+            "departure": "Sunday, 15 August 2020",
+            "departureTime": "12:33",
+            "arrivedTime": "15:21",
+            "refundable": true,
+            "reschedule": false,
+            "totalPrice": 14500 
+        }
+    ]
+}
