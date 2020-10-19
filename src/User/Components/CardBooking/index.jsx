@@ -15,14 +15,14 @@ export default class CardBooking extends Component {
           <CardBody className='p-0 d-flex flex-column'>
             <div className='content p-4'>
               <div className='h6'>Monday, 20 July ‘20 - 12:33</div>
-              <div className='d-flex align-items-center my-3'>
+              <div className='d-flex align-items-center my-2'>
                 <div className='h5 font-weight-bold'>IDN</div>
                 <div className='mx-3'>
                   <img src={flight} alt='flight' />
                 </div>
                 <div className='h5 font-weight-bold'>JPN</div>
               </div>
-              <div className='h6 text-muted'>Garuda Indonesia, AB-221</div>
+              <div className='h6 m-0 text-muted'>Garuda Indonesia, AB-221</div>
             </div>
             <div className='footer p-4'>
               <Row className='d-flex align-items-center'>

@@ -1,6 +1,10 @@
+.content-wrapper {
+  height: calc(100vh + 200px);
+}
+
 .sidebar {
   background-color: #fff;
-  height: calc(100vh - 100px);
+  height: calc(100vh + 70px);
   border-radius: 15px;
 }
 
