@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // import Signup from "./Pages/Signup";
 // import ForgotPassword from "./Pages/ForgotPassword";
 // import Explore from "./Pages/Explore";
-// import SearchResult from "./Pages/SearchResult";
+import SearchResult from "./Pages/SearchResult/";
 // import FlightDetails from "./Pages/FlightDetails";
 import MyBooking from "./Pages/MyBooking";
 // import BookingDetail from "./Pages/BookingDetail";
@@ -24,6 +24,9 @@ class App extends React.Component {
           {/* <Route path="/find/search/result" component={SearchResult} exact/> */}
           {/* <Route path="/find/flight/details" component={FlightDetails} exact/> */}
           <Route path="/user/booking" component={MyBooking} exact />
+          <Route path="/find/search/result" component={SearchResult} exact/>
+          {/* <Route path="/find/flight/details" component={FlightDetails} exact/> */}
+          {/* <Route path="/user/booking" component={MyBooking} exact/> */}
           {/* <Route path="/user/booking/detail" component={BookingDetail} exact/> */}
           {/* <Route path="/user/profile" component={Profile} exact/> */}
           {/* <Route path="/user/Notifications" component={Notifications} exact/> */}
