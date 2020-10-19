@@ -1,0 +1,114 @@
+{
+  "success": true,
+  "message": "Search Result Success",
+  "detailSearch": [
+    {
+      "fromCity": "Medan",
+      "fromCountry": "IDN",
+      "toCity": "Tokyo",
+      "toCountry": "JPN",
+      "departure": "Monday, 20 July 2020",
+      "passenger": 6,
+      "class": "Economy",
+      "totalTicket": 6
+    }
+  ],
+  "data": [
+    {
+      "logoAirline": "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2F4.bp.blogspot.com%2F-q4XkOlv7vng%2FUI_zscpRsbI%2FAAAAAAAAAK0%2FmH7X6oWzdDQ%2Fw1200-h630-p-k-no-nu%2Fcdr-logo-garuda-indonesia.png&f=1&nofb=1",
+      "airline": "Garuda Indonesia",
+      "from": "IDN",
+      "to": "JPN",
+      "departureTime": "12:33",
+      "arrivedTime": "15:21",
+      "period": "3 hours 11 minutes",
+      "transit": 1,
+      "facilities": [
+        "Luggage",
+        "In-Flight Meal",
+        "Wifi"
+      ],
+      "price": 21400
+    },
+    {
+      "logoAirline": "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.8madgroup.asia%2Fwp-content%2Fuploads%2F2017%2F03%2Flogo-airasia.png&f=1&nofb=1",
+      "airline": "Airasia",
+      "from": "IDN",
+      "to": "JPN",
+      "departureTime": "12:33",
+      "arrivedTime": "15:21",
+      "period": "3 hours 11 minutes",
+      "transit": 0,
+      "facilities": [
+        "Luggage",
+        "In-Flight Meal",
+        "Wifi"
+      ],
+      "price": 21400
+    },
+    {
+      "logoAirline": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.aekwari-holiday.com%2Fwp-content%2Fuploads%2F2018%2F04%2Flogo-lion-air.png&f=1&nofb=1",
+      "airline": "LionAir",
+      "from": "IDN",
+      "to": "JPN",
+      "departureTime": "12:33",
+      "arrivedTime": "15:21",
+      "period": "3 hours 11 minutes",
+      "transit": 2,
+      "facilities": [
+        "Luggage",
+        "In-Flight Meal",
+        ""
+      ],
+      "price": 21400
+    },
+    {
+      "logoAirline": "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2F4.bp.blogspot.com%2F-q4XkOlv7vng%2FUI_zscpRsbI%2FAAAAAAAAAK0%2FmH7X6oWzdDQ%2Fw1200-h630-p-k-no-nu%2Fcdr-logo-garuda-indonesia.png&f=1&nofb=1",
+      "airline": "Garuda Indonesia",
+      "from": "IDN",
+      "to": "JPN",
+      "departureTime": "12:33",
+      "arrivedTime": "15:21",
+      "period": "3 hours 11 minutes",
+      "transit": 1,
+      "facilities": [
+        "",
+        "In-Flight Meal",
+        "Wifi"
+      ],
+      "price": 21400
+    },
+    {
+      "logoAirline": "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.8madgroup.asia%2Fwp-content%2Fuploads%2F2017%2F03%2Flogo-airasia.png&f=1&nofb=1",
+      "airline": "Airasia",
+      "from": "IDN",
+      "to": "JPN",
+      "departureTime": "12:33",
+      "arrivedTime": "15:21",
+      "period": "3 hours 11 minutes",
+      "transit": 0,
+      "facilities": [
+        "Luggage",
+        "In-Flight Meal",
+        ""
+      ],
+      "price": 21400
+    },
+    {
+      "logoAirline": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.aekwari-holiday.com%2Fwp-content%2Fuploads%2F2018%2F04%2Flogo-lion-air.png&f=1&nofb=1",
+      "airline": "LionAir",
+      "from": "IDN",
+      "to": "JPN",
+      "departureTime": "12:33",
+      "arrivedTime": "15:21",
+      "period": "3 hours 11 minutes",
+      "transit": 2,
+      "facilities": [
+        "Luggage",
+        "",
+        "Wifi"
+      ],
+      "price": 21400
+    }
+  ]
+}
