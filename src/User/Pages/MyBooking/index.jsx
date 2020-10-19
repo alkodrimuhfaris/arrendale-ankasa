@@ -30,7 +30,8 @@ export default class MyBooking extends Component {
               <Col md={9}>
                 <Card>
                   <CardBody>
-                    My Booking
+                    <span className='small' style={{color: "#2395FF"}}>M Y  B O O K I N G</span>
+                    <div className='font-weight-bold h4 mt-2'>My Booking</div>
                   </CardBody>
                 </Card>
                 <CardBooking />
