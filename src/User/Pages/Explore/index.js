@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Container, Card, Row, Col, CardImg, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap'
 
 //import style
-import './styled/style.css'
+import './style/style.css'
 
 import pict1 from '../../Assets/img/destination1.png'
 import pict2 from '../../Assets/img/destination2.png'

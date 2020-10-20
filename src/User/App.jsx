@@ -10,7 +10,7 @@ import Explore from "./Pages/Explore";
 // import MyBooking from "./Pages/MyBooking";
 // import BookingDetail from "./Pages/BookingDetail";
 // import Profile from "./Pages/Profile";
-// import Notofications from "./Pages/Notofications";
+// import Notifications from "./Pages/Notifications";
 
 class App extends React.Component {
     render() {
