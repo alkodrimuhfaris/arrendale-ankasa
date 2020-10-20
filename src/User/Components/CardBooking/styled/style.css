@@ -1,0 +1,9 @@
+.content {
+  border-bottom: 1px solid #E5E5E5;
+}
+
+.status-waiting {
+  background-color: #FF7F23;
+  color: #fff;
+  border-radius: 6px;
+}
