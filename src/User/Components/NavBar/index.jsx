@@ -3,15 +3,23 @@ import React, { Component } from "react";
 import {
   Button, Col, Container, Input, Nav,
   Navbar, NavbarBrand, NavItem, Row,
+  NavLink,
 } from "reactstrap";
+import "./style/style.css";
 
+// import image
 import logo from "../../Assets/logo.svg";
+import search from "../../Assets/search.svg";
+import mail from "../../Assets/mail.svg";
+import bell from "../../Assets/bell.svg";
+import profile from "../../Assets/profile.jpg";
 
 export default class NavigationBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
       navbarOpen: false,
+      isLogin: false,
     };
   }
 
@@ -32,37 +40,45 @@ export default class NavigationBar extends Component {
               <Col md={3}>
                 <Nav navbar>
                   <NavItem>
-                    <Input className='pl-5' style={{ height: 50 }} type='search' placeholder='Where you want to go?' />
+                    <Input className='input-search position-relative pl-5 navbar-input' style={{ height: 50 }} type='search' placeholder='Where you want to go?' />
+                    <img className="icon-search position-absolute" src={search} alt="search"/>
                   </NavItem>
                 </Nav>
               </Col>
-              <Col md={2}>
-                <Nav>
+              <Nav tabs className="border-0">
+                <NavItem>
+                  <NavLink className="text-center text-decoration-none" href="#">
+                    Find Ticket
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink className="text-center" href="#">
+                    My Booking
+                  </NavLink>
+                </NavItem>
+              </Nav>
+              {!this.state.isLogin && (
+                <Nav className="d-flex flex-fill justify-content-end">
                   <NavItem>
-                    <Button>
-                      Find Ticket
-                    </Button>
-                  </NavItem>
-                </Nav>
-              </Col>
-              <Col md={2}>
-                <Nav>
-                  <NavItem>
-                    <Button>
-                      My Booking
-                    </Button>
-                  </NavItem>
-                </Nav>
-              </Col>
-              <Col md={2}>
-                <Nav>
-                  <NavItem>
-                    <Button>
+                    <Button color="primary" className="btn-signup font-weight-bold shadow">
                       Sign Up
                     </Button>
                   </NavItem>
                 </Nav>
-              </Col>
+              )}
+              {this.state.isLogin && (
+                <Nav className="d-flex flex-fill justify-content-end">
+                  <NavItem className="d-flex align-items-center justify-content-center wrapper-icon mr-4">
+                    <img src={mail} alt="mail" />
+                  </NavItem>
+                  <NavItem className="d-flex align-items-center justify-content-center wrapper-icon mr-4">
+                    <img src={bell} alt="bell" />
+                  </NavItem>
+                  <NavItem className="rounded-circle d-flex align-items-center justify-content-center wrapper-icon profile">
+                    <img className="img-rounded rounded-circle" src={profile} alt="profile" />
+                  </NavItem>
+                </Nav>
+              )}
             </Row>
           </Container>
         </Navbar>
