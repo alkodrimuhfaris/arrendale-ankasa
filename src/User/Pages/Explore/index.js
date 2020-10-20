@@ -1,21 +1,27 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import { Container, Card, Row, Col, CardImg, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap'
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import { Container, Card, Row, Col, CardImg, CardBody, CardTitle, CardSubtitle, Button } from "reactstrap";
 
 //import style
-import './style/style.css'
+import "./style/style.css";
 
-import pict1 from '../../Assets/img/destination1.png'
-import pict2 from '../../Assets/img/destination2.png'
-import pict3 from '../../Assets/img/destination3.png'
-import decor from '../../Assets/img/decoration.png'
-import btn from '../../Assets/img/btnback.png'
-import flight from '../../Assets/img/flight.png'
+// import component
+import Navbar from '../../Components/NavBar'
+import Footer from '../../Components/Footer'
+
+//import picture
+import pict1 from "../../Assets/img/destination1.png";
+import pict2 from "../../Assets/img/destination2.png";
+import pict3 from "../../Assets/img/destination3.png";
+import decor from "../../Assets/img/decoration.png";
+import btn from "../../Assets/img/btnback.png";
+import flight from "../../Assets/img/flight.png";
 
 export default class Explore extends Component {
     render() {
         return (
             <>
+                <Navbar />
                 <Row className="up">
                     <Col sm={6} >
                         <div className="tag-text">Find your <span className="flight">Flight</span></div>
@@ -57,7 +63,8 @@ export default class Explore extends Component {
                         <img src={flight} alt="decoration flight" />
                     </div>
                 </Container>
+                <Footer/>
             </>
-        )
+        );
     }
 }
