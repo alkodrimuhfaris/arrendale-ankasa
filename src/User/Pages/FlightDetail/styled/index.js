@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { createGlobalStyle } from "styled-components";
 import styled from "styled-components";
 
@@ -27,7 +28,7 @@ export const Heading1 = styled.h1`
   font-weight: 600;
   font-size: 24px;
   line-height: 36px;
-  color: #ffffff;
+  color: ${(props) => props.inputColor};
 `;
 
 export const Heading4 = styled.h4`
@@ -37,4 +38,17 @@ export const Heading4 = styled.h4`
   line-height: 24px;
   text-align: right;
   color: #ffffff;
+`;
+
+export const PaymentButton = styled.button`
+width: 319px;
+height: 57px;
+background: #2395FF;
+box-shadow: 0px 8px 10px rgba(35, 149, 255, 0.3);
+border-radius: 10px;
+font-style: normal;
+font-weight: bold;
+font-size: 18px;
+line-height: 27px;
+color: #FFFFFF;
 `;

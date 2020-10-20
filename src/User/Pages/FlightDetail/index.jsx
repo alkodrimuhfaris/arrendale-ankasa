@@ -5,9 +5,17 @@ import { Container, Row, Col } from "reactstrap";
 //Components
 import CardFlightDetail from "../../Components/CardFlightDetail";
 import FormContactPerson from "../../Components/FormContactPerson";
+import FormPassengerDetail from "../../Components/FormPassengerDetail";
+import FormInsurance from "../../Components/FormPassengerDetail/FormInsurance";
 
 //Styled
-import { GlobalStyle, FlightBackground, Heading1, Heading4 } from "./styled";
+import {
+  GlobalStyle,
+  FlightBackground,
+  Heading1,
+  Heading4,
+  PaymentButton,
+} from "./styled";
 
 //Images
 import bigFlight from "../../Assets/big-flight.png";
@@ -26,18 +34,28 @@ export class FlightDetail extends Component {
         <Container className="mt-5">
           <Row className="align-items-center">
             <Col lg={8}>
-              <Heading1>Contact Person Details</Heading1>
+              <Heading1 inputColor="#FFFFFF">Contact Person Details</Heading1>
             </Col>
             <Col lg={2}>
-              <Heading1>Flight Details</Heading1>
+              <Heading1 inputColor="#FFFFFF">Flight Details</Heading1>
             </Col>
             <Col lg={2}>
               <Heading4>View Details</Heading4>
             </Col>
           </Row>
+        </Container>
+        <Container>
           <Row>
             <Col lg={8}>
               <FormContactPerson />
+              <div className="mb-2 mt-5">
+                <Heading1 inputColor="#000000">Passenger Details</Heading1>
+              </div>
+              <FormPassengerDetail />
+              <div className="mb-2 mt-5">
+                <Heading1 inputColor="#000000">Passenger Details</Heading1>
+              </div>
+              <FormInsurance />
             </Col>
             <Col lg={4}>
               {FlightDetailApi.data.map((item) => (
@@ -54,6 +72,11 @@ export class FlightDetail extends Component {
                   totalPayment={item.totalPrice}
                 />
               ))}
+            </Col>
+          </Row>
+          <Row className="justify-content-center m-5">
+            <Col lg={8}>
+              <PaymentButton>Proceed to Payment</PaymentButton>
             </Col>
           </Row>
         </Container>
