@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import manageUser from "./Pages/manageUser";
-// import topUp from "./Pages/topUp";
+import topUp from "./Pages/topUp";
 
 class App extends Component {
   render() {
@@ -10,7 +10,7 @@ class App extends Component {
       <Router>
         <Switch>
           <Route path="/manage/user" component={manageUser} exact/>
-          {/* <Route path="/manage/user/top_up" component={topUp} exact/> */}
+          <Route path="/manage/user/top_up" component={topUp} exact/>
         </Switch>
       </Router>
     );
