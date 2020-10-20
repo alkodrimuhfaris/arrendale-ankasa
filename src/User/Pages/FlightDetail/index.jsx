@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import { Container, Row, Col } from "reactstrap";
 
 //Components
+import NavBar from "../../Components/NavBar";
+import Footer from "../../Components/Footer";
 import CardFlightDetail from "../../Components/CardFlightDetail";
 import FormContactPerson from "../../Components/FormContactPerson";
 import FormPassengerDetail from "../../Components/FormPassengerDetail";
@@ -28,6 +30,7 @@ export class FlightDetail extends Component {
     return (
       <>
         <GlobalStyle />
+        <NavBar />
         <FlightBackground>
           <img src={bigFlight} alt="" />
         </FlightBackground>
@@ -80,6 +83,7 @@ export class FlightDetail extends Component {
             </Col>
           </Row>
         </Container>
+        <Footer />
       </>
     );
   }

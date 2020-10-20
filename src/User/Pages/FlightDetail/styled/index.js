@@ -19,8 +19,9 @@ export const FlightBackground = styled.div`
   background: #2395ff;
   border-radius: 0px 0px 30px 30px;
   position: absolute;
-  top: 0;
+  top: 90px;
   left: 0;
+  z-index: -9999;
 `;
 
 export const Heading1 = styled.h1`
