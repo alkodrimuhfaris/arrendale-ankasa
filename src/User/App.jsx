@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // import Login from "./Pages/Login";
 // import Signup from "./Pages/Signup";
 // import ForgotPassword from "./Pages/ForgotPassword";
-import Explore from "./Pages/Explore/index.js";
+import Explore from "./Pages/Explore";
 // import SearchResult from "./Pages/SearchResult";
 // import FlightDetails from "./Pages/FlightDetails";
 // import MyBooking from "./Pages/MyBooking";

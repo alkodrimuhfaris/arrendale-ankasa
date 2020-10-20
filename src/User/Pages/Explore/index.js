@@ -44,17 +44,17 @@ export default class Explore extends Component {
                     <div className="d-flex mb-5">
                         <Card className="card-tranding shadow p-2 mr-3">
                             <CardImg className="img-trending" top width="100%" src={pict3} alt="Card image cap" />
-                            <CardBody className="d-flex">
-                                <div>
-                                    <CardTitle className="small">city</CardTitle>
-                                    <CardSubtitle>country</CardSubtitle>
+                            <CardBody>
+                                <CardTitle className="small font-weight-bold">city</CardTitle>
+                                <div className="d-flex justify-content-end">
+                                    <CardSubtitle className="font-weight-bold mr-5">country</CardSubtitle>
+                                    <Button className="btn-prev d-flex align-items-center justify-content-center ml-4 rounded-circle"><img src={btn} alt="button" /></Button>
                                 </div>
-                                <Button className="btn-prev d-flex align-items-center justify-content-center rounded-circle"><img src={btn} alt="button"/></Button>
                             </CardBody>
                         </Card>
                     </div>
                     <div className="tranding-carousel d-flex align-items-end mt-5">
-                        <img src={flight} alt="decoration flight"/>
+                        <img src={flight} alt="decoration flight" />
                     </div>
                 </Container>
             </>
