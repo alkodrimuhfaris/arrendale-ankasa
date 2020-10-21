@@ -26,7 +26,7 @@ export default class NavigationBar extends Component {
   render() {
     return (
       <>
-        <Navbar>
+        <Navbar className="bg-white">
           <Container className='my-2'>
             <Row className='w-100 d-flex align-items-center'>
               <Col md={3}>
@@ -47,7 +47,7 @@ export default class NavigationBar extends Component {
               </Col>
               <Nav tabs className="border-0">
                 <NavItem>
-                  <NavLink className="text-center text-decoration-none" href="#">
+                  <NavLink className="text-center text-decoration-none" href="#" >
                     Find Ticket
                   </NavLink>
                 </NavItem>
@@ -60,7 +60,7 @@ export default class NavigationBar extends Component {
               {!this.state.isLogin && (
                 <Nav className="d-flex flex-fill justify-content-end">
                   <NavItem>
-                    <Button color="primary" className="btn-signup font-weight-bold shadow">
+                    <Button onClick={this.signup} color="primary" className="text-center btn-signup font-weight-bold shadow">
                       Sign Up
                     </Button>
                   </NavItem>
