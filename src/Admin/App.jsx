@@ -13,10 +13,10 @@ class App extends Component {
       <Router>
         <Switch>
           <Route path="/manage/user" component={manageUser} exact/>
-          <Route path="/manage/ticket" component={manageTicket} exact/>
-          <Route path="/manage/ticket/add" component={ticketAdd} exact/>
-          <Route path="/manage/ticket/edit" component={ticketEdit} exact/>
           <Route path="/manage/user/top_up" component={topUp} exact/>
+          <Route path="/manage/flight" component={manageTicket} exact/>
+          <Route path="/manage/flight/add" component={ticketAdd} exact/>
+          <Route path="/manage/flight/edit" component={ticketEdit} exact/>
         </Switch>
       </Router>
     );
