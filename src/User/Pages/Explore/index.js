@@ -59,8 +59,8 @@ export default class Explore extends Component {
                             </CardBody>
                         </Card>
                     </div>
-                    <Carousel />
                 </Container>
+                <Carousel />
                 <Footer />
             </>
         );
