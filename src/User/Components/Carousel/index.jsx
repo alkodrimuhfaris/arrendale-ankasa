@@ -9,7 +9,7 @@ import "./style/style.css";
 import Carousel from "react-elastic-carousel";
 
 // Import image
-import imgBig from "../../Assets/logo500x340.svg";
+import imgBig from "../../Assets/img/flight.png";
 import paris from "../../Assets/paris.jpg";
 
 class Slide extends React.Component {

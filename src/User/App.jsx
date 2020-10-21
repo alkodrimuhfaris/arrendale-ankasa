@@ -24,7 +24,7 @@ class App extends React.Component {
           <Route path="/login" component={Login} exact/>
           <Route path="/signup" component={Signup} exact/>
           <Route path="/forgot-password" component={ForgotPassword} exact/>
-          {/* <Route path="/find" component={Explore} exact/> */}
+          <Route path="/find" component={Explore} exact/>
           <Route path="/find/flight/detail" component={FlightDetails} exact/>
           <Route path="/user/booking" component={MyBooking} exact />
           <Route path="/find/search/result" component={SearchResult} exact/>
