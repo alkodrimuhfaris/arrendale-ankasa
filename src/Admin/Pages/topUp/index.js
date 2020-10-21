@@ -21,7 +21,7 @@ export default class index extends Component {
                         <Card>
                             <CardBody>
                             <div className="font-weight-bold mb-3 mt-3">who will top up ??</div>
-                                <Form onSubmit={this.handlerSubmit}>
+                                <Form>
                                     <FormGroup row>
                                         <Label for="input-email" md={2} sm={3}>email</Label>
                                         <Col>
