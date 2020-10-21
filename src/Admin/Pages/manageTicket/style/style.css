@@ -1,0 +1,7 @@
+.body {
+    background: #F5F6FA;
+}
+
+.btn-detail,.btn-delete{
+    border: none;
+}

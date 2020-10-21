@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import { Container, Row, Col } from "reactstrap";
 
 //Components
+import NavBar from "../../Components/NavBar";
+import Footer from "../../Components/Footer";
 import CardTicket from "../../Components/CardTicket";
 import CheckList from "../../Components/CheckList";
 import SearchDetail from "../../Components/SearchDetail";
@@ -29,6 +31,7 @@ export class SearchResult extends Component {
     return (
       <>
         <GlobalStyle />
+        <NavBar />
         <BackgroundDetailSearch>
           <img src={bigFlight} alt="" />
         </BackgroundDetailSearch>
@@ -96,6 +99,7 @@ export class SearchResult extends Component {
             </Col>
           </Row>
         </Container>
+        <Footer />
       </>
     );
   }

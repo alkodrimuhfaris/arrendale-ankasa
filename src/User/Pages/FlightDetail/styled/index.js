@@ -1,6 +1,6 @@
+/* eslint-disable no-undef */
 import { createGlobalStyle } from "styled-components";
 import styled from "styled-components";
-import {Link} from "react-router-dom";
 
 export const GlobalStyle = createGlobalStyle`
   * {
@@ -13,7 +13,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 `;
 
-export const BackgroundDetailSearch = styled.div`
+export const FlightBackground = styled.div`
   width: 100%;
   height: 176px;
   background: #2395ff;
@@ -24,34 +24,32 @@ export const BackgroundDetailSearch = styled.div`
   z-index: -9999;
 `;
 
-export const TextHeader1 = styled.h1`
+export const Heading1 = styled.h1`
   font-style: normal;
   font-weight: 600;
   font-size: 24px;
   line-height: 36px;
-  color: #000000;
+  color: ${(props) => props.inputColor};
 `;
 
-export const Reset = styled(Link)`
+export const Heading4 = styled.h4`
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
   line-height: 24px;
-  color: #2395FF;
+  text-align: right;
+  color: #ffffff;
 `;
 
-export const TextSecondary = styled.h6`
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 22px;
-  color: #595959;
-`;
-
-export const TextHeader4 = styled.h4`
-  font-style: normal;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 24px;
-  color: #000000;
+export const PaymentButton = styled.button`
+width: 319px;
+height: 57px;
+background: #2395FF;
+box-shadow: 0px 8px 10px rgba(35, 149, 255, 0.3);
+border-radius: 10px;
+font-style: normal;
+font-weight: bold;
+font-size: 18px;
+line-height: 27px;
+color: #FFFFFF;
 `;
