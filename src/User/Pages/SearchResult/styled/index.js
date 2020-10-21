@@ -19,7 +19,7 @@ export const BackgroundDetailSearch = styled.div`
   background: #2395ff;
   border-radius: 0px 0px 30px 30px;
   position: absolute;
-  top: 90px;
+  top: 150px;
   left: 0;
   z-index: -9999;
 `;
