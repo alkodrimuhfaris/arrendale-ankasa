@@ -1,0 +1,24 @@
+.form-control {
+  border: 0;
+}
+
+.head-signup {
+  padding: 20px 100px 100px 100px;
+}
+
+.body-signup {
+  padding: 0 100px;
+}
+
+.form-control:active {
+  box-shadow: none;
+}
+
+.btn {
+  border-radius: 10px;
+}
+
+.form-check-input {
+  border: 2px solid #2395FF;
+  box-sizing: border-box;
+}
