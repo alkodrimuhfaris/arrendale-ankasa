@@ -20,6 +20,7 @@ export default class NavigationBar extends Component {
     this.state = {
       navbarOpen: false,
       isLogin: false,
+      isAdmin: false
     };
   }
 
@@ -37,27 +38,46 @@ export default class NavigationBar extends Component {
                   <img src={logo} alt='logo ankasa' />
                 </NavbarBrand>
               </Col>
-              <Col md={3}>
-                <Nav navbar>
+              {this.state.isAdmin ? (
+                <Col md={9} className='d-flex justify-content-end'>
+                  <Nav className='text-right'>
+                    <NavItem>
+                      <NavLink className="text-center text-decoration-none" href="#">
+                      User
+                      </NavLink>
+                    </NavItem>
+                    <NavItem>
+                      <NavLink className="text-center text-decoration-none" href="#">
+                      Ticket
+                      </NavLink>
+                    </NavItem>
+                  </Nav>
+                </Col>
+              ) : (
+                <Col md={3}>
+                  <Nav navbar>
+                    <NavItem>
+                      <Input className='input-search position-relative pl-5 navbar-input' style={{ height: 50 }} type='search' placeholder='Where you want to go?' />
+                      <img className="icon-search position-absolute" src={search} alt="search"/>
+                    </NavItem>
+                  </Nav>
+                </Col>
+              )}
+              {!this.state.isAdmin && (
+                <Nav tabs className="border-0">
                   <NavItem>
-                    <Input className='input-search position-relative pl-5 navbar-input' style={{ height: 50 }} type='search' placeholder='Where you want to go?' />
-                    <img className="icon-search position-absolute" src={search} alt="search"/>
+                    <NavLink className="text-center text-decoration-none" href="#">
+                      Find Ticket
+                    </NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink className="text-center" href="#">
+                      My Booking
+                    </NavLink>
                   </NavItem>
                 </Nav>
-              </Col>
-              <Nav tabs className="border-0">
-                <NavItem>
-                  <NavLink className="text-center text-decoration-none" href="#">
-                    Find Ticket
-                  </NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink className="text-center" href="#">
-                    My Booking
-                  </NavLink>
-                </NavItem>
-              </Nav>
-              {!this.state.isLogin && (
+              )}
+              {!this.state.isLogin && !this.state.isAdmin && (
                 <Nav className="d-flex flex-fill justify-content-end">
                   <NavItem>
                     <Button color="primary" className="btn-signup font-weight-bold shadow">
