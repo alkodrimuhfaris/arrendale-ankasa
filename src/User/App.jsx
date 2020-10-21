@@ -8,7 +8,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import SearchResult from "./Pages/SearchResult/";
 import FlightDetails from "./Pages/FlightDetail";
 import MyBooking from "./Pages/MyBooking";
-// import BookingDetail from "./Pages/BookingDetail";
+import BookingDetail from "./Pages/BookingDetail";
 // import Profile from "./Pages/Profile";
 // import Notofications from "./Pages/Notofications";
 
@@ -24,7 +24,7 @@ class App extends React.Component {
           <Route path="/find/flight/detail" component={FlightDetails} exact/>
           <Route path="/user/booking" component={MyBooking} exact />
           <Route path="/find/search/result" component={SearchResult} exact/>
-          {/* <Route path="/user/booking/detail" component={BookingDetail} exact/> */}
+          <Route path="/user/booking/detail" component={BookingDetail} exact/>
           {/* <Route path="/user/profile" component={Profile} exact/> */}
           {/* <Route path="/user/Notifications" component={Notifications} exact/> */}
         </Switch>
