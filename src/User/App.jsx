@@ -9,14 +9,18 @@ import SearchResult from "./Pages/SearchResult/";
 import FlightDetails from "./Pages/FlightDetail";
 import MyBooking from "./Pages/MyBooking";
 // import BookingDetail from "./Pages/BookingDetail";
-// import Profile from "./Pages/Profile";
-// import Notifications from "./Pages/Notifications";
+import Profile from "./Pages/Profile";
+// import Notofications from "./Pages/Notofications";
 
 class App extends React.Component {
   render() {
     return (
       <Router>
         <Switch>
+          <Route path="/find" component={Explore} exact/>
+          {/* <Route path="/find/flight/details" component={FlightDetails} exact/> */}
+          <Route path="/find/search/result" component={SearchResult} exact/>
+          <Route path="/user/booking" component={MyBooking} exact/>
           <Route path="/login" component={Login} exact/>
           <Route path="/signup" component={Signup} exact/>
           <Route path="/forgot-password" component={ForgotPassword} exact/>
@@ -25,7 +29,7 @@ class App extends React.Component {
           <Route path="/user/booking" component={MyBooking} exact />
           <Route path="/find/search/result" component={SearchResult} exact/>
           {/* <Route path="/user/booking/detail" component={BookingDetail} exact/> */}
-          {/* <Route path="/user/profile" component={Profile} exact/> */}
+          <Route path="/user/profile" component={Profile} exact/>
           {/* <Route path="/user/Notifications" component={Notifications} exact/> */}
         </Switch>
       </Router>
