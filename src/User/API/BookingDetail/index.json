@@ -1,0 +1,17 @@
+{
+    "success": true,
+    "message": "get info booking detail",
+    "data": [
+        {
+            "airlineLogo": "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2F4.bp.blogspot.com%2F-q4XkOlv7vng%2FUI_zscpRsbI%2FAAAAAAAAAK0%2FmH7X6oWzdDQ%2Fw1200-h630-p-k-no-nu%2Fcdr-logo-garuda-indonesia.png&f=1&nofb=1",
+            "from": "IDN",
+            "to": "JPN",
+            "code": "AB-221",
+            "class": "Economy",
+            "terminal": "A",
+            "gate": "221",
+            "departure": "Monday, 20 July '20 - 12:33",
+            "barcodeValue": "1234 5678 90AS 6543 21CV"
+        }
+    ]
+}
