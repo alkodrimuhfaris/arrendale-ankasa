@@ -19,7 +19,7 @@ class App extends React.Component {
         <Switch>
           <Route path="/auth/login" component={Login} exact />
           <Route path="/auth/signup" component={Signup} exact />
-          <Route path="/forgot-password" component={ForgotPassword} exact />
+          <Route path="/auth/forgot-password" component={ForgotPassword} exact />
           <Route path="/find" component={Explore} exact />
           <Route path="/find/flight/detail" component={FlightDetails} exact />
           <Route path="/find/search/result" component={SearchResult} exact />
