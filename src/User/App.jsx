@@ -1,9 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-// import Login from "./Pages/Login";
-// import Signup from "./Pages/Signup";
-// import ForgotPassword from "./Pages/ForgotPassword";
+import Login from "./Pages/Login";
+import Signup from "./Pages/Signup";
+import ForgotPassword from "./Pages/ForgotPassword";
 // import Explore from "./Pages/Explore";
 import SearchResult from "./Pages/SearchResult/";
 import FlightDetails from "./Pages/FlightDetail";
@@ -17,9 +17,9 @@ class App extends React.Component {
     return (
       <Router>
         <Switch>
-          {/* <Route path="/auth/login" component={Login} exact/> */}
-          {/* <Route path="/auth/signup" component={Signup} exact/> */}
-          {/* <Route path="/auth/forgot-password" component={ForgotPassword} exact/> */}
+          <Route path="/login" component={Login} exact/>
+          <Route path="/signup" component={Signup} exact/>
+          <Route path="/forgot-password" component={ForgotPassword} exact/>
           {/* <Route path="/find" component={Explore} exact/> */}
           <Route path="/find/flight/detail" component={FlightDetails} exact/>
           <Route path="/user/booking" component={MyBooking} exact />
