@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {
   Button, Col, Container, Input, Nav,
   Navbar, NavbarBrand, NavItem, Row,
@@ -41,7 +41,7 @@ export default class NavigationBar extends Component {
                 <Nav navbar>
                   <NavItem>
                     <Input className='input-search position-relative pl-5 navbar-input' style={{ height: 50 }} type='search' placeholder='Where you want to go?' />
-                    <img className="icon-search position-absolute" src={search} alt="search"/>
+                    <img className="icon-search position-absolute" src={search} alt="search" />
                   </NavItem>
                 </Nav>
               </Col>
@@ -52,7 +52,7 @@ export default class NavigationBar extends Component {
                   </NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink className="text-center" href="#">
+                  <NavLink className="text-center" href="/user/booking">
                     My Booking
                   </NavLink>
                 </NavItem>
@@ -60,9 +60,11 @@ export default class NavigationBar extends Component {
               {!this.state.isLogin && (
                 <Nav className="d-flex flex-fill justify-content-end">
                   <NavItem>
-                    <Button color="primary" className="btn-signup font-weight-bold shadow">
-                      Sign Up
-                    </Button>
+                    <Link to="/signup">
+                      <Button color="primary" className="btn-signup font-weight-bold shadow">
+                        Sign Up
+                      </Button>
+                    </Link>
                   </NavItem>
                 </Nav>
               )}
