@@ -14,8 +14,8 @@ import android from "../../Assets/android.png";
 export default class Footer extends Component {
   render() {
     return (
-      <>
-        <Container className='my-5'>
+      <div className="w-100 h-100 bg-white py-5 mt-5">
+        <Container>
           <Row>
             <Col md={4} className='pr-5'>
               <div>
@@ -73,7 +73,7 @@ export default class Footer extends Component {
               </div>
             </Col>
           </Row>
-          <Row className='my-5'>
+          <Row className='mt-5'>
             <Col className='d-flex align-items-center'>
               <FaRegCopyright />
               <div className='ml-2 h6 m-0 text-muted'>Ankasa.  All Rights Reserved.</div>
@@ -84,7 +84,7 @@ export default class Footer extends Component {
             </Col>
           </Row>
         </Container>
-      </>
+      </div>
     );
   }
 }
