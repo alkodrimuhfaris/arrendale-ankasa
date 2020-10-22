@@ -44,7 +44,11 @@ class Signup extends React.Component {
   }
 
   componentDidUpdate() {
-    this.props.auth.isLogin && this.props.history.push('/')
+    const { token } = this.props.auth
+    localStorage.setItem('token', token)
+    if (this.props.auth.isLogin) {
+      this.props.history.push('/');
+    }
   }
   
 
@@ -92,10 +96,10 @@ class Signup extends React.Component {
                   <span>or sign in with</span>
                 </div>
                 <div className="d-flex justify-content-center">
-                  <Button color="outline-primary" className="btn-img font-weight-bold mr-3">
+                  <Button href="https://accounts.google.com/Login?hl=in" color="outline-primary" className="btn-img font-weight-bold mr-3">
                     <img src={googleImg} alt="google" />
                   </Button>
-                  <Button color="outline-primary" className="btn-img font-weight-bold">
+                  <Button href="https://id-id.facebook.com/login" color="outline-primary" className="btn-img font-weight-bold">
                     <img src={facebookImg} alt="facebook"/>
                   </Button>
                 </div>

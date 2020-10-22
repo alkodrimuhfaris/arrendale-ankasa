@@ -1,20 +1,21 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import { Form, FormGroup, Col, Row, Alert } from "reactstrap";
 import { Card, LabelInput, InputUser } from "./styled";
 
 import dangerIcon from "../../Assets/danger.svg";
 
-const FormContactPerson = () => {
+const FormContactPerson = (props) => {
   return (
     <Card>
       <Form>
         <FormGroup>
           <LabelInput for="name">Full Name</LabelInput>
-          <InputUser type="text" name="name" id="name" placeholder="Enter your Name" />
+          <InputUser type="text" name="name" id="name" placeholder="Enter your Name" value={props.name} />
         </FormGroup>
         <FormGroup>
           <LabelInput for="email">Email</LabelInput>
-          <InputUser type="email" name="email" id="email" placeholder="Enter your Email" />
+          <InputUser type="email" name="email" id="email" placeholder="Enter your Email" value={props.email} />
         </FormGroup>
         <FormGroup>
           <LabelInput for="regionPhone">Phone Number</LabelInput>
@@ -29,7 +30,7 @@ const FormContactPerson = () => {
               </InputUser>
             </Col>
             <Col lg={10} className="p-0">
-              <InputUser type="number" name="phone" id="phone" placeholder="Enter your Phone" />
+              <InputUser type="number" name="phone" id="phone" placeholder="Enter your Phone" value={props.phone} />
             </Col>
           </Row>
         </FormGroup>
