@@ -9,6 +9,7 @@ import ManageUser from "./Pages/ManageUser";
 import ManageTicket from "./Pages/ManageTicket";
 import TicketAdd from "./Pages/TicketAdd";
 import TicketEdit from "./Pages/TicketEdit";
+import ForgotPassword from "./Pages/ForgotPassword";
 
 export default function App() {
   
@@ -25,6 +26,7 @@ export default function App() {
           <Switch>
             <Route path="/admin/login" render ={(props)=><Login {...props} />} />
             <Route path="/manage/user" render ={(props)=><ManageUser {...props} />} />
+            <Route path="/admin/forgot-password" render ={(props)=><ForgotPassword {...props} />} />          
             {/* <PrivateRoute path="/manage/user">
               <ManageUser />
             </PrivateRoute> */}

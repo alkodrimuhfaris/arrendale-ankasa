@@ -87,7 +87,7 @@ export default function Login(props) {
                     <span>Did you forget your password?</span>
                   </div>
                   <div>
-                    <Link to="/forgot-password">
+                    <Link to="/admin/forgot-password">
                       <span>Tap here for reset</span>
                     </Link>
                   </div>

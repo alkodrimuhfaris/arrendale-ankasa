@@ -15,5 +15,13 @@ export default {
   setTokenAdmin: (payload)=>({
     type: 'SET_TOKEN_ADMIN',
     payload
+  }),
+  resetPassword: (payload, data)=>({
+    type: 'RESET_PASSWORD',
+    payload: http().post('/resetpassword', data)
+  }),
+  matchCode: (payload, data)=>({
+    type: 'MATCH_CODE',
+    payload: http().post('/resetpassword/match', data)
   })
 }

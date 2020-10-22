@@ -3,7 +3,8 @@ const initialState = {
     isLoadingAdmin: false,
     isErrorAdmin: false,
     tokenAdmin: '',
-    alertMsgAdmin: ''
+    alertMsgAdmin: '',
+    isSuccess: false
   }
   
   export default (state=initialState, action) => {
@@ -31,6 +32,53 @@ const initialState = {
           isLoadingAdmin: false,
           isLoginAdmin: true,
           alertMsgAdmin: 'Successfully login'
+        }
+      }case 'RESET_PASSWORD_PENDING': {
+        return {
+          ...state,
+          isLoadingAdmin: true,
+          isLoginAdmin: false,
+        }
+      }
+      case 'RESET_PASSWORD_REJECTED': {
+        return {
+          ...state,
+          isLoadingAdmin: false,
+          isLoginAdmin: false,
+          isErrorAdmin: true
+        }
+      }
+      case 'RESET_PASSWORD_FULFILLED': {
+        return {
+          ...state,
+          isLoadingAdmin: false,
+          isLoginAdmin: false,
+          isErrorAdmin: false,
+          isSuccess: true
+        }
+      }
+      case 'MATCH_CODE_PENDING': {
+        return {
+          ...state,
+          isLoadingAdmin: true,
+          isLoginAdmin: false,
+        }
+      }
+      case 'MATCH_CODE_REJECTED': {
+        return {
+          ...state,
+          isLoadingAdmin: false,
+          isLoginAdmin: false,
+          isErrorAdmin: true
+        }
+      }
+      case 'MATCH_CODE_FULFILLED': {
+        return {
+          ...state,
+          isLoadingAdmin: false,
+          isLoginAdmin: false,
+          isErrorAdmin: false,
+          isSuccess: true
         }
       }
       case 'SET_TOKEN_ADMIN':{
