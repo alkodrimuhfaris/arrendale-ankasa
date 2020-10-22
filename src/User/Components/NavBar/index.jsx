@@ -74,7 +74,7 @@ class NavigationBar extends Component {
                     </NavLink>
                   </NavItem>
                   <NavItem>
-                    <NavLink className="text-center" href="#">
+                    <NavLink className="text-center" href="/user/booking">
                       My Booking
                     </NavLink>
                   </NavItem>

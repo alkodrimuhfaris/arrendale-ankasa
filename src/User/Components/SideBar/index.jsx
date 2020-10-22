@@ -3,7 +3,7 @@
 import React, { Component } from "react";
 import "./styled/style.css";
 import { FaCog, FaSignOutAlt, FaStar, FaUserCircle } from "react-icons/fa";
-import { Col, Input, Row } from "reactstrap";
+import { Button, Col, Input, Row } from "reactstrap";
 
 // import images
 import avatar from "../../Assets/profile.jpg";
@@ -70,11 +70,17 @@ export default class Sidebar extends Component {
             <Col md={7} className='my-3 font-weight-bold'>
               Settings
             </Col>
-            <Col md={4} className='my-3 text-danger text-right'>
-              <FaSignOutAlt />
-            </Col>
-            <Col md={7} className='my-3 text-danger font-weight-bold'>
-              Logout
+            <Col md={12}>
+              <Button block className='logout ml-2'>
+                <Row width={100}>
+                  <Col md={4} className='my-3 text-danger text-right'>
+                    <FaSignOutAlt />
+                  </Col>
+                  <Col md={7} className='my-3 text-danger text-left font-weight-bold'>
+                    Logout
+                  </Col>
+                </Row>
+              </Button>
             </Col>
           </Row>
         </div>
