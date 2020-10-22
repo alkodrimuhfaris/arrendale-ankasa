@@ -1,11 +1,12 @@
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/prop-types */
 import React, { Component } from "react";
 import { Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 class PrivateRoute extends Component {
   render() {
-    const token = localStorage.getItem("token");
-    console.log(token);
     return (
       <Route render={
         (props) => {
@@ -15,10 +16,16 @@ class PrivateRoute extends Component {
             }
             return child;
           });
-          if (this.props.auth.isLogin || token) {
+          if (this.props.auth.isLogin && this.props.auth.token) {
             return childWithProps;
           }
-          return <Redirect to={{ pathname: "/login"}} />;
+          return (
+            <Redirect to={{
+              pathname: "/login",
+              state: { alert: "Login first!", color: "danger", location: this.props.location.pathname },
+            }}
+            />
+          );
         }
       }
       />

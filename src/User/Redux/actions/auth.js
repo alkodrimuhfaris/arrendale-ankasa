@@ -6,10 +6,15 @@ export default {
     type: "AUTH_USER",
     payload: http().post("auth/login", qs.stringify(data)),
   }),
-  logout: () => ({
-    type: "LOGOUT_USER",
+  // logout: () => ({
+  //   type: "LOGOUT_USER",
+  // }),
+  register: (data) => ({
+    type: "SIGN_UP",
+    payload: http().post("auth/signup", qs.stringify(data)),
   }),
-  clearMessage: () => ({
-    type: "CLEAR_MESSAGE",
+  setToken: (payload) => ({
+    type: "SET_TOKEN",
+    payload,
   }),
 };
