@@ -17,7 +17,7 @@ class App extends React.Component {
     return (
       <Router>
         <Switch>
-          <Route path="/find" component={Explore} exact/>
+          <Route path="/" component={Explore} exact/>
           {/* <Route path="/find/flight/details" component={FlightDetails} exact/> */}
           <Route path="/find/search/result" component={SearchResult} exact/>
           <Route path="/user/booking" component={MyBooking} exact/>

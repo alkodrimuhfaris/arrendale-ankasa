@@ -13,6 +13,7 @@ import search from "../../Assets/search.svg";
 import mail from "../../Assets/mail.svg";
 import bell from "../../Assets/bell.svg";
 import profile from "../../Assets/profile.jpg";
+import { Link } from "react-router-dom";
 
 export default class NavigationBar extends Component {
   constructor(props) {
@@ -80,9 +81,11 @@ export default class NavigationBar extends Component {
               {!this.state.isLogin && !this.state.isAdmin && (
                 <Nav className="d-flex flex-fill justify-content-end">
                   <NavItem>
-                    <Button color="primary" className="btn-signup font-weight-bold shadow">
+                    <Link to='/signup'>
+                      <Button color="primary" className="btn-signup font-weight-bold shadow">
                       Sign Up
-                    </Button>
+                      </Button>
+                    </Link>
                   </NavItem>
                 </Nav>
               )}
