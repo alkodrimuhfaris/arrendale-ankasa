@@ -39,36 +39,6 @@ export default class index extends Component {
                                 </Col>
                             </FormGroup>
                             <FormGroup row>
-                                <Label for="input-code" md={2} sm={3}>flight code</Label>
-                                <Col>
-                                    <Input className="input" type="number" name="flight_code" id="input-code" onChange={this.handlerChange}></Input>
-                                </Col>
-                            </FormGroup>
-                            <FormGroup row>
-                                <Label for="input-origin" md={2} sm={3}>origin</Label>
-                                <Col>
-                                    <Input className="input" type="number" name="origin" id="input-origin" onChange={this.handlerChange}></Input>
-                                </Col>
-                            </FormGroup>
-                            <FormGroup row>
-                                <Label for="input-departure" md={2} sm={3}>departure time</Label>
-                                <Col>
-                                    <Input className="input" type="date" name="departure_time" id="input-departure" onChange={this.handlerChange}></Input>
-                                </Col>
-                            </FormGroup>
-                            <FormGroup row>
-                                <Label for="input-desti" md={2} sm={3}>destination</Label>
-                                <Col>
-                                    <Input className="input" type="number" name="destination" id="input-desti" onChange={this.handlerChange}></Input>
-                                </Col>
-                            </FormGroup>
-                            <FormGroup row>
-                                <Label for="input-arrived" md={2} sm={3}>arrived time</Label>
-                                <Col>
-                                    <Input className="input" type="date" name="arrived_time" id="input-arrived" onChange={this.handlerChange}></Input>
-                                </Col>
-                            </FormGroup>
-                            <FormGroup row>
                                 <Label for="input-class" md={2} sm={3}>class name</Label>
                                 <Col>
                                     <Input className="input" type="select" name="class_name" id="input-class" onChange={this.handlerChange}>
@@ -79,9 +49,33 @@ export default class index extends Component {
                                 </Col>
                             </FormGroup>
                             <FormGroup row>
-                                <Label for="input-seat" md={2} sm={3}>seat count</Label>
+                                <Label for="input-origin" md={2} sm={3}>origin</Label>
                                 <Col>
-                                    <Input className="input" type="number" name="seat_count" id="input-seat" onChange={this.handlerChange}></Input>
+                                    <Input className="input" type="number" name="origin" id="input-origin" onChange={this.handlerChange}></Input>
+                                </Col>
+                            </FormGroup>
+                            <FormGroup row>
+                                <Label for="input-desti" md={2} sm={3}>destination</Label>
+                                <Col>
+                                    <Input className="input" type="number" name="destination" id="input-desti" onChange={this.handlerChange}></Input>
+                                </Col>
+                            </FormGroup>
+                            <FormGroup row>
+                                <Label for="input-transit" md={2} sm={3}>transit id</Label>
+                                <Col>
+                                    <Input className="input" type="number" name="transit_id" id="input-transit" onChange={this.handlerChange}></Input>
+                                </Col>
+                            </FormGroup>
+                            <FormGroup row>
+                                <Label for="input-departure" md={2} sm={3}>departure time</Label>
+                                <Col>
+                                    <Input className="input" type="datetime-local" name="departure_time" id="input-departure" onChange={this.handlerChange}></Input>
+                                </Col>
+                            </FormGroup>
+                            <FormGroup row>
+                                <Label for="input-arrived" md={2} sm={3}>arrived time</Label>
+                                <Col>
+                                    <Input className="input" type="datetime-local" name="arrived_time" id="input-arrived" onChange={this.handlerChange}></Input>
                                 </Col>
                             </FormGroup>
                             <FormGroup row>

@@ -86,7 +86,7 @@ export default class index extends Component {
                   <td>Garuda Indonesia</td>
                   <td>Jogja - Malioboro</td>
                   <td className="d-flex justify-content-center">
-                    <Button className="btn-detail bg-primary mr-3">detail</Button>
+                    <Button className="btn-detail bg-primary mr-3">edit</Button>
                     <Button className="btn-delete bg-danger">delete</Button>
                   </td>
                 </tr>
@@ -95,7 +95,7 @@ export default class index extends Component {
                   <td>Sukhoi</td>
                   <td>Malang - Amerika</td>
                   <td className="d-flex justify-content-center">
-                    <Button className="btn-detail bg-primary mr-3">detail</Button>
+                    <Button className="btn-detail bg-primary mr-3">edit</Button>
                     <Button className="btn-delete bg-danger">delete</Button>
                   </td>
                 </tr>
@@ -104,7 +104,7 @@ export default class index extends Component {
                   <td>Adam Air</td>
                   <td>Bali - German</td>
                   <td className="d-flex justify-content-center">
-                    <Button className="btn-detail bg-primary mr-3">detail</Button>
+                    <Button className="btn-detail bg-primary mr-3">edit</Button>
                     <Button className="btn-delete bg-danger">delete</Button>
                   </td>
                 </tr>
@@ -113,7 +113,7 @@ export default class index extends Component {
                   <td>Citilink Airways</td>
                   <td>Aceh - Jedah</td>
                   <td className="d-flex justify-content-center">
-                    <Button className="btn-detail bg-primary mr-3">detail</Button>
+                    <Button className="btn-detail bg-primary mr-3">edit</Button>
                     <Button className="btn-delete bg-danger">delete</Button>
                   </td>
                 </tr>

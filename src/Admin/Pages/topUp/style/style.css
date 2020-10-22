@@ -2,6 +2,10 @@
   background: #f5f6fa;
 }
 
+.input {
+  border: 1px solid #f2f2f2;
+}
+
 .input.search,
 .asc {
   border-top-left-radius: 25px;
