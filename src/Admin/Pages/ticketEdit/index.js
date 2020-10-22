@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 
 //import style
-import './style/style.css'
 
 //import component
-import Navbar from '../../../User/Components/NavBar'
+import Navbar from '../../Components/NavBar'
 import Footer from '../../../User/Components/Footer'
 import FromFlight from '../../Components/FormFlight'
 
@@ -14,7 +13,7 @@ export default class index extends Component {
             <React.Fragment>
                 <Navbar />
                 <div className="body pt-5 pb-5">
-                    <FromFlight />
+                    <FromFlight tittle="Edit Detail Flight" buttonText="edit"/>
                 </div>
                 <Footer />
             </React.Fragment>

@@ -14,7 +14,7 @@ export default class index extends Component {
             <React.Fragment>
                 <Navbar />
                 <div className="body pt-5 pb-5">
-                    <FormFlight/>
+                    <FormFlight tittle="Add Flight" buttonText="add" />
                 </div>
                 <Footer />
             </React.Fragment>

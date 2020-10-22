@@ -7,7 +7,7 @@ import {
 import "./style/style.css";
 
 //import component
-import Navbar from "../../../User/Components/NavBar";
+import Navbar from "../../Components/NavBar";
 import Footer from "../../../User/Components/Footer";
 
 export default class index extends Component {
@@ -25,14 +25,14 @@ export default class index extends Component {
                   <FormGroup row>
                     <Label for="input-email" md={2} sm={3}>email</Label>
                     <Col>
-                      <Input type="email" name="email" id="input-email" placeholder="example@mail.com"></Input>
+                      <Input className="input" type="email" name="email" id="input-email" placeholder="example@mail.com"></Input>
                     </Col>
                   </FormGroup>
                   <div className="font-weight-bold mb-4">how much will be added?</div>
                   <FormGroup row>
                     <Label for="input-amount" md={2} sm={3}>amount</Label>
                     <Col>
-                      <Input type="number" name="amount" id="input-amount" placeholder="000,-"></Input>
+                      <Input className="input" type="number" name="amount" id="input-amount" placeholder="000,-"></Input>
                     </Col>
                   </FormGroup>
                   <FormGroup row>

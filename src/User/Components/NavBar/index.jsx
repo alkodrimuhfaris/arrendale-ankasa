@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import { Link } from 'react-router-dom';
 import {
   Button, Col, Container, Input, Nav,
   Navbar, NavbarBrand, NavItem, Row,

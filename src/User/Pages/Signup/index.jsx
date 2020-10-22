@@ -52,7 +52,7 @@ class Signup extends React.Component {
           <AuthSideBar />
           <Col md={5} className="vh-100 w-100 px-5 py-3">
             <div className="head-signup d-flex align-items-center">
-              <img className="logo mr-3" src={logo} alt="logo"/>
+              <img className="logo mr-3" src={logo} alt="logo" />
               <div>
                 <span className="h4 font-weight-bold">Ankasa</span>
               </div>
@@ -80,7 +80,7 @@ class Signup extends React.Component {
                 </div>
               </Form>
               <div>
-                <hr/>
+                <hr />
                 <div className="text-center mb-3">
                   <span>Already have an account?</span>
                 </div>
