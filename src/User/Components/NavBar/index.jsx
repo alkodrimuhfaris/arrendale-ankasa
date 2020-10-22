@@ -13,7 +13,6 @@ import search from "../../Assets/search.svg";
 import mail from "../../Assets/mail.svg";
 import bell from "../../Assets/bell.svg";
 import profile from "../../Assets/profile.jpg";
-import { Link } from "react-router-dom";
 
 export default class NavigationBar extends Component {
   constructor(props) {
@@ -72,50 +71,24 @@ export default class NavigationBar extends Component {
                     </NavLink>
                   </NavItem>
                   <NavItem>
-<<<<<<< HEAD
-                    <Input className='input-search position-relative pl-5 navbar-input' style={{ height: 50 }} type='search' placeholder='Where you want to go?' />
-                    <img className="icon-search position-absolute" src={search} alt="search" />
-                  </NavItem>
-                </Nav>
-              </Col>
-              <Nav tabs className="border-0">
-                <NavItem>
-                  <NavLink className="text-center text-decoration-none" href="#">
-                    Find Ticket
-                  </NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink className="text-center" href="/user/booking">
-                    My Booking
-                  </NavLink>
-                </NavItem>
-              </Nav>
-              {!this.state.isLogin && (
-                <Nav className="d-flex flex-fill justify-content-end">
-                  <NavItem>
-                    <Link to="/signup">
-                      <Button color="primary" className="btn-signup font-weight-bold shadow">
-                        Sign Up
-=======
                     <NavLink className="text-center" href="#">
                       My Booking
                     </NavLink>
                   </NavItem>
                 </Nav>
               )}
-              {!this.state.isLogin && !this.state.isAdmin && (
+              {!isLogin && !this.state.isAdmin && (
                 <Nav className="d-flex flex-fill justify-content-end">
                   <NavItem>
                     <Link to='/signup'>
                       <Button color="primary" className="btn-signup font-weight-bold shadow">
                       Sign Up
->>>>>>> 6dc20467c8a0ff275474d519867148159689144b
                       </Button>
                     </Link>
                   </NavItem>
                 </Nav>
               )}
-              {this.state.isLogin && (
+              {isLogin && (
                 <Nav className="d-flex flex-fill justify-content-end">
                   <NavItem className="d-flex align-items-center justify-content-center wrapper-icon mr-4">
                     <img src={mail} alt="mail" />

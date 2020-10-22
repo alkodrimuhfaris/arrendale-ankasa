@@ -5,7 +5,7 @@ import { Container, Table, Button, Col, Form, ButtonGroup, InputGroupAddon, Inpu
 import "./style/style.css";
 
 //import component
-import Navbar from "../../Components/NavBar";
+import Footer from "../../../User/Components/NavBar";
 import Footer from "../../../User/Components/Footer";
 
 // importing images
