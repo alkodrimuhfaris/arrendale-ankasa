@@ -1,11 +1,15 @@
 import React, { Component } from "react";
-import { Container, Table, Button, Col, Form, ButtonGroup, InputGroupAddon, Input, InputGroup, Row } from "reactstrap";
+import {
+  Container, Table, Button, Col, Form,
+  ButtonGroup, InputGroupAddon, Input,
+  InputGroup, Row
+} from "reactstrap";
 
 //import style
 import "./style/style.css";
 
 //import component
-import Navbar from "../../Components/NavBar";
+import Navbar from "../../../User/Components/NavBar";
 import Footer from "../../../User/Components/Footer";
 
 // importing images
@@ -24,7 +28,6 @@ export default class index extends Component {
         <div className="body pb-5">
           <Container>
             <div className="h3 pt-5">Manage user account</div>
-
             <div>
               <Row className='mb-4 mt-3'>
                 <Col lg='4'>
