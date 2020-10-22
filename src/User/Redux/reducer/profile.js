@@ -1,65 +1,40 @@
 const initialState = {
-  isLogin: false,
+  data: {},
+  isLoading: false,
   isError: false,
-  token: "",
   alertMsg: "",
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-  case "AUTH_USER_PENDING": {
+  case "GET_PROFILE_PENDING": {
     return {
       ...state,
       isLoading: true,
     };
   }
-  case "AUTH_USER_REJECTED": {
+  case "GET_PROFILE_REJECTED": {
     return {
       ...state,
       isLoading: false,
       isError: true,
-      alertMsg: action.payload.response.data.error,
+      alertMsg: "There is an error at request data",
     };
   }
-  case "AUTH_USER_FULFILLED": {
-    localStorage.setItem("token", action.payload.data.token);
+  case "GET_PROFILE_FULFILLED": {
     return {
       ...state,
-      token: action.payload.data.message.token,
       isLoading: false,
-      isLogin: true,
-      alertMsg: "Successfully login",
+      data: action.payload.data.data,
     };
   }
-  case "LOGOUT_USER": {
-    localStorage.removeItem("token");
-    return {
-      isLogin: false,
-      isError: false,
-      token: "",
-      alertMsg: "Logout Successfully",
-    };
-  }
-  case "SET_TOKEN": {
-    return {
-      ...state,
-      isLogin: true,
-      token: action.payload,
-    };
-  }
-  // case "CLEAR_MESSAGE": {
-  //   return {
-  //     ...state,
-  //     alertMsg: "",
-  //   };
-  // }
-  case "SIGN_UP_PENDING": {
+  case "EDIT_PROFILE_PENDING": {
     return {
       ...state,
       isLoading: true,
     };
   }
-  case "SIGN_UP_REJECTED": {
+  case "EDIT_PROFILE_REJECTED": {
     return {
       ...state,
       isLoading: false,
@@ -67,7 +42,29 @@ export default (state = initialState, action) => {
       alertMsg: action.payload.response.data.message,
     };
   }
-  case "SIGN_UP_FULFILLED": {
+  case "EDIT_PROFILE_FULFILLED": {
+    return {
+      ...state,
+      isLoading: false,
+      isError: false,
+      alertMsg: action.payload.data.message,
+    };
+  }
+  case "EDIT_PICT_PENDING": {
+    return {
+      ...state,
+      isLoading: true,
+    };
+  }
+  case "EDIT_PICT_REJECTED": {
+    return {
+      ...state,
+      isLoading: false,
+      isError: true,
+      alertMsg: action.payload.response.data.message,
+    };
+  }
+  case "EDIT_PICT_FULFILLED": {
     return {
       ...state,
       isLoading: false,

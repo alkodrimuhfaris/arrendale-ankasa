@@ -35,10 +35,9 @@ class NavigationBar extends Component {
             <Row className='w-100 d-flex align-items-center'>
               <Col md={3}>
                 <NavbarBrand>
-                  {/* <Link to='/'>
+                  <Link to='/'>
                     <img src={logo} alt='logo ankasa' />
-                  </Link> */}
-                  <img src={logo} alt='logo ankasa' />
+                  </Link>
                 </NavbarBrand>
               </Col>
               {this.state.isAdmin ? (
@@ -74,7 +73,7 @@ class NavigationBar extends Component {
                     </NavLink>
                   </NavItem>
                   <NavItem>
-                    <NavLink className="text-center" href="#">
+                    <NavLink className="text-center" href="/user/booking">
                       My Booking
                     </NavLink>
                   </NavItem>
@@ -100,7 +99,9 @@ class NavigationBar extends Component {
                     <img src={bell} alt="bell" />
                   </NavItem>
                   <NavItem className="rounded-circle d-flex align-items-center justify-content-center wrapper-icon profile">
-                    <img className="img-rounded rounded-circle" src={profile} alt="profile" />
+                    <Link to='/user/profile'>
+                      <img className="img-rounded rounded-circle" src={profile} alt="profile" />
+                    </Link>
                   </NavItem>
                 </Nav>
               )}

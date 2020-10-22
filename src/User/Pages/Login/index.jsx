@@ -1,6 +1,7 @@
 import React from "react";
 import "./style/style.css";
 import {
+  Alert,
   Button,
   Col, Form, Input, Row,
 } from "reactstrap";
@@ -52,6 +53,7 @@ class Signup extends React.Component {
   
 
   render(){
+    const {isError, alertMsg} = this.props.auth
     return (
       <React.Fragment>
         <Row className="vh-100 vw-100">
@@ -64,6 +66,12 @@ class Signup extends React.Component {
               </div>
             </div>
             <div className="body-signup d-flex flex-column justify-content-center">
+              <div>
+                <Alert 
+                className='text-center' 
+                color={isError?'danger':'success'} 
+                isOpen={isError || alertMsg!==''}>{alertMsg}</Alert>
+              </div>
               <Form onSubmit={this.login}>
                 <div className="mb-3">
                   <span className="h2 font-weight-bold">Login</span>
