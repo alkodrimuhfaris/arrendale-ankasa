@@ -57,7 +57,7 @@ const SearchDetail = (props) => {
           </Row>
         </Col>
         <Col className="text-right">
-          <LinkChange to="/">Change Search</LinkChange>
+          <LinkChange to="/find">Change Search</LinkChange>
         </Col>
       </Row>
     </Container>

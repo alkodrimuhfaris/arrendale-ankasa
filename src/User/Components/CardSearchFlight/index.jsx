@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { Container, Row, Col, Form, FormGroup } from "reactstrap";
 import {
   Card,
@@ -22,8 +23,12 @@ import roundedTripIcon from "../../Assets/rounde-trip.svg";
 
 const CardSearchFlight = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const history = useHistory();
 
   const toggle = () => setIsOpen(!isOpen);
+  const onClickSearch = () => {
+    history.push("/find/search/result");
+  };
 
   return (
     <Card>
@@ -158,7 +163,7 @@ const CardSearchFlight = () => {
             </Col>
           </Row>
         </Form>
-        <SearchButton className="btn-block">SEARCH FLIGHT</SearchButton>
+        <SearchButton className="btn-block" onClick={onClickSearch}>SEARCH FLIGHT</SearchButton>
       </Container>
     </Card>
   );

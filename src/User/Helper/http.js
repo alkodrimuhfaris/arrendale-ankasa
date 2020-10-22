@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { default as axios } from "axios";
 
 const { REACT_APP_BACKEND_URL } = process.env;

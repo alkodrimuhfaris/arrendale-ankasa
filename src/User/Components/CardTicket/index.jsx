@@ -75,10 +75,11 @@ const CardTicket = (props) => {
             </Row>
             <Row>
               <Col>
-                <Text>
+                {/* <Text>
                   ({props.transit !== 0 ? props.transit : null}&nbsp;
                   {props.transit !== 0 ? "Transit" : "Direct"})
-                </Text>
+                </Text> */}
+                <Text>{props.transit}</Text>
               </Col>
             </Row>
           </Col>

@@ -1,6 +1,8 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-key */
 import React, { Component } from "react";
 import { Container, Row, Col } from "reactstrap";
+import { connect } from "react-redux";
 
 //Components
 import NavBar from "../../Components/NavBar";
@@ -26,8 +28,15 @@ import verticalSwitch from "../../Assets/vertical-switch.svg";
 //API
 import SearchResultApi from "../../API/SearchResult/";
 
+//Actions
+import SearchActions from "../../Redux/actions/searchResult";
+
 export class SearchResult extends Component {
+  componentDidMount() {
+    this.props.findTicket();
+  }
   render() {
+    const { isLoading, isError, data, alertMsg } = this.props.searchResult;
     return (
       <>
         <GlobalStyle />
@@ -82,7 +91,7 @@ export class SearchResult extends Component {
               <CheckList />
             </Col>
             <Col lg={8} className="m-0 p-0">
-              {SearchResultApi.data.map((item) => (
+              {/* {SearchResultApi.data.map((item) => (
                 <CardTicket
                   logoAirlines={item.logoAirline}
                   nameAirlines={item.airline}
@@ -95,6 +104,37 @@ export class SearchResult extends Component {
                   facilities={item.facilities}
                   price={item.price}
                 />
+              ))} */}
+              {isLoading && !isError && [...Array(8)].forEach(() => (
+                <CardTicket
+                  logoAirlines="Loading..."
+                  nameAirlines="Loading..."
+                  departure="Loading..."
+                  departureTime="Loading..."
+                  arrived="Loading..."
+                  arrivedTime="Loading..."
+                  period="Loading..." //KOSONG
+                  transit="Loading..."
+                  facilities="Loading..." //KOSONG
+                  price="Loading..."
+                />
+              ))}
+              {!isLoading && isError && (
+                <div>{alertMsg}</div>
+              )}
+              {!isLoading && !isError && data.length !== 0 && data.map(item => (
+                <CardTicket
+                  logoAirlines={item.airlines_logo}
+                  nameAirlines={item.name}
+                  departure={item.origin_city_country}
+                  departureTime={item.departure_time}
+                  arrived={item.destination_city_country}
+                  arrivedTime={item.arrived_time}
+                  period={SearchResultApi.data[1].period} //KOSONG
+                  transit={item.transit}
+                  facilities={SearchResultApi.data[1].facilities} //KOSONG
+                  price={item.price}
+                />
               ))}
             </Col>
           </Row>
@@ -105,4 +145,10 @@ export class SearchResult extends Component {
   }
 }
 
-export default SearchResult;
+const mapStateToProps = (state) => ({
+  searchResult: state.searchResult,
+});
+const mapDispatchToProps = {
+  findTicket: SearchActions.findTicket
+};
+export default connect(mapStateToProps, mapDispatchToProps)(SearchResult);
