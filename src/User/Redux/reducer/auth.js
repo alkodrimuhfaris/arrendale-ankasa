@@ -18,14 +18,14 @@ export default (state = initialState, action) => {
       ...state,
       isLoading: false,
       isError: true,
-      alertMsg: action.payload.response.data.message,
+      alertMsg: action.payload.response.data.error,
     };
   }
   case "AUTH_USER_FULFILLED": {
     localStorage.setItem("token", action.payload.data.token);
     return {
       ...state,
-      token: action.payload.data.token,
+      token: action.payload.data.message.token,
       isLoading: false,
       isLogin: true,
       alertMsg: "Successfully login",
