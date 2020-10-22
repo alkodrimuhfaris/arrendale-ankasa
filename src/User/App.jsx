@@ -24,11 +24,11 @@ class App extends React.Component {
       <Provider store={store}>
         <Router>
           <Switch>
-            <Route path="/" component={Explore} exact/>
-            <Route path="/login" component={Login} exact/>
-            <Route path="/signup" component={Signup} exact/>
-            <Route path="/forgot-password" component={ForgotPassword} exact/>
-            <Route path="/find/flight/detail" component={FlightDetails} exact/>
+            <Route path="/" component={Explore} exact />
+            <Route path="/login" component={Login} exact />
+            <Route path="/signup" component={Signup} exact />
+            <Route path="/forgot-password" component={ForgotPassword} exact />
+            <Route path="/find/flight/detail" component={FlightDetails} exact />
             <Route path="/find/search/result" component={SearchResult} exact />
             <PrivateRoute path='/user/booking'>
               <MyBooking />
