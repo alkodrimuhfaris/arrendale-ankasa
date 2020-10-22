@@ -6,7 +6,6 @@ export default {
     type: "AUTH_USER",
     payload: http().post("auth/login", qs.stringify(data)),
   }),
-<<<<<<< HEAD
   // logout: () => ({
   //   type: "LOGOUT_USER",
   // }),
@@ -19,12 +18,3 @@ export default {
     payload,
   }),
 };
-=======
-  logout: () => ({
-    type: "LOGOUT_USER",
-  }),
-  clearMessage: () => ({
-    type: "CLEAR_MESSAGE",
-  }),
-};
->>>>>>> 713f5e481309846325a34add024d63df97f16477
