@@ -30,7 +30,7 @@ class NavigationBar extends Component {
     const {isLogin} = this.props.auth;
     return (
       <>
-        <Navbar>
+        <Navbar className="bg-white">
           <Container className='my-2'>
             <Row className='w-100 d-flex align-items-center'>
               <Col md={3}>

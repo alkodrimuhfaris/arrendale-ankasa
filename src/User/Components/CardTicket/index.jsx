@@ -35,7 +35,7 @@ const CardTicket = (props) => {
             <Airline>{props.nameAirlines}</Airline>
           </Col>
         </Row>
-        <Row className="align-items-center mt-4">
+        <Row className="align-items-center justify-content-between mt-4">
           <Col sm={3}>
             <Row>
               <Col sm={4}>
