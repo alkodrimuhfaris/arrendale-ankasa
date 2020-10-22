@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Container, Row, Col } from "reactstrap";
+import { Container, Row, Col, Card, CardBody, CardImg, CardTitle, CardSubtitle, Button, } from "reactstrap";
 
 //import style
 import "./style/style.css";
@@ -14,7 +14,9 @@ import CardSearchFlight from "../../Components/CardSearchFlight";
 //import picture
 import pict1 from "../../Assets/img/destination1.png";
 import pict2 from "../../Assets/img/destination2.png";
+import pict3 from "../../Assets/img/destination3.png";
 import decor from "../../Assets/img/decoration.png";
+import btn from "../../Assets/img/btnback.png";
 
 export default class Explore extends Component {
   render() {
