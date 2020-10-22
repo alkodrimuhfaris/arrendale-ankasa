@@ -13,17 +13,22 @@ import search from "../../Assets/search.svg";
 import mail from "../../Assets/mail.svg";
 import bell from "../../Assets/bell.svg";
 import profile from "../../Assets/profile.jpg";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
-export default class NavigationBar extends Component {
+class NavigationBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
       navbarOpen: false,
       isLogin: false,
+      isAdmin: false
     };
   }
 
   render() {
+    // eslint-disable-next-line react/prop-types
+    const {isLogin} = this.props.auth;
     return (
       <>
         <Navbar className="bg-white">
@@ -37,36 +42,57 @@ export default class NavigationBar extends Component {
                   <img src={logo} alt='logo ankasa' />
                 </NavbarBrand>
               </Col>
-              <Col md={3}>
-                <Nav navbar>
+              {this.state.isAdmin ? (
+                <Col md={9} className='d-flex justify-content-end'>
+                  <Nav className='text-right'>
+                    <NavItem>
+                      <NavLink className="text-center text-decoration-none" href="#">
+                      User
+                      </NavLink>
+                    </NavItem>
+                    <NavItem>
+                      <NavLink className="text-center text-decoration-none" href="#">
+                      Ticket
+                      </NavLink>
+                    </NavItem>
+                  </Nav>
+                </Col>
+              ) : (
+                <Col md={3}>
+                  <Nav navbar>
+                    <NavItem>
+                      <Input className='input-search position-relative pl-5 navbar-input' style={{ height: 50 }} type='search' placeholder='Where you want to go?' />
+                      <img className="icon-search position-absolute" src={search} alt="search"/>
+                    </NavItem>
+                  </Nav>
+                </Col>
+              )}
+              {!this.state.isAdmin && (
+                <Nav tabs className="border-0">
                   <NavItem>
-                    <Input className='input-search position-relative pl-5 navbar-input' style={{ height: 50 }} type='search' placeholder='Where you want to go?' />
-                    <img className="icon-search position-absolute" src={search} alt="search"/>
+                    <NavLink className="text-center text-decoration-none" href="#">
+                      Find Ticket
+                    </NavLink>
                   </NavItem>
-                </Nav>
-              </Col>
-              <Nav tabs className="border-0">
-                <NavItem>
-                  <NavLink className="text-center text-decoration-none" href="#" >
-                    Find Ticket
-                  </NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink className="text-center" href="#">
-                    My Booking
-                  </NavLink>
-                </NavItem>
-              </Nav>
-              {!this.state.isLogin && (
-                <Nav className="d-flex flex-fill justify-content-end">
                   <NavItem>
-                    <Button onClick={this.signup} color="primary" className="text-center btn-signup font-weight-bold shadow">
-                      Sign Up
-                    </Button>
+                    <NavLink className="text-center" href="#">
+                      My Booking
+                    </NavLink>
                   </NavItem>
                 </Nav>
               )}
-              {this.state.isLogin && (
+              {!isLogin && !this.state.isAdmin && (
+                <Nav className="d-flex flex-fill justify-content-end">
+                  <NavItem>
+                    <Link to='/signup'>
+                      <Button color="primary" className="btn-signup font-weight-bold shadow">
+                      Sign Up
+                      </Button>
+                    </Link>
+                  </NavItem>
+                </Nav>
+              )}
+              {isLogin && (
                 <Nav className="d-flex flex-fill justify-content-end">
                   <NavItem className="d-flex align-items-center justify-content-center wrapper-icon mr-4">
                     <img src={mail} alt="mail" />
@@ -86,3 +112,9 @@ export default class NavigationBar extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  auth: state.auth
+});
+
+export default connect(mapStateToProps)(NavigationBar);
