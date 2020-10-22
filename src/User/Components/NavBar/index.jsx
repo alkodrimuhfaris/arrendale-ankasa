@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
 import {
   Button, Col, Container, Input, Nav,
   Navbar, NavbarBrand, NavItem, Row,
@@ -13,8 +12,10 @@ import search from "../../Assets/search.svg";
 import mail from "../../Assets/mail.svg";
 import bell from "../../Assets/bell.svg";
 import profile from "../../Assets/profile.jpg";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
-export default class NavigationBar extends Component {
+class NavigationBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -25,6 +26,8 @@ export default class NavigationBar extends Component {
   }
 
   render() {
+    // eslint-disable-next-line react/prop-types
+    const {isLogin} = this.props.auth;
     return (
       <>
         <Navbar>
@@ -108,3 +111,9 @@ export default class NavigationBar extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  auth: state.auth
+});
+
+export default connect(mapStateToProps)(NavigationBar);

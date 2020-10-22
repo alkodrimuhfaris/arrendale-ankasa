@@ -4,6 +4,8 @@ import {
   Button,
   Col, Form, Input, Row,
 } from "reactstrap";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 // Import image
 import logo from "../../Assets/logo-sm.svg";
@@ -12,9 +14,39 @@ import facebookImg from "../../Assets/facebook.svg";
 
 // Import Component
 import AuthSideBar from "../../Components/AuthSideBar";
-import { Link } from "react-router-dom";
+
+import authAction from "../../Redux/actions/auth";
 
 class Signup extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: false,
+      password: false,
+    };
+  }
+
+  onChangeText = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+
+  login = (e) => {
+    e.preventDefault()
+    const {email, password} = this.state
+    const data = {
+      email,
+      password
+    }
+    this.props.login(data)
+  }
+
+  componentDidUpdate() {
+    this.props.auth.isLogin && this.props.history.push('/')
+  }
+  
+
   render(){
     return (
       <React.Fragment>
@@ -28,13 +60,13 @@ class Signup extends React.Component {
               </div>
             </div>
             <div className="body-signup d-flex flex-column justify-content-center">
-              <Form>
+              <Form onSubmit={this.login}>
                 <div className="mb-3">
                   <span className="h2 font-weight-bold">Login</span>
                 </div>
-                <Input type="email" className="border-bottom mb-3" placeholder="Email" />
-                <Input type="password" className="border-bottom mb-3" placeholder="Password" />
-                <Button color="primary" className="shadow mb-3 font-weight-bold" block>Sign In</Button>
+                <Input onChange={this.onChangeText} name='email' type="email" className="border-bottom mb-3" placeholder="Email" />
+                <Input onChange={this.onChangeText} name='password' type="password" className="border-bottom mb-3" placeholder="Password" />
+                <Button type='submit' color="primary" className="shadow mb-3 font-weight-bold" block>Sign In</Button>
                 <div className="text-center">
                   <div>
                     <span>Did you forget your password?</span>
@@ -68,4 +100,12 @@ class Signup extends React.Component {
   }
 }
 
-export default Signup;
+const mapStateToProps = (state) => ({
+  auth: state.auth
+});
+
+const mapDispatchToProps = {
+  login: authAction.login
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);

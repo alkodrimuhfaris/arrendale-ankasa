@@ -1,11 +1,12 @@
 import React from "react";
-import {Link} from 'react-router-dom'
 import "./style/style.css";
 import {
   Alert,
   Button,
   Col, Form, Input, Label, Row,
 } from "reactstrap";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 // Import image
 import logo from "../../Assets/logo-sm.svg";
@@ -14,7 +15,6 @@ import logo from "../../Assets/logo-sm.svg";
 import AuthSideBar from "../../Components/AuthSideBar";
 
 import authAction from '../../Redux/actions/auth'
-import { connect } from "react-redux";
 
 class Signup extends React.Component {
   constructor(props) {
@@ -84,7 +84,9 @@ class Signup extends React.Component {
                 <div className="text-center mb-3">
                   <span>Already have an account?</span>
                 </div>
-                <Link to="/login"><Button color="outline-primary" className="font-weight-bold text-white" block>Sign In</Button></Link>
+                <Link to='/login'>
+                  <Button color="outline-primary" className="font-weight-bold" block>Sign In</Button>
+                </Link>
               </div>
             </div>
           </Col>
