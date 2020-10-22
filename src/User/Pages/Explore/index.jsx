@@ -8,6 +8,8 @@ import "./style/style.css";
 // import component
 import Navbar from "../../Components/NavBar";
 import Footer from "../../Components/Footer";
+import Carousel from "../../Components/Carousel";
+import CardSearchFlight from "../../Components/CardSearchFlight";
 
 //import picture
 import pict1 from "../../Assets/img/destination1.png";
@@ -15,13 +17,13 @@ import pict2 from "../../Assets/img/destination2.png";
 import pict3 from "../../Assets/img/destination3.png";
 import decor from "../../Assets/img/decoration.png";
 import btn from "../../Assets/img/btnback.png";
-import flight from "../../Assets/img/flight.png";
 
 export default class Explore extends Component {
   render() {
     return (
       <>
         <Navbar />
+        <CardSearchFlight />
         <Row className="up">
           <Col sm={6} >
             <div className="tag-text">Find your <span className="flight">Flight</span></div>
@@ -48,7 +50,7 @@ export default class Explore extends Component {
             </Col>
           </Row>
           <div className="d-flex mb-5">
-            <Card className="card-tranding shadow p-2 mr-3">
+            <Card className="card-tranding shadow p-2 mr-3 mb-5">
               <CardImg className="img-trending" top width="100%" src={pict3} alt="Card image cap" />
               <CardBody>
                 <CardTitle className="small font-weight-bold">city</CardTitle>
@@ -59,11 +61,9 @@ export default class Explore extends Component {
               </CardBody>
             </Card>
           </div>
-          <div className="tranding-carousel d-flex align-items-end mt-5">
-            <img src={flight} alt="decoration flight" />
-          </div>
+          <Carousel />
         </Container>
-        <Footer/>
+        <Footer />
       </>
     );
   }
