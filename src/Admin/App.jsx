@@ -26,6 +26,11 @@ export default function App() {
           <Switch>
             <Route path="/admin/login" render ={(props)=><Login {...props} />} />
             <Route path="/manage/user" render ={(props)=><ManageUser {...props} />} />
+            <Route path="/manage/user/top_up" render ={(props)=><topUp {...props} />} />
+            <Route path="/manage/flight" render ={(props)=><manageTicket {...props} />} />
+            <Route path="/manage/flight/add" render ={(props)=><ticketAdd {...props} />} />
+            <Route path="/manage/flight/edit" render ={(props)=><ticketEdit {...props} />} />
+
             <Route path="/admin/forgot-password" render ={(props)=><ForgotPassword {...props} />} />          
             {/* <PrivateRoute path="/manage/user">
               <ManageUser />

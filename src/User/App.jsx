@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Provider } from "react-redux";
 
 import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
@@ -12,23 +13,29 @@ import BookingDetail from "./Pages/BookingDetail";
 import Profile from "./Pages/Profile";
 // import Notofications from "./Pages/Notofications";
 
+// Import store
+import store from "./Redux/store";
+
+
 class App extends React.Component {
   render() {
     return (
-      <Router>
-        <Switch>
-          <Route path="/auth/login" component={Login} exact />
-          <Route path="/auth/signup" component={Signup} exact />
-          <Route path="/auth/forgot-password" component={ForgotPassword} exact />
-          <Route path="/find" component={Explore} exact />
-          <Route path="/find/flight/detail" component={FlightDetails} exact />
-          <Route path="/find/search/result" component={SearchResult} exact />
-          <Route path="/user/booking" component={MyBooking} exact />
-          <Route path="/user/booking/detail" component={BookingDetail} exact />
-          <Route path="/user/profile" component={Profile} exact />
-          {/* <Route path="/user/Notifications" component={Notifications} exact/> */}
-        </Switch>
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <Switch>
+            <Route path="/" component={Explore} exact/>
+            <Route path="/login" component={Login} exact/>
+            <Route path="/signup" component={Signup} exact/>
+            <Route path="/forgot-password" component={ForgotPassword} exact/>
+            <Route path="/find/flight/detail" component={FlightDetails} exact/>
+            <Route path="/find/search/result" component={SearchResult} exact />
+            <Route path="/user/booking" component={MyBooking} exact />
+            <Route path="/user/booking/detail" component={BookingDetail} exact />
+            <Route path="/user/profile" component={Profile} exact />
+            {/* <Route path="/user/Notifications" component={Notifications} exact/> */}
+          </Switch>
+        </Router>
+      </Provider>
     );
   }
 }

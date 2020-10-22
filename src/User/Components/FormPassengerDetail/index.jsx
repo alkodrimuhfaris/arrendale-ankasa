@@ -31,7 +31,7 @@ const FormContactPerson = (props) => {
         </FormGroup>
         <FormGroup>
           <LabelInput for="name">Full Name</LabelInput>
-          <InputUser type="text" name="name" id="name" placeholder="Enter your Name" />
+          <InputUser type="text" name="name" id="name" placeholder="Enter your Name" value={props.name} />
         </FormGroup>
         <FormGroup>
           <LabelInput for="region">Phone Number</LabelInput>

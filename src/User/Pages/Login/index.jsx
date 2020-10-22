@@ -1,9 +1,12 @@
 import React from "react";
 import "./style/style.css";
 import {
+  Alert,
   Button,
   Col, Form, Input, Row,
 } from "reactstrap";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 // Import image
 import logo from "../../Assets/logo-sm.svg";
@@ -12,10 +15,45 @@ import facebookImg from "../../Assets/facebook.svg";
 
 // Import Component
 import AuthSideBar from "../../Components/AuthSideBar";
-import { Link } from "react-router-dom";
+
+import authAction from "../../Redux/actions/auth";
 
 class Signup extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: false,
+      password: false,
+    };
+  }
+
+  onChangeText = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+
+  login = (e) => {
+    e.preventDefault()
+    const {email, password} = this.state
+    const data = {
+      email,
+      password
+    }
+    this.props.login(data)
+  }
+
+  componentDidUpdate() {
+    const { token } = this.props.auth
+    localStorage.setItem('token', token)
+    if (this.props.auth.isLogin) {
+      this.props.history.push('/');
+    }
+  }
+  
+
   render(){
+    const {isError, alertMsg} = this.props.auth
     return (
       <React.Fragment>
         <Row className="vh-100 vw-100">
@@ -28,13 +66,19 @@ class Signup extends React.Component {
               </div>
             </div>
             <div className="body-signup d-flex flex-column justify-content-center">
-              <Form>
+              <div>
+                <Alert 
+                className='text-center' 
+                color={isError?'danger':'success'} 
+                isOpen={isError || alertMsg!==''}>{alertMsg}</Alert>
+              </div>
+              <Form onSubmit={this.login}>
                 <div className="mb-3">
                   <span className="h2 font-weight-bold">Login</span>
                 </div>
-                <Input type="email" className="border-bottom mb-3" placeholder="Email" />
-                <Input type="password" className="border-bottom mb-3" placeholder="Password" />
-                <Button color="primary" className="shadow mb-3 font-weight-bold" block>Sign In</Button>
+                <Input onChange={this.onChangeText} name='email' type="email" className="border-bottom mb-3" placeholder="Email" />
+                <Input onChange={this.onChangeText} name='password' type="password" className="border-bottom mb-3" placeholder="Password" />
+                <Button type='submit' color="primary" className="shadow mb-3 font-weight-bold" block>Sign In</Button>
                 <div className="text-center">
                   <div>
                     <span>Did you forget your password?</span>
@@ -52,10 +96,10 @@ class Signup extends React.Component {
                   <span>or sign in with</span>
                 </div>
                 <div className="d-flex justify-content-center">
-                  <Button color="outline-primary" className="btn-img font-weight-bold mr-3">
+                  <Button href="https://accounts.google.com/Login?hl=in" color="outline-primary" className="btn-img font-weight-bold mr-3">
                     <img src={googleImg} alt="google" />
                   </Button>
-                  <Button color="outline-primary" className="btn-img font-weight-bold">
+                  <Button href="https://id-id.facebook.com/login" color="outline-primary" className="btn-img font-weight-bold">
                     <img src={facebookImg} alt="facebook"/>
                   </Button>
                 </div>
@@ -68,4 +112,12 @@ class Signup extends React.Component {
   }
 }
 
-export default Signup;
+const mapStateToProps = (state) => ({
+  auth: state.auth
+});
+
+const mapDispatchToProps = {
+  login: authAction.login
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);

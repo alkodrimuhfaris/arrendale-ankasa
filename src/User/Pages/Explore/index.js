@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Container, Card, Row, Col, CardImg, CardBody, CardTitle, CardSubtitle, Button } from "reactstrap";
+import { Container, Row, Col, Card, CardBody, CardImg, CardTitle, CardSubtitle, Button, } from "reactstrap";
 
 //import style
 import "./style/style.css";

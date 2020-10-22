@@ -1,5 +1,10 @@
 import React, { Component } from "react";
-import { Container, Table, Button, Col, Form, ButtonGroup, InputGroupAddon, Input, InputGroup, Row } from "reactstrap";
+import {
+  Container, Table, Button, Col, Form,
+  ButtonGroup, InputGroupAddon, Input,
+  InputGroup, Row
+} from "reactstrap";
+
 //import style
 import "./style/style.css";
 
@@ -22,8 +27,7 @@ export default class index extends Component {
         <Navbar />
         <div className="body pb-5">
           <Container>
-            <div className="h3 pt-5">Manage Flight</div>
-
+            <div className="h3 pt-5">Manage user account</div>
             <div>
               <Row className='mb-4 mt-3'>
                 <Col lg='4'>
@@ -43,7 +47,7 @@ export default class index extends Component {
                     <InputGroup>
                       <Input className='input search' type="select" name="sort" onChange={this.changeInput} aria-label='Sort'>
                         <option value='name'>Name</option>
-                        <option value='email'>Destination</option>
+                        <option value='email'>Email</option>
                       </Input>
                       <InputGroupAddon addonType='prepend'>
                         <Button className='btn-1 btn-search' type='submit' aria-label='sort'>
@@ -73,46 +77,46 @@ export default class index extends Component {
             <Table className="table-hover">
               <thead className="thead-light">
                 <tr>
-                  <th>id</th>
-                  <th>Airline</th>
-                  <th>destination</th>
+                  <th>No. Id</th>
+                  <th>User name</th>
+                  <th>email</th>
                   <th className="d-flex justify-content-center">Action</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <th scope="row">1</th>
-                  <td>Garuda Indonesia</td>
-                  <td>Jogja - Malioboro</td>
+                  <td>amam</td>
+                  <td>amam@gmail.com</td>
                   <td className="d-flex justify-content-center">
-                    <Button className="btn-detail bg-primary mr-3">edit</Button>
+                    <Button className="btn-detail bg-primary mr-3">detail</Button>
                     <Button className="btn-delete bg-danger">delete</Button>
                   </td>
                 </tr>
                 <tr>
                   <th scope="row">2</th>
-                  <td>Sukhoi</td>
-                  <td>Malang - Amerika</td>
+                  <td>abdul</td>
+                  <td>abdulQadir@gmail.com</td>
                   <td className="d-flex justify-content-center">
-                    <Button className="btn-detail bg-primary mr-3">edit</Button>
+                    <Button className="btn-detail bg-primary mr-3">detail</Button>
                     <Button className="btn-delete bg-danger">delete</Button>
                   </td>
                 </tr>
                 <tr>
                   <th scope="row">3</th>
-                  <td>Adam Air</td>
-                  <td>Bali - German</td>
+                  <td>mamat</td>
+                  <td>mamatalkatiri@mail.com</td>
                   <td className="d-flex justify-content-center">
-                    <Button className="btn-detail bg-primary mr-3">edit</Button>
+                    <Button className="btn-detail bg-primary mr-3">detail</Button>
                     <Button className="btn-delete bg-danger">delete</Button>
                   </td>
                 </tr>
                 <tr>
                   <th scope="row">4</th>
-                  <td>Citilink Airways</td>
-                  <td>Aceh - Jedah</td>
+                  <td>samuel</td>
+                  <td>samueletoo@gmail.com</td>
                   <td className="d-flex justify-content-center">
-                    <Button className="btn-detail bg-primary mr-3">edit</Button>
+                    <Button className="btn-detail bg-primary mr-3">detail</Button>
                     <Button className="btn-delete bg-danger">delete</Button>
                   </td>
                 </tr>

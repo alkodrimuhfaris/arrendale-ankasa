@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import "./style/style.css";
+import loginAction from '../../Redux/actions/auth'
+
 import {
   Button,
   Col, Form, Input, Row,
@@ -29,7 +31,7 @@ export default function ForgotPassword(props) {
   }
 
   const user = useSelector(state=>state.auth)
-  const { isLoginAdmin, tokenAdmin } = user
+  const { isLoginAdmin, tokenAdmin, isSuccess } = user
   useEffect(()=>{
     // console.log(props.location.state)
   if (isSuccess) {
