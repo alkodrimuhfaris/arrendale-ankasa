@@ -6,6 +6,7 @@ import App from "./User/App";
 import Admin from "./Admin/App";
 import store from "./User/Redux/store";
 import { Provider } from "react-redux";
+import storeAdmin from "./Admin/Redux/store";
 require("dotenv").config();
 
 ReactDOM.render(
