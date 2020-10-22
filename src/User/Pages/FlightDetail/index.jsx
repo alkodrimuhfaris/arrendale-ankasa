@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-key */
 import React, { Component } from "react";
 import { Container, Row, Col } from "reactstrap";
@@ -5,6 +6,7 @@ import { connect } from "react-redux";
 
 // Import action
 import userAction from "../../Redux/actions/user";
+import flightAction from "../../Redux/actions/flight";
 
 //Components
 import NavBar from "../../Components/NavBar";
@@ -33,11 +35,15 @@ import FlightDetailApi from "../../API/FlightDetail";
 
 export class FlightDetail extends Component {
   componentDidMount(){
-    this.props.getProfile()
+    const token = localStorage.getItem("token");
+    this.props.getProfile(token);
   }
 
+
   render() {
-    console.log(this.props)
+    console.log(this.props.user.dataProfile);
+    const {username, email, phone_number} = this.props.user.dataProfile;
+    parseInt(phone_number);
     return (
       <>
         <GlobalStyle />
@@ -61,11 +67,11 @@ export class FlightDetail extends Component {
         <Container>
           <Row>
             <Col lg={8}>
-              <FormContactPerson />
+              <FormContactPerson name={username} email={email} phone={phone_number} />
               <div className="mb-2 mt-5">
                 <Heading1 inputColor="#000000">Passenger Details</Heading1>
               </div>
-              <FormPassengerDetail />
+              <FormPassengerDetail name={username} />
               <div className="mb-2 mt-5">
                 <Heading1 inputColor="#000000">Passenger Details</Heading1>
               </div>
@@ -100,9 +106,14 @@ export class FlightDetail extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({user: state.user})
+const mapStateToProps = (state) => ({
+  user: state.user,
+  auth: state.auth,
+  flight: state.flight,
+});
 const mapDispatchToProps = {
   getProfile: userAction.getProfile,
-}
+  getFlightDetail: flightAction.getFlightDetail,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(FlightDetail);

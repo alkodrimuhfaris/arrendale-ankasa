@@ -1,16 +1,12 @@
 import { combineReducers } from "redux";
 
-<<<<<<< HEAD
 // Import reducers
-import user from './user'
-
-export default combineReducers({
-  user,
-});
-=======
+import user from "./user";
 import auth from "./auth";
+import flight from "./flight";
 
 export default combineReducers({
-  auth
+  auth,
+  user,
+  flight,
 });
->>>>>>> 18c31a76340c6717c52744e0629fd123ee34916c
