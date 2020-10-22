@@ -1,10 +1,13 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from "react";
 import "./styled/style.css";
 import { FaCog, FaSignOutAlt, FaStar, FaUserCircle } from "react-icons/fa";
+import { Col, Input, Row } from "reactstrap";
 
 // import images
 import avatar from "../../Assets/profile.jpg";
-import { Col, Input, Row } from "reactstrap";
+
+const { REACT_APP_BACKEND_URL } = process.env;
 
 export default class Sidebar extends Component {
   render() {
@@ -14,7 +17,13 @@ export default class Sidebar extends Component {
           <div className='d-flex flex-column align-items-center'>
             <div className='outline rounded-circle d-flex align-items-center justify-content-center'>
               <div>
-                <img className='rounded-circle' src={avatar} alt='avatar' />
+                <img className='rounded-circle' 
+                  src={this.props.picture!==undefined?
+                    REACT_APP_BACKEND_URL.concat(this.props.picture):
+                    avatar} 
+                  alt='avatar'
+                  width='110.9px'
+                  height='110.9px' />
               </div>
             </div>
             <div className='my-3'>
@@ -24,7 +33,7 @@ export default class Sidebar extends Component {
               </label>
             </div>
             <div className='font-weight-bold h5'>
-                Mike Kowalski
+              {this.props.name}
             </div>
             <div className='text-muted small'>
                 Medan, Indonesia
