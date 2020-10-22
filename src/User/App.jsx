@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Provider } from "react-redux";
 
 import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
@@ -12,10 +13,15 @@ import BookingDetail from "./Pages/BookingDetail";
 import Profile from "./Pages/Profile";
 // import Notofications from "./Pages/Notofications";
 
+// Import store
+import store from './Redux/store';
+
+
 class App extends React.Component {
   render() {
     return (
-      <Router>
+      <Provider store={store}>
+        <Router>
         <Switch>
           <Route path="/auth/login" component={Login} exact />
           <Route path="/auth/signup" component={Signup} exact />
@@ -29,6 +35,7 @@ class App extends React.Component {
           {/* <Route path="/user/Notifications" component={Notifications} exact/> */}
         </Switch>
       </Router>
+      </Provider>
     );
   }
 }

@@ -1,6 +1,10 @@
 /* eslint-disable react/jsx-key */
 import React, { Component } from "react";
 import { Container, Row, Col } from "reactstrap";
+import { connect } from "react-redux";
+
+// Import action
+import userAction from "../../Redux/actions/user";
 
 //Components
 import NavBar from "../../Components/NavBar";
@@ -19,6 +23,8 @@ import {
   PaymentButton,
 } from "./styled";
 
+
+
 //Images
 import bigFlight from "../../Assets/big-flight.png";
 
@@ -26,7 +32,12 @@ import bigFlight from "../../Assets/big-flight.png";
 import FlightDetailApi from "../../API/FlightDetail";
 
 export class FlightDetail extends Component {
+  componentDidMount(){
+    this.props.getProfile()
+  }
+
   render() {
+    console.log(this.props)
     return (
       <>
         <GlobalStyle />
@@ -89,4 +100,9 @@ export class FlightDetail extends Component {
   }
 }
 
-export default FlightDetail;
+const mapStateToProps = (state) => ({user: state.user})
+const mapDispatchToProps = {
+  getProfile: userAction.getProfile,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FlightDetail);
