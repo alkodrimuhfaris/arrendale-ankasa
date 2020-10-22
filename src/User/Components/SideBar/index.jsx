@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable react/prop-types */
 import React, { Component } from "react";
 import "./styled/style.css";
@@ -36,7 +37,7 @@ export default class Sidebar extends Component {
               {this.props.name}
             </div>
             <div className='text-muted small'>
-                Medan, Indonesia
+              {this.props.address}
             </div>
           </div>
           <Row className='w-100 mt-3 no-gutters'>

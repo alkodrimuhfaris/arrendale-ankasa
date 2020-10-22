@@ -19,9 +19,8 @@ export default function Profile() {
   const [city, setCity] = useState("");
   const [address, setAddress] = useState("");
   const [postalCode, setPostalCode] = useState("");
-  const [body, setBody] = useState({});
   const token = useSelector((state) => state.auth.token);
-  const { data, alertMsg } = useSelector((state) => state.profile);
+  const { data } = useSelector((state) => state.profile);
   // const form = new FormData();
   const dispatch = useDispatch();
   useEffect(() => {
@@ -47,7 +46,7 @@ export default function Profile() {
           <Row className='py-5'>
             <Col md={3} className='sidebar p-3'>
               {console.log(avatar)}
-              <Sidebar name={username} profile={avatar} />
+              <Sidebar name={username} profile={avatar} address={address} />
             </Col>
             <Col md={9}>
               <Card className='py-3'>
