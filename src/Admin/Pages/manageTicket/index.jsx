@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { Container, Table, Button } from 'reactstrap'
+import React, { Component } from 'react';
+import { Container, Table, Button } from "reactstrap";
 
 //import style
 import './style/style.css'

@@ -1,26 +1,44 @@
-import React, { Component } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import React, { useState, useEffect } from 'react'
+import {useSelector, useDispatch} from 'react-redux'
+import {BrowserRouter, Switch, Route} from 'react-router-dom'
 
-import manageUser from "./Pages/manageUser";
-import manageTicket from "./Pages/manageTicket";
-import ticketAdd from "./Pages/ticketAdd";
-import ticketEdit from "./Pages/ticketEdit";
-import topUp from "./Pages/topUp";
+import PrivateRoute from "./Components/PrivateRoute"
 
-class App extends Component {
-  render() {
+import Login from "./Pages/Login"
+import ManageUser from "./Pages/ManageUser";
+import ManageTicket from "./Pages/ManageTicket";
+import TicketAdd from "./Pages/TicketAdd";
+import TicketEdit from "./Pages/TicketEdit";
+
+export default function App() {
+  
+    // const dispatch = useDispatch()
+    // useEffect(()=>{
+    //   if(localStorage.getItem('token')){
+    //     dispatch(authAction.setToken(localStorage.getItem('token')))
+    //   }
+    // }, [dispatch])
+
     return (
-      <Router>
-        <Switch>
-          <Route path="/manage/user" component={manageUser} exact/>
-          <Route path="/manage/ticket" component={manageTicket} exact/>
-          <Route path="/manage/ticket/add" component={ticketAdd} exact/>
-          <Route path="/manage/ticket/edit" component={ticketEdit} exact/>
-          <Route path="/manage/user/top_up" component={topUp} exact/>
-        </Switch>
-      </Router>
+      <>
+        <BrowserRouter>
+          <Switch>
+            <Route path="/admin/login" render ={(props)=><Login {...props} />} />
+            <Route path="/manage/user" render ={(props)=><ManageUser {...props} />} />
+            {/* <PrivateRoute path="/manage/user">
+              <ManageUser />
+            </PrivateRoute> */}
+            <PrivateRoute path="/manage/ticket">
+              <ManageTicket />
+            </PrivateRoute>
+            <PrivateRoute path="/manage/ticket/add">
+              <TicketAdd />
+            </PrivateRoute>
+            <PrivateRoute path="/manage/ticket/edit">
+              <TicketEdit />
+            </PrivateRoute>
+          </Switch>
+        </BrowserRouter>
+      </>
     );
-  }
 }
-
-export default App;

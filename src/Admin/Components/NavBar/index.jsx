@@ -36,33 +36,6 @@ export default class NavigationBar extends Component {
                   </NavItem>
                 </Nav>
               </Col>
-              <Col md={2}>
-                <Nav>
-                  <NavItem>
-                    <Button>
-                      Find Ticket
-                    </Button>
-                  </NavItem>
-                </Nav>
-              </Col>
-              <Col md={2}>
-                <Nav>
-                  <NavItem>
-                    <Button>
-                      My Booking
-                    </Button>
-                  </NavItem>
-                </Nav>
-              </Col>
-              <Col md={2}>
-                <Nav>
-                  <NavItem>
-                    <Button>
-                      Sign Up
-                    </Button>
-                  </NavItem>
-                </Nav>
-              </Col>
             </Row>
           </Container>
         </Navbar>
