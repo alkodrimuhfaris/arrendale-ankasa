@@ -14,8 +14,9 @@ import mail from "../../Assets/mail.svg";
 import bell from "../../Assets/bell.svg";
 import profile from "../../Assets/profile.jpg";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
-export default class NavigationBar extends Component {
+class NavigationBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,6 +27,8 @@ export default class NavigationBar extends Component {
   }
 
   render() {
+    // eslint-disable-next-line react/prop-types
+    const {isLogin} = this.props.auth;
     return (
       <>
         <Navbar>
@@ -78,7 +81,7 @@ export default class NavigationBar extends Component {
                   </NavItem>
                 </Nav>
               )}
-              {!this.state.isLogin && !this.state.isAdmin && (
+              {!isLogin && !this.state.isAdmin && (
                 <Nav className="d-flex flex-fill justify-content-end">
                   <NavItem>
                     <Link to='/signup'>
@@ -89,7 +92,7 @@ export default class NavigationBar extends Component {
                   </NavItem>
                 </Nav>
               )}
-              {this.state.isLogin && (
+              {isLogin && (
                 <Nav className="d-flex flex-fill justify-content-end">
                   <NavItem className="d-flex align-items-center justify-content-center wrapper-icon mr-4">
                     <img src={mail} alt="mail" />
@@ -109,3 +112,9 @@ export default class NavigationBar extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  auth: state.auth
+});
+
+export default connect(mapStateToProps)(NavigationBar);
