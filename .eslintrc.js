@@ -1,3 +1,4 @@
+// DONT TOUCH THIS FILE PLEASE
 module.exports = {
     "env": {
         "browser": true,
@@ -25,10 +26,6 @@ module.exports = {
         "indent": [
             "error",
             2
-        ],
-        "linebreak-style": [
-            "error",
-            "unix",
         ],
         "quotes": [
             "error",

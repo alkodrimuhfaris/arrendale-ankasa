@@ -1,9 +1,16 @@
 import { combineReducers } from "redux";
 
-import auth from "../reducers/auth";
-import addFlight from "../../../Admin/Redux/reducers/addFlight";
+// Import reducers
+import user from "./user";
+import auth from "./auth";
+import profile from "./profile";
+import flight from "./flight";
+import searchResult from "./searchResult"; 
 
 export default combineReducers({
+  searchResult,
   auth,
-  addFlight
+  user,
+  flight,
+  profile
 });
