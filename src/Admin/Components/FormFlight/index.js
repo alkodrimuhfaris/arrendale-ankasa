@@ -13,42 +13,40 @@ import flightAction from '../../Redux/actions/addFlight'
 class index extends Component {
     state = {
         airline_id: '',
-        flight_code: '',
         origin: '',
-        departure_time: '',
         destination: '',
+        transit_id:'',
+        departure_date:'',
+        departure_time: '',
+        arrived_date:'',
         arrived_time: '',
-        class_name: '',
-        seat_count: '',
-        price: ''
+        class_id: ''
     }
 
     addFlight = (e) => {
         e.preventDefault()
         const {
             airline_id,
-            flight_code,
+            class_id,
             origin,
+            destination,
+            transit_id,
             departure_date,
             departure_time,
-            destination,
-            arrived_time,
-            class_name,
-            seat_count,
-            price
+            arrived_date,
+            arrived_time
         } = this.state
 
         const data = {
             airline_id,
-            flight_code,
+            class_id,
             origin,
+            destination,
+            transit_id,
             departure_date,
             departure_time,
-            destination,
-            arrived_time,
-            class_name,
-            seat_count,
-            price
+            arrived_date,
+            arrived_time
         }
         this.props.addingData(data)
     }
@@ -58,11 +56,6 @@ class index extends Component {
             [e.target.name]: e.target.value
         })
     }
-
-    componentDidMount() {
-        console.log();
-    }
-    
 
     componentDidUpdate() {
         if (this.props.addTheFlight.isAdd) {
@@ -86,11 +79,7 @@ class index extends Component {
                             <FormGroup row>
                                 <Label for="input-class" md={2} sm={3}>class name</Label>
                                 <Col>
-                                    <Input className="input" type="select" name="class_name" id="input-class" onChange={this.handlerChange}>
-                                        <option>Business</option>
-                                        <option>Economy</option>
-                                        <option>First Class</option>
-                                    </Input>
+                                    <Input className="input" type="number" name="class_id" id="input-class" onChange={this.handlerChange}></Input>
                                 </Col>
                             </FormGroup>
                             <FormGroup row>
@@ -124,15 +113,15 @@ class index extends Component {
                                 </Col>
                             </FormGroup>
                             <FormGroup row>
-                                <Label for="input-arrived" md={2} sm={3}>arrived time</Label>
+                                <Label for="input-arrived-date" md={2} sm={3}>arrived date</Label>
                                 <Col>
-                                    <Input className="input" type="time" name="arrived_time" id="input-arrived" onChange={this.handlerChange}></Input>
+                                    <Input className="input" type="date" name="arrived_date" id="input-arrived-date" onChange={this.handlerChange}></Input>
                                 </Col>
                             </FormGroup>
                             <FormGroup row>
-                                <Label for="input-price" md={2} sm={3}>price</Label>
+                                <Label for="input-arrived" md={2} sm={3}>arrived time</Label>
                                 <Col>
-                                    <Input className="input" type="number" name="price" id="input-price" onChange={this.handlerChange}></Input>
+                                    <Input className="input" type="time" name="arrived_time" id="input-arrived" onChange={this.handlerChange}></Input>
                                 </Col>
                             </FormGroup>
                             <FormGroup row>
