@@ -7,13 +7,13 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-  case "AUTH_USER_PENDING": {
+  case "LOGIN_USER_PENDING": {
     return {
       ...state,
       isLoading: true,
     };
   }
-  case "AUTH_USER_REJECTED": {
+  case "LOGIN_USER_REJECTED": {
     return {
       ...state,
       isLoading: false,
@@ -21,7 +21,7 @@ export default (state = initialState, action) => {
       alertMsg: action.payload.response.data.error,
     };
   }
-  case "AUTH_USER_FULFILLED": {
+  case "LOGIN_USER_FULFILLED": {
     localStorage.setItem("token", action.payload.data.token);
     return {
       ...state,
@@ -47,12 +47,6 @@ export default (state = initialState, action) => {
       token: action.payload,
     };
   }
-  // case "CLEAR_MESSAGE": {
-  //   return {
-  //     ...state,
-  //     alertMsg: "",
-  //   };
-  // }
   case "SIGN_UP_PENDING": {
     return {
       ...state,
@@ -64,7 +58,7 @@ export default (state = initialState, action) => {
       ...state,
       isLoading: false,
       isError: true,
-      alertMsg: action.payload.response.data.message,
+      alertMsg: action.payload.response.data.error,
     };
   }
   case "SIGN_UP_FULFILLED": {
