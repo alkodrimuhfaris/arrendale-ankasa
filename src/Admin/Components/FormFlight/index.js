@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import './styled/style.css'
 
 //import action dispatch
-import flightAction from '../../Redux/action/addFlight'
+import flightAction from '../../Redux/actions/addFlight'
 
 class index extends Component {
     state = {
