@@ -3,6 +3,7 @@ const initialState = {
   isLoading: false,
   isError: false,
   alertMsg: "",
+  avatar: ""
 };
 
 export default (state = initialState, action) => {
@@ -28,6 +29,7 @@ export default (state = initialState, action) => {
       isLoading: false,
       alertMsg: "",
       data: action.payload.data.data,
+      avatar: action.payload.data.data[0].avatar
     };
   }
   case "EDIT_PROFILE_PENDING": {

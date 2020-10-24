@@ -16,7 +16,6 @@ import profileAction from "../../Redux/actions/profile";
 import authAction from "../../Redux/actions/auth";
 
 export default function Profile() {
-  const [avatar, setAvatar] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -26,7 +25,6 @@ export default function Profile() {
   const [alertOpen, setAlert] = useState(false);
   const { token } = useSelector((state) => state.auth);
   const { data, alertMsg } = useSelector((state) => state.profile);
-  // const form = new FormData();
   const dispatch = useDispatch();
 
   const getData = () => {
@@ -45,7 +43,6 @@ export default function Profile() {
       setCity(data[0].city);
       setAddress(data[0].address);
       setPostalCode(data[0].postal_code);
-      setAvatar(data[0].avatar);
     }
     if(alertMsg!==""){
       setAlert(true);
@@ -81,7 +78,7 @@ export default function Profile() {
         <Container>
           <Row className='py-5'>
             <Col md={3} className='sidebar p-3'>
-              <Sidebar from='profile' name={username} avatar={avatar} address={address} />
+              <Sidebar from='profile' />
             </Col>
             <Col md={9}>
               <Card className='py-3'>

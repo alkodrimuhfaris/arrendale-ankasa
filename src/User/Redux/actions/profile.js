@@ -12,6 +12,6 @@ export default {
   }),
   editPict: (token, data) => ({
     type: "EDIT_PICT",
-    payload: http(token).patch("customer/edit/avatar", data),
+    payload: http(token).patch("user/profile/upload", data),
   }),
 };

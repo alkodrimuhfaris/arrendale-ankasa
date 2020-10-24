@@ -44,7 +44,12 @@ export default (state = initialState, action) => {
   }
   case "RELOGIN_USER": {
     localStorage.removeItem("token");
-    return state;
+    return {
+      isLogin: false,
+      isError: false,
+      token: "",
+      alertMsg: "",
+    };
   }
   case "SET_TOKEN": {
     return {

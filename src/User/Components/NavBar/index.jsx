@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable react/prop-types */
 import React, { Component } from "react";
 import {
@@ -18,30 +19,26 @@ import profile from "../../Assets/profile.jpg";
 
 import profileAction from "../../Redux/actions/profile";
 
+const { REACT_APP_BACKEND_URL } = process.env;
+
 class NavigationBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      token: "",
       navbarOpen: false,
-      isLogin: false,
-      isAdmin: false
+      isLogin: this.props.auth.isLogin,
+      isAdmin: false,
+      token: this.props.auth.token,
+      modalOpen: false
     };
   }
 
   componentDidMount() {
-    this.setData()
-  }
-  
-  setData = async () => {
-    await this.props.auth
-    this.setState({
-      token: this.props.auth.token,
-      isLogin: this.props.auth.isLogin
-    });
+    this.props.getData(this.state.token);
   }
 
   render() {
+    const { avatar } = this.props.profile;
     return (
       <>
         <Navbar className="bg-white">
@@ -114,7 +111,10 @@ class NavigationBar extends Component {
                   </NavItem>
                   <NavItem className="rounded-circle d-flex align-items-center justify-content-center wrapper-icon profile">
                     <Link to='/profile'>
-                      <img className="img-rounded rounded-circle" src={profile} alt="profile" />
+                      <img className="img-rounded rounded-circle" 
+                        src={avatar
+                          ?REACT_APP_BACKEND_URL.concat(avatar)
+                          :profile} alt="profile" />
                     </Link>
                   </NavItem>
                 </Nav>
@@ -128,7 +128,8 @@ class NavigationBar extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  auth: state.auth
+  auth: state.auth,
+  profile: state.profile
 });
 
 const mapDispatchToProps = {
