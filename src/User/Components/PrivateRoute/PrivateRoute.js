@@ -1,9 +1,9 @@
-/* eslint-disable react/jsx-filename-extension */
-/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
 import React, { Component } from "react";
 import { Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+
+import authAction from "../../Redux/actions/auth";
 
 class PrivateRoute extends Component {
   render() {
@@ -16,9 +16,10 @@ class PrivateRoute extends Component {
             }
             return child;
           });
-          if (this.props.auth.isLogin && this.props.auth.token) {
+          if (this.props.auth.isLogin) {
             return childWithProps;
           }
+          console.log(this.props.location);
           return (
             <Redirect to={{
               pathname: "/login",
@@ -33,6 +34,12 @@ class PrivateRoute extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({ auth: state.auth });
+const mapStateToProps = (state) => ({ 
+  auth: state.auth 
+});
 
-export default connect(mapStateToProps)(PrivateRoute);
+const mapDispatchToProps = {
+  setToken: authAction.setToken,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PrivateRoute);

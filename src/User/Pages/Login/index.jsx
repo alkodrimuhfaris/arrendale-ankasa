@@ -47,7 +47,11 @@ class Signup extends React.Component {
     const { token } = this.props.auth
     localStorage.setItem('token', token)
     if (this.props.auth.isLogin) {
-      this.props.history.push('/');
+      this.props.history.push(
+        this.props.location.state === undefined
+        ?'/homepage'
+        :this.props.location.state.location
+      );
     }
   }
   
