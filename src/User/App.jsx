@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -14,7 +15,16 @@ import Profile from "./Pages/Profile";
 
 import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
 
+import authAction from "../User/Redux/actions/auth";
+import { connect } from "react-redux";
+
 class App extends React.Component {
+  componentDidMount() {
+    if (localStorage.getItem("token")) {
+      this.props.setToken(localStorage.getItem("token"));
+    }
+  }
+
   render() {
     return (
       //     DONT TOUCH ROUTE PATH PLEASE
@@ -45,4 +55,15 @@ class App extends React.Component {
     );
   }
 }
-export default App;
+
+
+
+const mapStateToProps = (state) => ({
+  auth: state.auth
+});
+
+const mapDispatchToProps = {
+  setToken: authAction.setToken,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

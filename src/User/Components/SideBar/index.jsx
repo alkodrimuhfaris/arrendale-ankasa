@@ -3,14 +3,28 @@
 import React, { Component } from "react";
 import "./styled/style.css";
 import { FaCog, FaSignOutAlt, FaStar, FaUserCircle } from "react-icons/fa";
-import { Button, Col, Input, Row } from "reactstrap";
+import { Button, Col, Input, Modal, ModalBody, ModalFooter, Row } from "reactstrap";
+import { connect } from "react-redux";
 
 // import images
 import avatar from "../../Assets/profile.jpg";
 
+import authAction from '../../Redux/actions/auth'
+
 const { REACT_APP_BACKEND_URL } = process.env;
 
-export default class Sidebar extends Component {
+class Sidebar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      modalLogout: false,
+    };
+  }
+
+  logout = () => {
+    this.props.logout()
+  }
+
   render() {
     return (
       <>
@@ -71,7 +85,7 @@ export default class Sidebar extends Component {
               Settings
             </Col>
             <Col md={12}>
-              <Button block className='logout ml-2'>
+              <Button block onClick={()=>this.setState({modalLogout: true})} className='logout ml-2'>
                 <Row width={100}>
                   <Col md={4} className='my-3 text-danger text-right'>
                     <FaSignOutAlt />
@@ -84,7 +98,26 @@ export default class Sidebar extends Component {
             </Col>
           </Row>
         </div>
+        <Modal isOpen={this.state.modalLogout} centered>
+          <ModalBody className='text-center'>
+            Are you sure to logout?
+          </ModalBody>
+          <ModalFooter>
+            <Button onClick={this.logout} color='danger'>Yes</Button>
+            <Button onClick={()=>this.setState({modalLogout: false})} color='primary'>No</Button>
+          </ModalFooter>
+        </Modal>
       </>
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  auth: state.auth
+});
+
+const mapDispatchToProps = {
+  logout: authAction.logout
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
