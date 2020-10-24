@@ -18,7 +18,9 @@ export default (state = initialState, action) => {
       ...state,
       isLoading: false,
       isError: true,
-      alertMsg: action.payload.response ? action.payload.response.data.error : "Sorry, Try again later",
+      alertMsg: action.payload.response 
+        ? action.payload.response.data.error 
+        : "Sorry, Try again later",
     };
   }
   case "LOGIN_USER_FULFILLED": {
@@ -58,7 +60,9 @@ export default (state = initialState, action) => {
       ...state,
       isLoading: false,
       isError: true,
-      alertMsg: action.payload.response.data.error,
+      alertMsg: action.payload.response 
+        ? action.payload.response.data.error 
+        : "Sorry, Try again later",
     };
   }
   case "SIGN_UP_FULFILLED": {
