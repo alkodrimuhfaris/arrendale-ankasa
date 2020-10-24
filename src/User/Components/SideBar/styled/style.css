@@ -27,3 +27,8 @@
   background-color: #fff;
   border-width: 0;
 }
+
+.side-link,
+.side-link:hover {
+  text-decoration: none;
+}

@@ -42,6 +42,10 @@ export default (state = initialState, action) => {
       alertMsg: "Logout Successfully",
     };
   }
+  case "RELOGIN_USER": {
+    localStorage.removeItem("token");
+    return state;
+  }
   case "SET_TOKEN": {
     return {
       ...state,

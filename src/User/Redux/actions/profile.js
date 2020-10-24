@@ -8,7 +8,7 @@ export default {
   }),
   editProfile: (token, data) => ({
     type: "EDIT_PROFILE",
-    payload: http(token).patch("customer/edit", qs.stringify(data)),
+    payload: http(token).patch("user/profile", qs.stringify(data)),
   }),
   editPict: (token, data) => ({
     type: "EDIT_PICT",

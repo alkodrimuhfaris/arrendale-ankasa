@@ -9,6 +9,9 @@ export default {
   logout: () => ({
     type: "LOGOUT_USER",
   }),
+  relogin: () => ({
+    type: "RELOGIN_USER",
+  }),
   register: (data) => ({
     type: "SIGN_UP",
     payload: http().post("auth/user/signup", qs.stringify(data)),

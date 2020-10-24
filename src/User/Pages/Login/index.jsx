@@ -49,7 +49,7 @@ class Signup extends React.Component {
     if (this.props.auth.isLogin) {
       this.props.history.push(
         this.props.location.state === undefined
-        ?'/homepage'
+        ?'/'
         :this.props.location.state.location
       );
     }
@@ -64,7 +64,9 @@ class Signup extends React.Component {
           <AuthSideBar />
           <Col md={5} className="vh-100 w-100 px-5 py-3">
             <div className="head-signup d-flex align-items-center">
-              <img className="logo mr-3" src={logo} alt="logo"/>
+              <Link to='/'>
+                <img className="logo mr-3" src={logo} alt="logo"/>
+              </Link>
               <div>
                 <span className="h4 font-weight-bold">Ankasa</span>
               </div>

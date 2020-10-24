@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from "react";
 import "./styled/style.css";
-import { FaCog, FaSignOutAlt, FaStar, FaUserCircle } from "react-icons/fa";
+import { FaChevronRight, FaCog, FaSignOutAlt, FaStar, FaUserCircle } from "react-icons/fa";
 import { Button, Col, Input, Modal, ModalBody, ModalFooter, Row } from "reactstrap";
 import { connect } from "react-redux";
 
@@ -10,6 +10,7 @@ import { connect } from "react-redux";
 import avatar from "../../Assets/profile.jpg";
 
 import authAction from '../../Redux/actions/auth'
+import { Link } from "react-router-dom";
 
 const { REACT_APP_BACKEND_URL } = process.env;
 
@@ -33,8 +34,8 @@ class Sidebar extends Component {
             <div className='outline rounded-circle d-flex align-items-center justify-content-center'>
               <div>
                 <img className='rounded-circle' 
-                  src={this.props.picture!==undefined?
-                    REACT_APP_BACKEND_URL.concat(this.props.picture):
+                  src={this.props.avatar!==undefined?
+                    REACT_APP_BACKEND_URL.concat(this.props.avatar):
                     avatar} 
                   alt='avatar'
                   width='110.9px'
@@ -65,38 +66,63 @@ class Sidebar extends Component {
               <Col className='small text-right'>$ 1,440.2</Col>
             </Row>
           </div>
-          <Row className='mt-4 d-flex align-items-center justify-content-center'>
-            <Col md={4} className='my-3 text-right'>
-              <FaUserCircle />
-            </Col>
-            <Col md={7} className='my-3 font-weight-bold'>
-              Profile
-            </Col>
-            <Col md={4} className='my-3 text-right'>
-              <FaStar />
-            </Col>
-            <Col md={7} className='my-3 font-weight-bold'>
-              My Review
-            </Col>
-            <Col md={4} className='my-3 text-right'>
-              <FaCog />
-            </Col>
-            <Col md={7} className='my-3 font-weight-bold'>
-              Settings
-            </Col>
-            <Col md={12}>
-              <Button block onClick={()=>this.setState({modalLogout: true})} className='logout ml-2'>
-                <Row width={100}>
-                  <Col md={4} className='my-3 text-danger text-right'>
-                    <FaSignOutAlt />
-                  </Col>
-                  <Col md={7} className='my-3 text-danger text-left font-weight-bold'>
-                    Logout
-                  </Col>
-                </Row>
-              </Button>
-            </Col>
-          </Row>
+          <div className='w-100 mt-4 pl-2 d-flex align-items-center justify-content-center'>
+            <Row>
+              <Col md={2} className='my-3 text-right' 
+                style={{color: this.props.from==='profile'?"#2395FF":'black'}}>
+                <FaUserCircle />
+              </Col>
+              <Col md={8} className='my-3 font-weight-bold' 
+                style={{color: this.props.from==='profile'?"#2395FF":'black'}}>
+                <Link to='/profile' className='side-link'>
+                  Profile
+                </Link>
+              </Col>
+              <Col md={2} className='my-3 text-right' 
+                style={{color: this.props.from==='profile'?"#2395FF":'black'}}>
+                <FaChevronRight />
+              </Col>
+              <Col md={2} className='my-3 text-right' 
+                style={{color: this.props.from==='review'?"#2395FF":'black'}}>
+                <FaStar />
+              </Col>
+              <Col md={8} className='my-3 font-weight-bold' 
+                style={{color: this.props.from==='review'?"#2395FF":'black'}}>
+                My Review
+              </Col>
+              <Col md={2} className='my-3 text-right' 
+                style={{color: this.props.from==='review'?"#2395FF":'black'}}>
+                <FaChevronRight />
+              </Col>
+              <Col md={2} className='my-3' 
+                style={{color: this.props.from==='settings'?"#2395FF":'black'}}>
+                <FaCog />
+              </Col>
+              <Col md={8} className='my-3 font-weight-bold' 
+                style={{color: this.props.from==='settings'?"#2395FF":'black'}}>
+                Settings
+              </Col>
+              <Col md={2} className='my-3 text-right' 
+                style={{color: this.props.from==='settings'?"#2395FF":'black'}}>
+                <FaChevronRight />
+              </Col>
+              <Col md={12} className='p-0'>
+                <Button onClick={()=>this.setState({modalLogout: true})} className='w-100 p-0 logout'>
+                  <Row className='w-100 m-0'>
+                    <Col md={2} className='my-3 text-danger text-right'>
+                      <FaSignOutAlt />
+                    </Col>
+                    <Col md={8} className='my-3 text-danger text-left font-weight-bold'>
+                      Logout
+                    </Col>
+                    <Col md={2} className='my-3 text-danger text-right'>
+                      <FaChevronRight />
+                    </Col>
+                  </Row>
+                </Button>
+              </Col>
+            </Row>
+          </div>
         </div>
         <Modal isOpen={this.state.modalLogout} centered>
           <ModalBody className='text-center'>
