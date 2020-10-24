@@ -14,25 +14,9 @@
   color: #007bff;;
 }
 
-.card-tranding{
-  height: 275px;
-  border-radius: 25px;
-}
-
-.img-trending{
-  border-radius: 25px;
-}
-
 .btn-prev{
   background-color: rgb(130, 251, 255);
   border: none;
   width: 25px;
   height: 25px;
-}
-
-.tranding-carousel{
-  background: #2395FF;
-  border-radius: 50px;
-  width: auto;
-  height: 550px;
 }

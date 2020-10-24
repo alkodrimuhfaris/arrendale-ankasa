@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import './style/style.css'
 
 //import component
-import Navbar from '../../../User/Components/NavBar'
+import Navbar from '../../Components/NavBar'
 import Footer from '../../../User/Components/Footer'
 import FormFlight from '../../Components/FormFlight'
 
