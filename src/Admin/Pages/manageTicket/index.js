@@ -18,7 +18,7 @@ import prev from "../../Assets/prev.png";
 import next from "../../Assets/next.png";
 
 //import action
-import listFlightAction from '../../Redux/action/listFlight'
+import listFlightAction from '../../Redux/actions/listFlight'
 
 class index extends Component {
   componentDidMount() {
