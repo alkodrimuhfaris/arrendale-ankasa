@@ -42,32 +42,50 @@ export class FlightDetail extends Component {
     super(props);
 
     this.state = {
-      flight_detail_id: "1",
-      quantity: "1", 
-      cpId: "0",
-      full_name_cp: "",
+      flight_detail_id: 1,
+      cpId: 0,
+      name: "",
       email: "",
       phone_number: "",
-      passangerArray: [],
-      insurance: "",
+      title: "",
+      passengger: 1,
+      nationality: "Indonesia",
+      insurance: false,
       payment_method: "later",
       modalOpen: false,
     }
   }
 
-  componentDidMount(){
+  async componentDidMount(){
     const token = localStorage.getItem("token");
-    this.props.getProfile(token);
+    await this.props.getProfile(token);
+    const { data } = this.props.profile;
+    if (data.length) {
+      console.log('ok')
+      this.setState({
+        email: data[0].email,
+        name: data[0].username,
+        phone_number: data[0].phone_number,
+      })
+    }
   }
   
 
-  handleChangePayment = (e) => {
+  handleChange = (e) => {
     const isChecked = e.target.checked;
     const { name, value } = e.target;
-    if (isChecked) {
+    if (name === "insurance") {
+      this.setState({
+        insurance: !this.state.insurance,   
+      })
+    } else if (isChecked) {
       this.setState({
         [name]: value,
       });
+    } else {
+      this.setState({
+        [name]: value,
+      })
     }
   };
 
@@ -77,27 +95,33 @@ export class FlightDetail extends Component {
 
     const { 
       flight_detail_id,
-      quantity,
       cpId,
-      full_name_cp,
+      name,
       email,
       phone_number,
-      passangerArray,
+      title,
+      nationality,
       insurance,
       payment_method,
      } = this.state;
 
-    const data = {
+    let data = {
       flight_detail_id,
-      quantity,
       cpId,
-      full_name_cp,
+      full_name_cp: name,
       email,
       phone_number,
-      passangerArray,
+      passangerArray: [
+        {full_name: name, title: title, nationality: nationality, passangerId: null}
+      ],
       insurance,
       payment_method,
     };
+
+    data = {
+      ...data,
+      quantity: data.passangerArray.length
+    }
 
     this.props.postBooking(token, data);
     this.setState({modalOpen: true})
@@ -111,7 +135,7 @@ export class FlightDetail extends Component {
   }
 
   render() {
-    const { data } = this.props.profile;
+    console.log(this.props.ticket)
     return (
       <>
         <GlobalStyle />
@@ -135,23 +159,31 @@ export class FlightDetail extends Component {
         <Container>
           <Row>
             <Col lg={8}>
-              {data.length && (
-                <FormContactPerson name={data[0].username} email={data[0].email} phone={data[0].phone_number} />
-              )}
+              <FormContactPerson
+              change={this.handleChange}
+              name={this.state.name}
+              email={this.state.email}
+              phone_number={this.state.phone_number}
+              />
               <div className="mb-2 mt-5">
                 <Heading1 inputColor="#000000">Passenger Details</Heading1>
               </div>
-              <FormPassengerDetail className name="" />
+              <FormPassengerDetail
+              title={this.state.title}
+              name={this.state.name}
+              nationality={this.state.nationality} 
+              change={this.handleChange}
+              />
               <div className="mb-2 mt-5">
                 <Heading1 inputColor="#000000">Passenger Details</Heading1>
               </div>
-              <FormInsurance />
+              <FormInsurance change={this.handleChange} insurance={this.state.insurance} />
             </Col>
             <Col lg={4}>
-              {/* <CardFlightDetail
+              <CardFlightDetail
                 refundable={true}
                 reschedule={false}
-              /> */}
+              />
               <PaymentMethod>
                 <div className="d-flex flex-column p-3">
                   <div className="mb-3">
@@ -162,7 +194,7 @@ export class FlightDetail extends Component {
                       <Label for="ankasaPayment">Ankasa Payment</Label>
                     </div>
                     <div>
-                      <Input onChange={this.handleChangePayment} type="checkbox" id="ankasaPayment" name="payment_method" value="ankasa payment" />
+                      <Input onChange={this.handleChange} type="checkbox" id="ankasaPayment" name="payment_method" value="ankasa payment" />
                     </div>
                   </FormGroup>
                   <FormGroup className="d-flex justify-content-between px-2">
@@ -170,7 +202,7 @@ export class FlightDetail extends Component {
                       <Label for="payLater">Pay Later</Label>
                     </div>
                     <div>
-                      <Input onChange={this.handleChangePayment} type="checkbox" id="payLater" name="payment_method" value="later" />
+                      <Input onChange={this.handleChange} type="checkbox" id="payLater" name="payment_method" value="later" />
                     </div>
                   </FormGroup>
                 </div>
@@ -187,6 +219,9 @@ export class FlightDetail extends Component {
         <Modal isOpen={this.state.modalOpen}>
           <ModalBody>
             {this.props.booking.alertMsg}
+            {this.props.booking.isError && (
+              <div>Make sure your datas are filled</div>
+            )}
           </ModalBody>
           <ModalFooter>
               <Button onClick={this.closeModal}>Close</Button>
@@ -202,6 +237,7 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
   flight: state.flight,
   booking: state.booking,
+  ticket: state.ticket,
 });
 
 const mapDispatchToProps = {

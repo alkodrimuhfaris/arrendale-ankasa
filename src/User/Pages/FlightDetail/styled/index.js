@@ -59,4 +59,5 @@ export const PaymentMethod = styled.div`
   height: 176px;
   background: #ffffff;
   border-radius: 15px;
+  margin-top: 50px;
 `;
