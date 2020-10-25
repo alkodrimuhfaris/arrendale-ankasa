@@ -68,7 +68,7 @@ class NavigationBar extends Component {
               {!this.state.isAdmin && (
                 <Nav tabs className="border-0">
                   <NavItem>
-                    <NavLink className="text-center text-decoration-none" href="#">
+                    <NavLink className="text-center text-decoration-none" href="/find/flight/detail">
                       Find Ticket
                     </NavLink>
                   </NavItem>
@@ -99,9 +99,9 @@ class NavigationBar extends Component {
                     <img src={bell} alt="bell" />
                   </NavItem>
                   <NavItem className="rounded-circle d-flex align-items-center justify-content-center wrapper-icon profile">
-                    <Link to='/user/profile'>
+                    <NavLink href="/user/profile">
                       <img className="img-rounded rounded-circle" src={profile} alt="profile" />
-                    </Link>
+                    </NavLink>
                   </NavItem>
                 </Nav>
               )}
