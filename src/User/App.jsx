@@ -56,7 +56,7 @@ class App extends React.Component {
           <PrivateRoute exact path="/booking">
             <MyBooking />
           </PrivateRoute>
-          <PrivateRoute exact path="/booking/detail">
+          <PrivateRoute exact path="/booking/detail/:id">
             <BookingDetail />
           </PrivateRoute>
           <PrivateRoute exact path="/profile">
