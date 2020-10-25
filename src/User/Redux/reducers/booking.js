@@ -1,5 +1,6 @@
 const initialState = {
-  data: {},
+  data: [],
+  pageInfo: {},
   isLoading: false,
   isError: false,
   alertMsg: "",
@@ -7,13 +8,13 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-  case "GET_PROFILE_PENDING": {
+  case "GET_BOOKING_PENDING": {
     return {
       ...state,
       isLoading: true,
     };
   }
-  case "GET_PROFILE_REJECTED": {
+  case "GET_BOOKING_REJECTED": {
     return {
       ...state,
       isLoading: false,
@@ -21,11 +22,14 @@ export default (state = initialState, action) => {
       alertMsg: "There is an error at request data",
     };
   }
-  case "GET_PROFILE_FULFILLED": {
+  case "GET_BOOKING_FULFILLED": {
     return {
       ...state,
       isLoading: false,
+      isError:false,
+      alertMsg: action.payload.data.message,
       data: action.payload.data.data,
+      pageInfo: action.payload.data.pageInfo
     };
   }
   default: {

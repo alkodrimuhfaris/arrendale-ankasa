@@ -1,8 +1,8 @@
 import http from "../../Helper/http";
 
 export default {
-  getBooking: (token) => ({
+  getBooking: (token, path) => ({
     type: "GET_BOOKING",
-    payload: http(token).get("user/profile"),
+    payload: http(token).get(path),
   }),
 };
