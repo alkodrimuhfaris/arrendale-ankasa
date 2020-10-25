@@ -1,5 +1,6 @@
 const initialState = {
   data: [],
+  detail: [],
   pageInfo: {},
   isLoading: false,
   isError: false,
@@ -30,6 +31,30 @@ export default (state = initialState, action) => {
       alertMsg: action.payload.data.message,
       data: action.payload.data.data,
       pageInfo: action.payload.data.pageInfo
+    };
+  }
+  case "GET_DETAIL_PENDING": {
+    return {
+      ...state,
+      isLoading: true,
+    };
+  }
+  case "GET_DETAIL_REJECTED": {
+    return {
+      ...state,
+      isLoading: false,
+      isError: true,
+      alertMsg: "There is an error at request data",
+    };
+  }
+  case "GET_DETAIL_FULFILLED": {
+    return {
+      ...state,
+      isLoading: false,
+      isError:false,
+      alertMsg: action.payload.data.message,
+      data: action.payload.data.data,
+      detail: action.payload.data.detailBooking
     };
   }
   default: {
