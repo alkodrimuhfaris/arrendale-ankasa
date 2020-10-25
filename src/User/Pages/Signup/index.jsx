@@ -32,7 +32,7 @@ class Signup extends React.Component {
     })
   }
 
-  register = (e) => {
+  register = async (e) => {
     e.preventDefault()
     const {username, email, password} = this.state
     const data = {
@@ -40,7 +40,7 @@ class Signup extends React.Component {
       email,
       password
     }
-    this.props.register(data)
+    await this.props.register(data)
     !this.props.auth.isError && this.props.history.push('/login')
   }
 
@@ -64,7 +64,7 @@ class Signup extends React.Component {
                 color={isError?'danger':'success'}
                 className='text-center'>{alertMsg}</Alert>
               </div>
-              <Form onSubmit={this.register}>
+              <Form onSubmit={(e)=>this.register(e)}>
                 <div className="mb-3">
                   <span className="h2 font-weight-bold">Register</span>
                 </div>
@@ -74,7 +74,7 @@ class Signup extends React.Component {
                 <Button type='submit' color="primary" className="shadow mb-3 font-weight-bold" block>Sign Up</Button>
                 <div className="pl-4">
                   <Label check>
-                    <Input type="checkbox" />{" "}
+                    <Input type="checkbox" trueValue falseValue='Nope'  />{" "}
                   Accept terms and condition
                   </Label>
                 </div>

@@ -1,8 +1,11 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from "react";
 import "./styled/style.css";
-import { Button, Card, CardBody, Col, Container, Form, FormText, Input, Row } from "reactstrap";
-import { FaChevronRight } from "react-icons/fa";
+import { 
+  Button, Card, CardBody, Col, Container, Form, 
+  FormText, Input, Modal, ModalBody, ModalFooter, Row 
+} from "reactstrap";
+import { FaChevronRight, FaTimes } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 
 import Navbar from "../../Components/NavBar";
@@ -10,34 +13,64 @@ import Footer from "../../Components/Footer";
 import Sidebar from "../../Components/SideBar";
 
 import profileAction from "../../Redux/actions/profile";
+import authAction from "../../Redux/actions/auth";
 
 export default function Profile() {
-  const [avatar, setAvatar] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [city, setCity] = useState("");
   const [address, setAddress] = useState("");
   const [postalCode, setPostalCode] = useState("");
-  const token = useSelector((state) => state.auth.token);
-  const { data } = useSelector((state) => state.profile);
-  // const form = new FormData();
+  const [alertOpen, setAlert] = useState(false);
+  const { token } = useSelector((state) => state.auth);
+  const { data, alertMsg } = useSelector((state) => state.profile);
   const dispatch = useDispatch();
+
+  const getData = () => {
+    dispatch(profileAction.getProfile(token));
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+  
   useEffect(() => {
     if (data.length) {
       setUsername(data[0].username);
       setEmail(data[0].email);
-      setPhone(data[0].phone);
+      setPhone(data[0].phone_number);
       setCity(data[0].city);
       setAddress(data[0].address);
       setPostalCode(data[0].postal_code);
-      setAvatar(data[0].avatar);
     }
-  }, [data]);
-  useEffect(() => {
-    dispatch(profileAction.getProfile(token));
-  }, [dispatch, token]);
-  
+    if(alertMsg!==""){
+      setAlert(true);
+    }
+  }, [data, alertMsg]);
+
+  const saveChange = (e) => {
+    e.preventDefault();
+    const body = {
+      username,
+      email,
+      phone_number: phone,
+      city,
+      address,
+      postal_code: postalCode
+    };
+    dispatch(profileAction.editProfile(token, body));
+  };
+
+  const closeModal = () => {
+    setAlert(false);
+    getData();
+  };
+
+  const relogin = () => {
+    dispatch(authAction.relogin());
+  };
+
   return (
     <>
       <Navbar />
@@ -45,8 +78,7 @@ export default function Profile() {
         <Container>
           <Row className='py-5'>
             <Col md={3} className='sidebar p-3'>
-              {console.log(avatar)}
-              <Sidebar name={username} profile={avatar} address={address} />
+              <Sidebar from='profile' />
             </Col>
             <Col md={9}>
               <Card className='py-3'>
@@ -61,13 +93,14 @@ export default function Profile() {
                       Biodata
                     </Col>
                     <Col md={12}>
-                      <Form className='w-100'>
+                      <Form onSubmit={saveChange} className='w-100'>
                         <Row>
                           <Col md={6} className='my-2'>
                             <FormText>
                               Email
                             </FormText>
                             <Input 
+                              onChange={(e)=>setEmail(e.target.value)}
                               className='styled-input' 
                               aria-label='email' 
                               type='email'
@@ -79,6 +112,7 @@ export default function Profile() {
                               Username
                             </FormText>
                             <Input 
+                              onChange={(e)=>setUsername(e.target.value)}
                               className='styled-input' 
                               aria-label='username' 
                               type='text'
@@ -90,6 +124,7 @@ export default function Profile() {
                               Phone Number
                             </FormText>
                             <Input 
+                              onChange={(e)=>setPhone(e.target.value)}
                               className='styled-input' 
                               aria-label='phoneNumber' 
                               type='text'
@@ -101,6 +136,7 @@ export default function Profile() {
                               City
                             </FormText>
                             <Input 
+                              onChange={(e)=>setCity(e.target.value)}
                               className='styled-input' 
                               aria-label='city' 
                               type='text'
@@ -118,6 +154,7 @@ export default function Profile() {
                               Address
                             </FormText>
                             <Input 
+                              onChange={(e)=>setAddress(e.target.value)}
                               className='styled-input' 
                               aria-label='Address' 
                               type='text'
@@ -130,6 +167,7 @@ export default function Profile() {
                               Post Code
                             </FormText>
                             <Input 
+                              onChange={(e)=>setPostalCode(e.target.value)}
                               className='styled-input' 
                               aria-label='postcode' 
                               type='text'
@@ -138,7 +176,7 @@ export default function Profile() {
                           </Col>
                           <Col md={6} className='mt-3' />
                           <Col md={6} className='mt-3 d-flex justify-content-end'>
-                            <Button className='btn-1 font-weight-bold py-2 px-5'>Save</Button>
+                            <Button type='submit' className='btn-1 font-weight-bold py-2 px-5'>Save</Button>
                           </Col>
                         </Row>
                       </Form>
@@ -151,6 +189,31 @@ export default function Profile() {
         </Container>
       </div>
       <Footer />
+      <Modal centered isOpen={alertOpen}>
+        <ModalBody>
+          <Row className='d-flex align-items-center'>
+            <Col md={9}>
+              <div className='text-center'>
+                {alertMsg==="jwt expired"
+                  ? "Session has ended. Please login again!"
+                  : alertMsg}
+              </div>
+            </Col>
+            {alertMsg!=="jwt expired" && (
+              <Col md={3} className='d-flex justify-content-end'>
+                <Button onClick={closeModal}>
+                  <FaTimes />
+                </Button>
+              </Col>
+            )}
+          </Row>
+        </ModalBody>
+        {alertMsg==="jwt expired" && (
+          <ModalFooter>
+            <Button onClick={relogin} className='btn-1 px-4'>Login</Button>
+          </ModalFooter>
+        )}
+      </Modal>
     </>
   );
 }
