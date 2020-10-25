@@ -3,6 +3,7 @@ const initialState = {
   isLoading: false,
   isError: false,
   alertMsg: "",
+  avatar: ""
 };
 
 export default (state = initialState, action) => {
@@ -10,6 +11,7 @@ export default (state = initialState, action) => {
   case "GET_PROFILE_PENDING": {
     return {
       ...state,
+      alertMsg: "",
       isLoading: true,
     };
   }
@@ -18,14 +20,16 @@ export default (state = initialState, action) => {
       ...state,
       isLoading: false,
       isError: true,
-      alertMsg: "There is an error at request data",
+      alertMsg: action.payload.response.data.error,
     };
   }
   case "GET_PROFILE_FULFILLED": {
     return {
       ...state,
       isLoading: false,
+      alertMsg: "",
       data: action.payload.data.data,
+      avatar: action.payload.data.data[0].avatar
     };
   }
   case "EDIT_PROFILE_PENDING": {
@@ -39,7 +43,7 @@ export default (state = initialState, action) => {
       ...state,
       isLoading: false,
       isError: true,
-      alertMsg: action.payload.response.data.message,
+      alertMsg: action.payload.response.data.error,
     };
   }
   case "EDIT_PROFILE_FULFILLED": {
