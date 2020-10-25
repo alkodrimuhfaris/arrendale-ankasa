@@ -26,7 +26,7 @@ export default (state=initialState, action) => {
   }
   case "AUTH_ADMIN_FULFILLED":{
     console.log(action.payload.data.message);
-    localStorage.setItem("token", action.payload.data.message.token);
+    localStorage.setItem("tokenadmin", action.payload.data.message.token);
     return {
       ...state,
       token: action.payload.data.message.token,
@@ -92,7 +92,7 @@ export default (state=initialState, action) => {
     };
   }
   case "LOGOUT_ADMIN": {
-    localStorage.removeItem("token");
+    localStorage.removeItem("tokenadmin");
     return {
       isLoginAdmin: false,
       isLoadingAdmin: false,

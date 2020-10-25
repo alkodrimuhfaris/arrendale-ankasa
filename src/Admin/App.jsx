@@ -21,8 +21,8 @@ export default function App() {
   const credentials = useSelector(state=>state.auth);
   const {isErrorAdmin} = credentials;
   useEffect(()=>{
-    if(localStorage.getItem("token")){
-      dispatch(authAction.setTokenAdmin(localStorage.getItem("token")));
+    if(localStorage.getItem("tokenadmin")){
+      dispatch(authAction.setTokenAdmin(localStorage.getItem("tokenadmin")));
     }
     // if (isErrorAdmin) {
     //   dispatch(authAction.logoutAdmin());
