@@ -25,3 +25,12 @@ export const LinkChange = styled(Link)`
   line-height: 24px;
   color: #ffffff;
 `;
+
+export const SwitchButton = styled.button`
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+`;

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Container, Row, Col, Form, FormGroup } from "reactstrap";
 import {
@@ -24,17 +25,30 @@ import whiteFlightIcon from "../../Assets/white-flight.svg";
 import blackFlightIcon from "../../Assets/flight.svg";
 import roundedTripIcon from "../../Assets/rounde-trip.svg";
 
+import searchActions from "../../Redux/actions/search";
+
 const CardSearchFlight = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isOrigin, setIsOrigin] = useState(false);
+  const [isSwitch, setIsSwitch] = useState(false);
   const [displayChoice, setDisplayChoice] = useState(false);
+  const dispatch = useDispatch();
   const history = useHistory();
 
   const toggle = () => setIsOpen(!isOpen);
   const choice = () => setDisplayChoice(!displayChoice);
   const onClickSearch = () => {
+    const originId = localStorage.getItem("originCityId");
+    const destinationId = localStorage.getItem("destinationCityId");
+    if(!isSwitch){
+      dispatch(searchActions.findTicket(originId, destinationId));
+    }else{
+      dispatch(searchActions.findTicket(destinationId, originId));
+    }
     history.push("/search/result");
   };
+
+  const onSwitchPlace = () => setIsSwitch(!isSwitch);
 
   const onClickOrigin = () => {
     setIsOrigin(true);
@@ -62,7 +76,9 @@ const CardSearchFlight = () => {
           </TextBlack>
           <Row className="mb-4 justify-content-between">
             <Col xs="auto">
-              <LinkRecently to="/search/result">Recently Searched</LinkRecently>
+              <LinkRecently to="/search/result" onClick={onClickSearch}>
+                Recently Searched
+              </LinkRecently>
             </Col>
             <Col xs="auto">
               <img src={leftIcon} alt="" />
@@ -78,16 +94,24 @@ const CardSearchFlight = () => {
                     </Col>
                     <Col lg={12}>
                       <ChoiceButton onClick={onClickOrigin} className="p-0 m-0">
-                        <Heading4>Medan</Heading4>
+                        <Heading4>
+                          {!isSwitch && localStorage.getItem("originCityName")}
+                          {isSwitch &&
+                            localStorage.getItem("destinationCityName")}
+                        </Heading4>
                       </ChoiceButton>
                     </Col>
                     <Col lg={12}>
-                      <Heading6>Indonesia</Heading6>
+                      <Heading6>
+                        {!isSwitch && localStorage.getItem("originCountryName")}
+                        {isSwitch &&
+                          localStorage.getItem("destinationCountryName")}
+                      </Heading6>
                     </Col>
                   </Row>
                 </Col>
                 <Col xs={2}>
-                  <SwitchButton>
+                  <SwitchButton onClick={onSwitchPlace}>
                     <img src={switchIcon} alt="" />
                   </SwitchButton>
                 </Col>
@@ -102,11 +126,19 @@ const CardSearchFlight = () => {
                         onClick={onClickDestination}
                         className="p-0 m-0"
                       >
-                        <Heading4>Tokyo</Heading4>
+                        <Heading4>
+                          {!isSwitch &&
+                            localStorage.getItem("destinationCityName")}
+                          {isSwitch && localStorage.getItem("originCityName")}
+                        </Heading4>
                       </ChoiceButton>
                     </Col>
                     <Col lg={12}>
-                      <Heading6>Japan</Heading6>
+                      <Heading6>
+                        {!isSwitch &&
+                          localStorage.getItem("destinationCountryName")}
+                        {isSwitch && localStorage.getItem("originCountryName")}
+                      </Heading6>
                     </Col>
                   </Row>
                 </Col>
@@ -142,7 +174,7 @@ const CardSearchFlight = () => {
                 type="date"
                 name="departure"
                 id="departure"
-                value="2014-02-09"
+                value={Date.now()}
                 placeholder="date placeholder"
               />
             </FormGroup>

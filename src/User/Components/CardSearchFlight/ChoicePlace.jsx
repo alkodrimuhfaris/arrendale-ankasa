@@ -84,11 +84,18 @@ const ChoicePlace = (props) => {
           <UnorderList>
             <ButtonList className="btn-block" onClick={props.choice}>
               <List className="w-100">
-                {props.origin && (
+                {props.isOrigin && (
                   <Row className="w-100">
                     <Col>{localStorage.getItem("originCityName")}</Col>
                     <Col>{localStorage.getItem("originCountryCode")}</Col>
                     <Col>{localStorage.getItem("originCountryName")}</Col>
+                  </Row>
+                )}
+                {!props.isOrigin && (
+                  <Row className="w-100">
+                    <Col>{localStorage.getItem("destinationCityName")}</Col>
+                    <Col>{localStorage.getItem("destinationCountryCode")}</Col>
+                    <Col>{localStorage.getItem("destinationCountryName")}</Col>
                   </Row>
                 )}
               </List>
@@ -103,7 +110,14 @@ const ChoicePlace = (props) => {
               !city.isError &&
               city.data.map((item) => (
                 <ButtonList
-                  onClick={setPlace}
+                  onClick={() =>
+                    setPlace(
+                      item.id,
+                      item.city_name,
+                      item.country_name,
+                      item.country_code
+                    )
+                  }
                   className="d-flex justify-content-between btn-block"
                 >
                   <List className="w-100">
@@ -124,8 +138,8 @@ const ChoicePlace = (props) => {
                     setPlace(
                       item.id,
                       item.city_name,
-                      item.country_code,
-                      item.country_name
+                      item.country_name,
+                      item.country_code
                     )
                   }
                   className="d-flex justify-content-between btn-block"
