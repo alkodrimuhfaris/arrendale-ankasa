@@ -33,7 +33,12 @@ class MyBooking extends Component {
   }
 
   componentDidMount() {
-    this.setData(this.state.path)
+    let url = this.state.path
+    if (this.props.history.location.search) {
+      url = url.concat('&'+this.props.history.location.search.slice(1))
+    }
+    this.setData(url)
+    // this.setData(this.state.path)
   }
 
   setData = async (url) => {
@@ -95,12 +100,15 @@ class MyBooking extends Component {
 
   closeAlert = () => {
     this.setState({
-      alertOpen: false
+      alertOpen: false,
     })
+    // if ()
+    this.props.booking.pageInfo.count > 0 &&
     this.pages(1)
   }
   
   render() {
+    // console.log(this.props.history)
     return (
       <>
         <NavBar />
@@ -144,48 +152,50 @@ class MyBooking extends Component {
                     status={i.status}
                     id={i.id} />
                 ))}
-                <div className='d-flex justify-content-center mt-3'>
-                  <div style={{width: 250}} className='d-flex'>
-                    <InputGroup>
-                      <InputGroupAddon addonType="prepend">
-                        <Button 
-                          onClick={()=>this.pages('first')}
-                          disabled={this.state.currentPage === 1}>
-                            <FaAngleDoubleLeft />
-                        </Button>
-                        <Button 
-                          onClick={()=>this.pages('prev')}
-                          disabled={this.state.currentPage === 1}>
-                            <FaAngleLeft />
-                        </Button>
-                      </InputGroupAddon>
-                      <Input 
-                        className='text-center font-weight-bold'
-                        style={{color: "#2395FF"}}
-                        onChange={this.inputPage}
-                        value={this.state.changePage} />
-                      <InputGroupButtonDropdown addonType="prepend" isOpen={this.state.splitOpen} toggle={this.toggleSplit}>
-                        <DropdownToggle split />
-                        <DropdownMenu>
-                          {[...Array(this.state.totalPage)].map((_i, o)=> (
-                            <DropdownItem onClick={()=>this.pages(o+1)}>{o+1}</DropdownItem>
-                          ))}
-                        </DropdownMenu>
-                        <Button 
-                          onClick={()=>this.pages('next')}
-                          disabled={this.state.currentPage === this.state.totalPage}>
-                            <FaAngleRight />
-                        </Button>
-                        <Button 
-                          onClick={()=>this.pages('last')}
-                          disabled={this.state.currentPage === this.state.totalPage}
-                          className='last'>
-                            <FaAngleDoubleRight />
-                        </Button>
-                      </InputGroupButtonDropdown>
-                    </InputGroup>
+                {this.state.list && (
+                  <div className='d-flex justify-content-center mt-3'>
+                    <div style={{width: 250}} className='d-flex'>
+                      <InputGroup>
+                        <InputGroupAddon addonType="prepend">
+                          <Button 
+                            onClick={()=>this.pages('first')}
+                            disabled={this.state.currentPage === 1}>
+                              <FaAngleDoubleLeft />
+                          </Button>
+                          <Button 
+                            onClick={()=>this.pages('prev')}
+                            disabled={this.state.currentPage === 1}>
+                              <FaAngleLeft />
+                          </Button>
+                        </InputGroupAddon>
+                        <Input 
+                          className='text-center font-weight-bold'
+                          style={{color: "#2395FF"}}
+                          onChange={this.inputPage}
+                          value={this.state.changePage} />
+                        <InputGroupButtonDropdown addonType="prepend" isOpen={this.state.splitOpen} toggle={this.toggleSplit}>
+                          <DropdownToggle split />
+                          <DropdownMenu>
+                            {[...Array(this.state.totalPage)].map((_i, o)=> (
+                              <DropdownItem onClick={()=>this.pages(o+1)}>{o+1}</DropdownItem>
+                            ))}
+                          </DropdownMenu>
+                          <Button 
+                            onClick={()=>this.pages('next')}
+                            disabled={this.state.currentPage === this.state.totalPage}>
+                              <FaAngleRight />
+                          </Button>
+                          <Button 
+                            onClick={()=>this.pages('last')}
+                            disabled={this.state.currentPage === this.state.totalPage}
+                            className='last'>
+                              <FaAngleDoubleRight />
+                          </Button>
+                        </InputGroupButtonDropdown>
+                      </InputGroup>
+                    </div>
                   </div>
-                </div>
+                )}
               </Col>
             </Row>
           </Container>
