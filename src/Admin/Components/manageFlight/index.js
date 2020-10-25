@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import {
   Container, Table, Button, Col,
   Form, ButtonGroup, InputGroupAddon,
-  Input, InputGroup, Row, Modal, ModalHeader, ModalBody, ModalFooter, Label,
+  Input, InputGroup, Row, Modal, ModalHeader, ModalBody, Label,
   FormGroup
 } from "reactstrap";
 import { connect } from 'react-redux'
@@ -25,6 +25,7 @@ import next from "../../Assets/next.png";
 //import action
 import listFlightAction from '../../Redux/actions/listFlight'
 import detailFlightAction from '../../Redux/actions/flightById'
+import editFlightAction from '../../Redux/actions/editFlight'
 
 class index extends Component {
   state = {
@@ -42,15 +43,44 @@ class index extends Component {
     }
   }
 
-  componentDidMount() {
-    this.props.listingFlight();
+  async componentDidMount() {
+    await this.getDataFlight()
+  }
+
+  getDataFlight= async () => {
+    await this.props.listingFlight();
   }
 
   editFlight = async (id) => {
     await this.props.detailFlight(id)
     this.setState({ modalOpen: true, editingFlight: this.props.detailOfFlight.dataFlight }, () => {
-      console.log();
+      
     });
+  }
+
+  handlerChange = (e) => {
+    this.setState({
+      editingFlight: {
+        [e.target.name]: e.target.value
+      }
+    })
+  }
+
+  formSubmit = async (e) => {
+    e.preventDefault()
+    await this.props.editingDataFlight(this.state.editingFlight.id, {
+      airlines_id: this.state.editingFlight.airlines_id,
+      flight_code: this.state.editingFlight.flight_code,
+      origin: this.state.editingFlight.origin,
+      destination: this.state.editingFlight.destination,
+      departure_date: this.state.editingFlight.departure_date,
+      departure_time: this.state.editingFlight.departure_time,
+      arrived_date: this.state.editingFlight.arrived_date,
+      arrived_time: this.state.editingFlight.arrived_time
+    });
+    this.setState({modalOpen: false}, async ()=>{
+      await this.getDataFlight()
+    })
   }
 
   render() {
@@ -183,65 +213,72 @@ class index extends Component {
         <Modal isOpen={this.state.modalOpen} className="modal-dialog-centered modal-lg">
           <ModalHeader className="h3">Edit Flight Detail</ModalHeader>
           <ModalBody>
-            <FormGroup row>
-              <Label for="input-id" md={2} sm={3}>id</Label>
-              <Col>
-                <Input className="input-data" type="number" name="id" value={this.state.editingFlight.id} id="input-id" onChange={this.handlerChange}></Input>
-              </Col>
-            </FormGroup>
-            <FormGroup row>
-              <Label for="input-airline" md={2} sm={3}>airline id</Label>
-              <Col>
-                <Input className="input-data" type="number" name="airlines_id" value={this.state.editingFlight.airlines_id} id="input-airline" onChange={this.handlerChange}></Input>
-              </Col>
-            </FormGroup>
-            <FormGroup row>
-              <Label for="input-flight" md={2} sm={3}>flight code</Label>
-              <Col>
-                <Input className="input-data" type="string" name="flight_code" value={this.state.editingFlight.flight_code} id="input-flight" onChange={this.handlerChange}></Input>
-              </Col>
-            </FormGroup>
-            <FormGroup row>
-              <Label for="input-origin" md={2} sm={3}>origin</Label>
-              <Col>
-                <Input className="input-data" type="number" name="origin" value={this.state.editingFlight.origin} id="input-origin" onChange={this.handlerChange}></Input>
-              </Col>
-            </FormGroup>
-            <FormGroup row>
-              <Label for="input-desti" md={2} sm={3}>destination</Label>
-              <Col>
-                <Input className="input-data" type="number" name="destination" value={this.state.editingFlight.destination} id="input-desti" onChange={this.handlerChange}></Input>
-              </Col>
-            </FormGroup>
-            <FormGroup row>
-              <Label for="input-dep-date" md={2} sm={3}>departure date</Label>
-              <Col>
-                <Input className="input-data" type="date" name="departure_date" value={this.state.editingFlight.departure_date} id="input-dep-date" onChange={this.handlerChange}></Input>
-              </Col>
-            </FormGroup>
-            <FormGroup row>
-              <Label for="input-dep-time" md={2} sm={3}>departure time</Label>
-              <Col>
-                <Input className="input-data" type="time" name="departure_time" value={this.state.editingFlight.departure_time} id="input-dep-time" onChange={this.handlerChange}></Input>
-              </Col>
-            </FormGroup>
-            <FormGroup row>
-              <Label for="input-arr-date" md={2} sm={3}>arrived date</Label>
-              <Col>
-                <Input className="input-data" type="date" name="arrived_date" value={this.state.editingFlight.arrived_date} id="input-arr-date" onChange={this.handlerChange}></Input>
-              </Col>
-            </FormGroup>
-            <FormGroup row>
-              <Label for="input-arr-time" md={2} sm={3}>arrived time</Label>
-              <Col>
-                <Input className="input-data" type="time" name="arrived_time" value={this.state.editingFlight.arrived_time} id="input-arr-time" onChange={this.handlerChange}></Input>
-              </Col>
-            </FormGroup>
+            <Form onSubmit={this.state.formSubmit}>
+              <FormGroup row>
+                <Label for="input-id" md={2} sm={3}>id</Label>
+                <Col>
+                  <Input className="input-data" type="number" name="id" value={this.state.editingFlight.id} id="input-id"></Input>
+                </Col>
+              </FormGroup>
+              <FormGroup row>
+                <Label for="input-airline" md={2} sm={3}>airline id</Label>
+                <Col>
+                  <Input className="input-data" type="number" name="airlines_id" value={this.state.editingFlight.airlines_id} id="input-airline" onChange={this.handlerChange}></Input>
+                </Col>
+              </FormGroup>
+              <FormGroup row>
+                <Label for="input-flight" md={2} sm={3}>flight code</Label>
+                <Col>
+                  <Input className="input-data" type="string" name="flight_code" value={this.state.editingFlight.flight_code} id="input-flight" onChange={this.handlerChange}></Input>
+                </Col>
+              </FormGroup>
+              <FormGroup row>
+                <Label for="input-origin" md={2} sm={3}>origin</Label>
+                <Col>
+                  <Input className="input-data" type="number" name="origin" value={this.state.editingFlight.origin} id="input-origin" onChange={this.handlerChange}></Input>
+                </Col>
+              </FormGroup>
+              <FormGroup row>
+                <Label for="input-desti" md={2} sm={3}>destination</Label>
+                <Col>
+                  <Input className="input-data" type="number" name="destination" value={this.state.editingFlight.destination} id="input-desti" onChange={this.handlerChange}></Input>
+                </Col>
+              </FormGroup>
+              <FormGroup row>
+                <Label for="input-dep-date" md={2} sm={3}>departure date</Label>
+                <Col>
+                  <Input className="input-data" type="date" name="departure_date" value={this.state.editingFlight.departure_date} id="input-dep-date" onChange={this.handlerChange}></Input>
+                </Col>
+              </FormGroup>
+              <FormGroup row>
+                <Label for="input-dep-time" md={2} sm={3}>departure time</Label>
+                <Col>
+                  <Input className="input-data" type="time" name="departure_time" value={this.state.editingFlight.departure_time} id="input-dep-time" onChange={this.handlerChange}></Input>
+                </Col>
+              </FormGroup>
+              <FormGroup row>
+                <Label for="input-arr-date" md={2} sm={3}>arrived date</Label>
+                <Col>
+                  <Input className="input-data" type="date" name="arrived_date" value={this.state.editingFlight.arrived_date} id="input-arr-date" onChange={this.handlerChange}></Input>
+                </Col>
+              </FormGroup>
+              <FormGroup row>
+                <Label for="input-arr-time" md={2} sm={3}>arrived time</Label>
+                <Col>
+                  <Input className="input-data" type="time" name="arrived_time" value={this.state.editingFlight.arrived_time} id="input-arr-time" onChange={this.handlerChange}></Input>
+                </Col>
+              </FormGroup>
+              <FormGroup row>
+                <Col md={8}></Col>
+                <Col md={2}>
+                  <Input type="submit" value="submit" className="btn btn-primary" />
+                </Col>
+                <Col md={2}>
+                  <Input className="btn text-white bg-secondary" value="cancel" onClick={() => this.setState({ modalOpen: false })} />
+                </Col>
+              </FormGroup>
+            </Form>
           </ModalBody>
-          <ModalFooter>
-            <Button className="btn-delete bg-secondary" onClick={() => this.setState({ modalOpen: false })}>cencel</Button>
-            <Button className="btn-delete bg-primary">edit</Button>
-          </ModalFooter>
         </Modal>
         <Footer />
       </React.Fragment>
@@ -251,12 +288,14 @@ class index extends Component {
 
 const mapStateToProps = state => ({
   listOfFlight: state.listFlight,
-  detailOfFlight: state.detailFlightById
+  detailOfFlight: state.detailFlightById,
+  editDataFlight: state.editFlight
 })
 
 const mapDispatchToProps = {
   listingFlight: listFlightAction.getFlight,
-  detailFlight: detailFlightAction.getFlight
+  detailFlight: detailFlightAction.getFlight,
+  editingDataFlight: editFlightAction.editData
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(index)

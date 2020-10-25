@@ -1,5 +1,4 @@
 import http from '../../Helper/http'
-import qs from 'querystring'
 
 export default {
     getFlight: (id) => ({
