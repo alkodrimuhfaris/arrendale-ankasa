@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import "./styled/style.css";
 import { 
   Card,
@@ -13,7 +14,9 @@ import Footer from "../../Components/Footer";
 import Sidebar from "../../Components/SideBar";
 import CardBooking from "../../Components/CardBooking";
 
-export default class MyBooking extends Component {
+import bookingAction from "../../Redux/actions/booking";
+
+class MyBooking extends Component {
   render() {
     return (
       <>
@@ -32,7 +35,6 @@ export default class MyBooking extends Component {
                   </CardBody>
                 </Card>
                 <CardBooking />
-                <CardBooking />
               </Col>
             </Row>
           </Container>
@@ -42,3 +44,13 @@ export default class MyBooking extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  auth: state.auth
+});
+
+const mapDispatchToProps = {
+  getData: bookingAction.getBooking
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyBooking);

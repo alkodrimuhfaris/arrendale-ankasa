@@ -30,10 +30,6 @@ export default function Profile() {
   const getData = () => {
     dispatch(profileAction.getProfile(token));
   };
-
-  useEffect(() => {
-    getData();
-  }, []);
   
   useEffect(() => {
     if (data.length) {

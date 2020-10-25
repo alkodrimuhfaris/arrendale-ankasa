@@ -29,8 +29,9 @@ class App extends React.Component {
 
   async componentDidMount() {
     if (localStorage.getItem("token")) {
-      await this.props.setToken(localStorage.getItem("token"));
+      this.props.setToken(localStorage.getItem("token"));
     }
+    await this.props.auth;
     this.setState({
       token: this.props.auth.token,
       isLogin: this.props.auth.isLogin
@@ -67,8 +68,6 @@ class App extends React.Component {
     );
   }
 }
-
-
 
 const mapStateToProps = (state) => ({
   auth: state.auth

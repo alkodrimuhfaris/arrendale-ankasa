@@ -17,6 +17,7 @@ import facebookImg from "../../Assets/facebook.svg";
 import AuthSideBar from "../../Components/AuthSideBar";
 
 import authAction from "../../Redux/actions/auth";
+import profileAction from "../../Redux/actions/profile";
 
 class Signup extends React.Component {
   constructor(props) {
@@ -52,9 +53,9 @@ class Signup extends React.Component {
         ?'/'
         :this.props.location.state.location
       );
+      this.props.getData(token)
     }
   }
-  
 
   render(){
     const {isError, alertMsg} = this.props.auth
@@ -123,7 +124,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  login: authAction.login
+  login: authAction.login,
+  getData: profileAction.getProfile
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Signup);
