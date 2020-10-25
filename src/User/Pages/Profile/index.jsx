@@ -46,6 +46,8 @@ export default function Profile() {
     }
     if(alertMsg!==""){
       setAlert(true);
+    } else {
+      setAlert(false);
     }
   }, [data, alertMsg]);
 
