@@ -79,7 +79,7 @@ class NavigationBar extends Component {
               {!this.state.isAdmin && (
                 <Nav tabs className="border-0">
                   <NavItem>
-                    <NavLink className="text-center text-decoration-none" href="/find/flight/detail">
+                    <NavLink className="text-center text-decoration-none" href="/flight/detail">
                       Find Ticket
                     </NavLink>
                   </NavItem>
