@@ -1,5 +1,9 @@
 import React, { Component } from "react";
-import { Container, Table, Button, Col, Form, ButtonGroup, InputGroupAddon, Input, InputGroup, Row } from "reactstrap";
+import { 
+  Container, Table, Button, Col, 
+  Form, ButtonGroup, InputGroupAddon, 
+  Input, InputGroup, Row, Modal, ModalHeader, ModalBody, ModalFooter,
+} from "reactstrap";
 import { connect } from 'react-redux'
 
 //import style
@@ -21,9 +25,17 @@ import next from "../../Assets/next.png";
 import listFlightAction from '../../Redux/actions/listFlight'
 
 class index extends Component {
+  state = {
+    modalOpen: false
+  }
+
   componentDidMount() {
     this.props.listingFlight();
     console.log(this.props.listOfFlight);
+  }
+
+  openModal = () => {
+    this.setState({modalOpen: true})
   }
 
   render() {
@@ -98,7 +110,7 @@ class index extends Component {
                       <td>{item.airlines_id}</td>
                       <td>{item.flight_code}</td>
                       <td className="d-flex justify-content-center">
-                        <Button className="btn-detail bg-primary mr-3">detail</Button>
+                        <Button className="btn-detail bg-primary mr-3" onClick={this.openModal}>detail</Button>
                         <Button className="btn-delete bg-danger">delete</Button>
                       </td>
                     </tr>
@@ -153,6 +165,24 @@ class index extends Component {
             </Row>
           </Container>
         </div>
+        <Modal isOpen={this.state.modalOpen} className="modal-dialog-centered modal-lg">
+          <ModalHeader className="h3">Edit Flight Detail</ModalHeader>
+          <ModalBody>
+            <Input className="input"></Input>
+            <Input className="input mt-3"></Input>
+            <Input className="input mt-3"></Input>
+            <Input className="input mt-3"></Input>
+            <Input className="input mt-3"></Input>
+            <Input className="input mt-3"></Input>
+            <Input className="input mt-3"></Input>
+            <Input className="input mt-3"></Input>
+            <Input className="input mt-3"></Input>
+          </ModalBody>
+          <ModalFooter>
+            <Button className="btn-delete bg-secondary" onClick={()=>this.setState({modalOpen: false})}>cencel</Button>
+            <Button className="btn-delete bg-primary">edit</Button>
+          </ModalFooter>
+        </Modal>
         <Footer />
       </React.Fragment>
     );

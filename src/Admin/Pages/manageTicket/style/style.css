@@ -5,3 +5,7 @@
 .btn-detail,.btn-delete{
     border: none;
 }
+
+.input {
+    border: 1px solid #b4b2b2;
+}
