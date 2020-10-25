@@ -141,9 +141,10 @@ class MyBooking extends Component {
                     dest={i.destination_city_country}
                     airlines={i.airlines_name}
                     fCode={i.flight_code}
-                    status={i.status} />
+                    status={i.status}
+                    id={i.id} />
                 ))}
-                <div className='d-flex justify-content-center mt-2'>
+                <div className='d-flex justify-content-center mt-3'>
                   <div style={{width: 250}} className='d-flex'>
                     <InputGroup>
                       <InputGroupAddon addonType="prepend">

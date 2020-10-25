@@ -43,7 +43,7 @@ export default class CardBooking extends Component {
                 </Col>
                 <Col md={7}>
                   <div className='text-right font-weight-bold' style={{color: "#2395FF"}}>
-                    <Link to={this.props.status===0? "/":"/booking/details"} className='text-decoration-none'>
+                    <Link to={this.props.status===0? "/payment":`/booking/detail/${this.props.id}`} className='text-decoration-none'>
                     View Details <FaChevronDown />
                     </Link>
                   </div>
