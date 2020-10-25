@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-key */
 import React, { useState, useEffect } from "react";
 import {useSelector, useDispatch} from "react-redux";
@@ -17,7 +18,6 @@ import AuthSideBar from "../../Components/AuthSideBar";
 
 
 export default function ForgotPassword(props) {
-  
   const [email, setEmail] = useState("");
   const [reset_code, setResetCode] = useState("");
   const dispatch = useDispatch();
