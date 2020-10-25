@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { 
-  Container, Table, Button, Col, 
-  Form, ButtonGroup, InputGroupAddon, 
-  Input, InputGroup, Row, Modal, ModalHeader, ModalBody, ModalFooter,
+import {
+  Container, Table, Button, Col,
+  Form, ButtonGroup, InputGroupAddon,
+  Input, InputGroup, Row, Modal, ModalHeader, ModalBody, ModalFooter, Label,
+  FormGroup
 } from "reactstrap";
 import { connect } from 'react-redux'
 
@@ -23,19 +24,33 @@ import next from "../../Assets/next.png";
 
 //import action
 import listFlightAction from '../../Redux/actions/listFlight'
+import detailFlightAction from '../../Redux/actions/flightById'
 
 class index extends Component {
   state = {
-    modalOpen: false
+    modalOpen: false,
+    editingFlight: {
+      id: '',
+      airlines_id: '',
+      flight_code: '',
+      origin: '',
+      destination: '',
+      departure_date: '',
+      departure_time: '',
+      arrived_date: '',
+      arrived_time: ''
+    }
   }
 
   componentDidMount() {
     this.props.listingFlight();
-    console.log(this.props.listOfFlight);
   }
 
-  openModal = () => {
-    this.setState({modalOpen: true})
+  editFlight = async (id) => {
+    await this.props.detailFlight(id)
+    this.setState({ modalOpen: true, editingFlight: this.props.detailOfFlight.dataFlight }, () => {
+      console.log();
+    });
   }
 
   render() {
@@ -110,7 +125,7 @@ class index extends Component {
                       <td>{item.airlines_id}</td>
                       <td>{item.flight_code}</td>
                       <td className="d-flex justify-content-center">
-                        <Button className="btn-detail bg-primary mr-3" onClick={this.openModal}>detail</Button>
+                        <Button className="btn-detail bg-primary mr-3" onClick={() => this.editFlight(item.id)}>detail</Button>
                         <Button className="btn-delete bg-danger">delete</Button>
                       </td>
                     </tr>
@@ -168,18 +183,63 @@ class index extends Component {
         <Modal isOpen={this.state.modalOpen} className="modal-dialog-centered modal-lg">
           <ModalHeader className="h3">Edit Flight Detail</ModalHeader>
           <ModalBody>
-            <Input className="input"></Input>
-            <Input className="input mt-3"></Input>
-            <Input className="input mt-3"></Input>
-            <Input className="input mt-3"></Input>
-            <Input className="input mt-3"></Input>
-            <Input className="input mt-3"></Input>
-            <Input className="input mt-3"></Input>
-            <Input className="input mt-3"></Input>
-            <Input className="input mt-3"></Input>
+            <FormGroup row>
+              <Label for="input-id" md={2} sm={3}>id</Label>
+              <Col>
+                <Input className="input-data" type="number" name="id" value={this.state.editingFlight.id} id="input-id" onChange={this.handlerChange}></Input>
+              </Col>
+            </FormGroup>
+            <FormGroup row>
+              <Label for="input-airline" md={2} sm={3}>airline id</Label>
+              <Col>
+                <Input className="input-data" type="number" name="airlines_id" value={this.state.editingFlight.airlines_id} id="input-airline" onChange={this.handlerChange}></Input>
+              </Col>
+            </FormGroup>
+            <FormGroup row>
+              <Label for="input-flight" md={2} sm={3}>flight code</Label>
+              <Col>
+                <Input className="input-data" type="string" name="flight_code" value={this.state.editingFlight.flight_code} id="input-flight" onChange={this.handlerChange}></Input>
+              </Col>
+            </FormGroup>
+            <FormGroup row>
+              <Label for="input-origin" md={2} sm={3}>origin</Label>
+              <Col>
+                <Input className="input-data" type="number" name="origin" value={this.state.editingFlight.origin} id="input-origin" onChange={this.handlerChange}></Input>
+              </Col>
+            </FormGroup>
+            <FormGroup row>
+              <Label for="input-desti" md={2} sm={3}>destination</Label>
+              <Col>
+                <Input className="input-data" type="number" name="destination" value={this.state.editingFlight.destination} id="input-desti" onChange={this.handlerChange}></Input>
+              </Col>
+            </FormGroup>
+            <FormGroup row>
+              <Label for="input-dep-date" md={2} sm={3}>departure date</Label>
+              <Col>
+                <Input className="input-data" type="date" name="departure_date" value={this.state.editingFlight.departure_date} id="input-dep-date" onChange={this.handlerChange}></Input>
+              </Col>
+            </FormGroup>
+            <FormGroup row>
+              <Label for="input-dep-time" md={2} sm={3}>departure time</Label>
+              <Col>
+                <Input className="input-data" type="time" name="departure_time" value={this.state.editingFlight.departure_time} id="input-dep-time" onChange={this.handlerChange}></Input>
+              </Col>
+            </FormGroup>
+            <FormGroup row>
+              <Label for="input-arr-date" md={2} sm={3}>arrived date</Label>
+              <Col>
+                <Input className="input-data" type="date" name="arrived_date" value={this.state.editingFlight.arrived_date} id="input-arr-date" onChange={this.handlerChange}></Input>
+              </Col>
+            </FormGroup>
+            <FormGroup row>
+              <Label for="input-arr-time" md={2} sm={3}>arrived time</Label>
+              <Col>
+                <Input className="input-data" type="time" name="arrived_time" value={this.state.editingFlight.arrived_time} id="input-arr-time" onChange={this.handlerChange}></Input>
+              </Col>
+            </FormGroup>
           </ModalBody>
           <ModalFooter>
-            <Button className="btn-delete bg-secondary" onClick={()=>this.setState({modalOpen: false})}>cencel</Button>
+            <Button className="btn-delete bg-secondary" onClick={() => this.setState({ modalOpen: false })}>cencel</Button>
             <Button className="btn-delete bg-primary">edit</Button>
           </ModalFooter>
         </Modal>
@@ -190,11 +250,13 @@ class index extends Component {
 }
 
 const mapStateToProps = state => ({
-  listOfFlight: state.listFlight
+  listOfFlight: state.listFlight,
+  detailOfFlight: state.detailFlightById
 })
 
 const mapDispatchToProps = {
-  listingFlight: listFlightAction.getFlight
+  listingFlight: listFlightAction.getFlight,
+  detailFlight: detailFlightAction.getFlight
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(index)
