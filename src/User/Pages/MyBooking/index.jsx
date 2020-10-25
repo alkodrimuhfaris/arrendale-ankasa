@@ -106,7 +106,7 @@ class MyBooking extends Component {
           <Container>
             <Row className='py-5'>
               <Col md={3} className='sidebar p-3'>
-                <Sidebar />
+                <Sidebar from='profile' />
               </Col>
               <Col md={9} className='list d-flex flex-column'>
                 <Card>
