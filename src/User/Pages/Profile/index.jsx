@@ -27,6 +27,10 @@ export default function Profile() {
   const { data, alertMsg } = useSelector((state) => state.profile);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    window.scrollTo(0, 200);
+  }, []);
+
   const getData = () => {
     dispatch(profileAction.getProfile(token));
   };
