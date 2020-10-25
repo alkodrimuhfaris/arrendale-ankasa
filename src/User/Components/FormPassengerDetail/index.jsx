@@ -9,13 +9,13 @@ const FormContactPerson = (props) => {
       <Alert color="success">
         <Row className="align-items-center">
           <Col lg="auto">
-            <LabelInput>Passenger: {props.passenger}</LabelInput>
+            <LabelInput>Passenger : {props.passenger}</LabelInput>
           </Col>
           <Col lg="auto" className="ml-auto custom-control custom-switch">
             <FormGroup check className="custom-control custom-switch">
-              <LabelInput className="custom-control-label">
+              <LabelInput className="custom-control-label" for="sameContact">
                 Same as contact person{" "}
-                <InputUser type="checkbox" className="custom-control-input" id="customSwitch1" />
+                <InputUser type="checkbox" className="custom-control-input" id="sameContact" />
               </LabelInput>
             </FormGroup>
           </Col>

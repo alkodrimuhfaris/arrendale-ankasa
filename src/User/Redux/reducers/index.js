@@ -4,7 +4,8 @@ import { combineReducers } from "redux";
 import auth from "./auth";
 import profile from "./profile";
 import flight from "./flight";
-import searchResult from "./searchResult"; 
+import booking from "./booking";
+// import searchResult from "./searchResult"; 
 import city from "./city";
 import getAllCity from "./SearchResult/getAllCity";
 import getCity from "./SearchResult/getCity";
@@ -17,6 +18,7 @@ export default combineReducers({
   flight,
   profile,
   city,
+  booking,
   getAllCity,
   getCity,
   setHistoryPlace,
