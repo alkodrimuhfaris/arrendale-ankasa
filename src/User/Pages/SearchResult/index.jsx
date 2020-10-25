@@ -130,6 +130,7 @@ export class SearchResult extends Component {
                     transit={item.transit}
                     facilities={SearchResultApi.data[1].facilities} //KOSONG
                     price={item.price}
+                    ticketId={item.id}
                   />
                 ))}
             </Col>

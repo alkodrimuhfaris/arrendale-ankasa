@@ -31,7 +31,7 @@ import {
 import bigFlight from "../../Assets/big-flight.png";
 
 //API
-import FlightDetailApi from "../../API/FlightDetail";
+// import FlightDetailApi from "../../API/FlightDetail";
 
 export class FlightDetail extends Component {
   componentDidMount(){
@@ -78,20 +78,10 @@ export class FlightDetail extends Component {
               <FormInsurance />
             </Col>
             <Col lg={4}>
-              {FlightDetailApi.data.map((item) => (
-                <CardFlightDetail
-                  airlineLogo={item.logoAirline}
-                  airlineName={item.airline}
-                  fromDestination={item.from}
-                  toDestination={item.to}
-                  departure={item.departure}
-                  departureTime={item.departureTime}
-                  arrivedTime={item.arrivedTime}
-                  refundable={item.refundable}
-                  reschedule={item.reschedule}
-                  totalPayment={item.totalPrice}
-                />
-              ))}
+              <CardFlightDetail
+                refundable={true}
+                reschedule={false}
+              />
             </Col>
           </Row>
           <Row className="justify-content-center m-5">
