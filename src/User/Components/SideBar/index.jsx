@@ -165,7 +165,7 @@ export default function SideBar(props) {
         </ModalBody>
         <ModalFooter>
           <Button onClick={logout} color='danger'>Yes</Button>
-          <Button onClick={!modalLogout} color='primary'>No</Button>
+          <Button onClick={()=>setLogout(false)} color='primary'>No</Button>
         </ModalFooter>
       </Modal>
       <Modal centered isOpen={alertOpen}>

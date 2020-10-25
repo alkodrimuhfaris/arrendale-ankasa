@@ -19,6 +19,10 @@ import decor from "../../Assets/img/decoration.png";
 import btn from "../../Assets/img/btnback.png";
 
 export default class Explore extends Component {
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+  
   render() {
     return (
       <>

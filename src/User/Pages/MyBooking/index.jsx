@@ -7,7 +7,7 @@ import {
   Button, Card, CardBody, Col, Container, DropdownItem, DropdownMenu, 
   DropdownToggle, Input, InputGroup, InputGroupAddon, InputGroupButtonDropdown, Modal, ModalBody, Row 
 } from "reactstrap";
-import { FaTimes } from "react-icons/fa";
+import { FaAngleDoubleLeft, FaAngleDoubleRight, FaAngleLeft, FaAngleRight, FaTimes } from "react-icons/fa";
 
 // import component
 import NavBar from "../../Components/NavBar";
@@ -47,6 +47,7 @@ class MyBooking extends Component {
     });
 
     this.showAlert()
+    window.scrollTo(0, 200)
   }
 
   pages = (page) => {
@@ -140,20 +141,19 @@ class MyBooking extends Component {
                     fCode={i.flight_code}
                     status={i.status} />
                 ))}
-                <div className='flex-grow-1' />
-                <div className='d-flex justify-content-center mt-5'>
-                  <div style={{width: 350}} className='d-flex'>
+                <div className='d-flex justify-content-center mt-2'>
+                  <div style={{width: 250}} className='d-flex'>
                     <InputGroup>
                       <InputGroupAddon addonType="prepend">
                         <Button 
                           onClick={()=>this.pages('first')}
                           disabled={this.state.currentPage === 1}>
-                            First
+                            <FaAngleDoubleLeft />
                         </Button>
                         <Button 
                           onClick={()=>this.pages('prev')}
                           disabled={this.state.currentPage === 1}>
-                            Prev
+                            <FaAngleLeft />
                         </Button>
                       </InputGroupAddon>
                       <Input 
@@ -171,13 +171,13 @@ class MyBooking extends Component {
                         <Button 
                           onClick={()=>this.pages('next')}
                           disabled={this.state.currentPage === this.state.totalPage}>
-                            Next
+                            <FaAngleRight />
                         </Button>
                         <Button 
                           onClick={()=>this.pages('last')}
                           disabled={this.state.currentPage === this.state.totalPage}
                           className='last'>
-                            Last
+                            <FaAngleDoubleRight />
                         </Button>
                       </InputGroupButtonDropdown>
                     </InputGroup>
