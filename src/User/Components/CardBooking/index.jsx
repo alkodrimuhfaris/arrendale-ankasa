@@ -7,6 +7,7 @@ import { FaChevronDown } from "react-icons/fa";
 
 // import image
 import flight from "../../Assets/flight.svg";
+import { Link } from "react-router-dom";
 
 export default class CardBooking extends Component {
   render() {
@@ -42,7 +43,9 @@ export default class CardBooking extends Component {
                 </Col>
                 <Col md={7}>
                   <div className='text-right font-weight-bold' style={{color: "#2395FF"}}>
+                    <Link to={this.props.status===0? "/":"/booking/details"} className='text-decoration-none'>
                     View Details <FaChevronDown />
+                    </Link>
                   </div>
                 </Col>
               </Row>
