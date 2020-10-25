@@ -30,7 +30,7 @@ export default (state = initialState, action) => {
       token: action.payload.data.message.token,
       isLoading: false,
       isLogin: true,
-      alertMsg: "Successfully login",
+      alertMsg: "",
     };
   }
   case "LOGOUT_USER": {

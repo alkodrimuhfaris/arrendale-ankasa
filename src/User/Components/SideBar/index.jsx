@@ -32,10 +32,6 @@ export default function SideBar(props) {
   };
 
   useEffect(() => {
-    getData();
-  }, []);
-
-  useEffect(() => {
     if(data.length){
       setAvatar(data[0].avatar);
       setUsername(data[0].username);
@@ -43,6 +39,8 @@ export default function SideBar(props) {
     }
     if(alertMsg!==""){
       setAlert(true);
+    } else {
+      setAlert(false);
     }
   }, [data, alertMsg]);
 
