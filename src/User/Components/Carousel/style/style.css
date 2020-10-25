@@ -16,7 +16,7 @@
 
 .rec.rec-carousel {
   height: 350px !important;
-  padding: 50px 100px 50px 100px;
+  padding: 50px 80px 50px 80px;
 }
 
 .rec.rec-slider-container {
@@ -80,4 +80,9 @@
   height: 50px !important;
   border: 1px solid #FFFFFF;
   box-shadow: none;
+}
+
+.img-city {
+  width: 121px;
+  height: 121px;
 }
