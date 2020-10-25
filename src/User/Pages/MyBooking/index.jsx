@@ -102,7 +102,6 @@ class MyBooking extends Component {
     this.setState({
       alertOpen: false,
     })
-    // if ()
     this.props.booking.pageInfo.count > 0 &&
     this.pages(1)
   }
