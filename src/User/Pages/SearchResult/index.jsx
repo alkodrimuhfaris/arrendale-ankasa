@@ -31,7 +31,7 @@ import SearchResultApi from "../../API/SearchResult/";
 
 export class SearchResult extends Component {
   render() {
-    const { isLoading, isError, data, alertMsg } = this.props.searchResult;
+    const { isLoading, isError, data, info, alertMsg } = this.props.searchResult;
     // eslint-disable-next-line no-undef
     const { REACT_APP_BACKEND_URL } = process.env;
     return (
@@ -67,7 +67,7 @@ export class SearchResult extends Component {
                 </Col>
                 <Col md="auto" className="m-2 p-0 mr-auto">
                   <TextSecondary>
-                    ({SearchResultApi.detailSearch[0].totalTicket} flight found)
+                    ({info.count} flight found)
                   </TextSecondary>
                 </Col>
                 <Col md="auto" className="ml-auto m-0 p-0">
@@ -120,17 +120,17 @@ export class SearchResult extends Component {
                 data.length !== 0 &&
                 data.map((item) => (
                   <CardTicket
-                    logoAirlines={REACT_APP_BACKEND_URL+item.airlines_logo}
-                    nameAirlines={item.name}
+                    logoAirlines={REACT_APP_BACKEND_URL + item.airline_logo}
+                    nameAirlines={item.airlines}
                     departure={item.origin_city_country}
                     departureTime={item.departure_time}
                     arrived={item.destination_city_country}
                     arrivedTime={item.arrived_time}
                     period={SearchResultApi.data[1].period} //KOSONG
-                    transit={item.transit}
+                    transit={item.transit_id}
                     facilities={SearchResultApi.data[1].facilities} //KOSONG
                     price={item.price}
-                    ticketId={item.id}
+                    ticketId={item.flight_detail_id}
                   />
                 ))}
             </Col>

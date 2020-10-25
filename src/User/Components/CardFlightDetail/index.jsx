@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { Container, Row, Col } from "reactstrap";
 import {
@@ -18,25 +18,7 @@ import uncheckEclipse from "../../Assets/Circle-unChecklist.svg";
 import downIcon from "../../Assets/down.svg";
 
 const CardFlightDeatil = (props) => {
-  const [originCityName, setOriginCityName] = useState("");
-  const [originCountryCode, setOriginCountryCode] = useState("");
-  const [destinationCityName, setDestinationCityName] = useState("");
-  const [destinationCountryCode, setDestinationCountryCode] = useState("");
   const ticket = useSelector((state) => state.selectTicket);
-  const city = useSelector((state) => state.getAllCity);
-
-  useEffect(() => {
-    city.data.map(item => {
-      if(item.id === ticket.data[0].origin){
-        setOriginCountryCode(item.country_code);
-        setOriginCityName(item.city_name);
-      }
-      if(item.id === ticket.data[0].destination){
-        setDestinationCountryCode(item.country_code);
-        setDestinationCityName(item.city_name);
-      }
-    });
-  }, []);
 
   // eslint-disable-next-line no-undef
   const { REACT_APP_BACKEND_URL } = process.env;
@@ -46,12 +28,12 @@ const CardFlightDeatil = (props) => {
         <Row className="align-items-center">
           <Col lg="auto">
             <AirlineLogo
-              src={REACT_APP_BACKEND_URL + ticket.data[0].airlines_logo}
+              src={REACT_APP_BACKEND_URL + ticket.data[0].airline_logo}
               alt=""
             />
           </Col>
           <Col lg="auto">
-            <AirlineName>{ticket.data[0].name}</AirlineName>
+            <AirlineName>{ticket.data[0].airlines}</AirlineName>
           </Col>
         </Row>
       </Container>
@@ -59,7 +41,8 @@ const CardFlightDeatil = (props) => {
         <Row>
           <Col lg="auto">
             <Heading1>
-              {originCityName}({originCountryCode})
+              {ticket.data[0].origin_city_name}(
+              {ticket.data[0].origin_city_country})
             </Heading1>
           </Col>
           <Col lg="auto">
@@ -67,8 +50,8 @@ const CardFlightDeatil = (props) => {
           </Col>
           <Col lg="auto">
             <Heading1>
-              {destinationCityName}
-              ({destinationCountryCode})
+              {ticket.data[0].destination_city_name}(
+              {ticket.data[0].destination_city_country})
             </Heading1>
           </Col>
         </Row>
