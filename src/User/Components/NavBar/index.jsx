@@ -17,8 +17,6 @@ import mail from "../../Assets/mail.svg";
 import bell from "../../Assets/bell.svg";
 import profile from "../../Assets/profile.jpg";
 
-import profileAction from "../../Redux/actions/profile";
-
 const { REACT_APP_BACKEND_URL } = process.env;
 
 class NavigationBar extends Component {
@@ -136,8 +134,4 @@ const mapStateToProps = (state) => ({
   profile: state.profile
 });
 
-const mapDispatchToProps = {
-  getData: profileAction.getProfile
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(NavigationBar);
+export default connect(mapStateToProps)(NavigationBar);

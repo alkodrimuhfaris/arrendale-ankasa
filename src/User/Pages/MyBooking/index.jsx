@@ -211,7 +211,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  getData: bookingAction.getBooking
+  getData: bookingAction.getBooking,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MyBooking);
