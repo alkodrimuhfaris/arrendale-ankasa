@@ -9,7 +9,7 @@ import { FaChevronDown, FaInfoCircle, FaRegTimesCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Currency from 'react-currency-format'
-import DateObject from "react-date-object";
+import dateFormat from "../../Helper/dateFormat";
 
 // import image
 import flight from "../../Assets/flight.svg";
@@ -17,29 +17,15 @@ import flight from "../../Assets/flight.svg";
 import bookingAction from "../../Redux/actions/booking";
 
 const { REACT_APP_BACKEND_URL } = process.env;
-// let date = new DateObject().format('dddd DD MMMM YYYY')
 
 class CardBooking extends Component {
   constructor(props) {
     super(props);
     this.state = {
       modalOpen: false,
-      depDate: new Date(this.props.depDate).toDateString()
+      depDate: dateFormat(this.props.depDate),
+      depTime: this.props.depTime.slice(0,5)
     };
-  }
-
-  componentDidMount() {
-    // this.setDate()
-  }
-  
-
-  setDate = () => {
-    let dates = new DateObject(this.state.depDate)
-    dates.format("dddd DD MMMM @ hh:mm:ss.SSS a")
-    this.setState({
-      depDate: dates
-    })
-    console.log(dates)
   }
 
   showPayment = async (id) => {
@@ -63,7 +49,7 @@ class CardBooking extends Component {
         <Card className='mt-4'>
           <CardBody className='p-0 d-flex flex-column'>
             <div className='content p-4'>
-              <div className='h6'>{this.props.depDate} - {this.props.depTime}</div>
+              <div className='h6'>{this.state.depDate} - {this.state.depTime}</div>
               <div className='d-flex align-items-center my-2'>
                 <div className='h5 m-0 font-weight-bold'>{this.props.origin}</div>
                 <div className='mx-3'>
@@ -144,13 +130,7 @@ class CardBooking extends Component {
                     Departure Date
                   </div>
                   <div className='h4 m-0 font-weight-bold text-center'>
-                    {
-                    // this.setDate(new Date(this.props.depDate).toLocaleDateString())
-                    // this.setDate(new Date(this.props.depDate).toDateString())
-                    // this.setDate(new Date(this.props.depDate).getTime())
-                    // new Date(this.props.depDate).toDateString()
-                    this.state.depDate
-                    +' - '+this.props.depTime}
+                    {this.state.depDate+' - '+this.state.depTime}
                   </div>
                 </Col>
                 <Col md={3} className='my-3'>
