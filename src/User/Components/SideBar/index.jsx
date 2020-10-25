@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "./styled/style.css";
 import { FaChevronRight, FaCog, FaSignOutAlt, FaStar, FaTimes, FaUserCircle } from "react-icons/fa";
 import { Button, Col, Input, Modal, ModalBody, ModalFooter, Row } from "reactstrap";
+import Currency from "react-currency-format";
 
 // import images
 import placeholder from "../../Assets/profile.jpg";
@@ -21,6 +22,7 @@ export default function SideBar(props) {
   const [username, setUsername] = useState("");
   const [address, setAddress] = useState("");
   const [avatar, setAvatar] = useState("");
+  const [balance, setBalance] = useState("");
   const [alertOpen, setAlert] = useState(false);
   const { token } = useSelector((state)=>state.auth);
   const { data, alertMsg } = useSelector((state)=>state.profile);
@@ -32,17 +34,16 @@ export default function SideBar(props) {
   };
 
   useEffect(() => {
-    getData();
-  }, []);
-
-  useEffect(() => {
     if(data.length){
       setAvatar(data[0].avatar);
       setUsername(data[0].username);
       setAddress(data[0].address);
+      setBalance(data[0].balance);
     }
     if(alertMsg!==""){
       setAlert(true);
+    } else {
+      setAlert(false);
     }
   }, [data, alertMsg]);
 
@@ -100,7 +101,9 @@ export default function SideBar(props) {
           <div className='font-weight-bold'>4441 1235 5512 5551</div>
           <Row>
             <Col className='small'>X Card</Col>
-            <Col className='small text-right'>$ 1,440.2</Col>
+            <Col className='small text-right'>
+              <Currency value={balance} displayType={"text"} thousandSeparator={true} prefix={"$ "} />
+            </Col>
           </Row>
         </div>
         <div className='w-100 mt-4 pl-2 d-flex align-items-center justify-content-center'>
@@ -167,7 +170,7 @@ export default function SideBar(props) {
         </ModalBody>
         <ModalFooter>
           <Button onClick={logout} color='danger'>Yes</Button>
-          <Button onClick={!modalLogout} color='primary'>No</Button>
+          <Button onClick={()=>setLogout(false)} color='primary'>No</Button>
         </ModalFooter>
       </Modal>
       <Modal centered isOpen={alertOpen}>

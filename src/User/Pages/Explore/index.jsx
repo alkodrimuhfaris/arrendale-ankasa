@@ -18,6 +18,10 @@ import pict2 from "../../Assets/img/destination2.png";
 import decor from "../../Assets/img/decoration.png";
 
 export default class Explore extends Component {
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+  
   render() {
     return (
       <>

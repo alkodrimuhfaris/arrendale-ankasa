@@ -1,9 +1,9 @@
 import http from "../../Helper/http";
 
 export default {
-  getBooking: (token) => ({
+  getBooking: (token, path) => ({
     type: "GET_BOOKING",
-    payload: http(token).get("mybook"),
+    payload: http(token).get(path),
   }),
   postBooking: (token, data) => ({
     type: "POST_BOOKING",
@@ -11,5 +11,9 @@ export default {
   }),
   clearMsg: () => ({
     type: "CLEAR_MESSAGE",
+  }),
+  getDetail: (token, id) => ({
+    type: "GET_DETAIL",
+    payload: http(token).get(`mybook/${id}`)
   })
 };

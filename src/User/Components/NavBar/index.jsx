@@ -26,15 +26,19 @@ class NavigationBar extends Component {
     super(props);
     this.state = {
       navbarOpen: false,
-      isLogin: this.props.auth.isLogin,
+      isLogin: false,
       isAdmin: false,
-      token: this.props.auth.token,
+      token: "",
       modalOpen: false
     };
   }
 
-  componentDidMount() {
-    this.props.getData(this.state.token);
+  async componentDidMount() {
+    await this.props.auth;
+    this.setState({
+      isLogin: this.props.auth.isLogin,
+      token: this.props.auth.token,
+    });
   }
 
   render() {
