@@ -13,14 +13,17 @@ export default {
     type: "SET_HISTORY_PLACE",
     payload,
   }),
-  findTicket: (origin, destination, departure) => ({
+  findTicket: (
+    origin = 0,
+    destination = 0,
+  ) => ({
     type: "FIND_TICKET",
     payload: http().get(
-      `searchticket?search[origin]=${origin}&search[destination]=${destination}&search[departure_time]=${departure}`
+      `explore/search/flight?search[origin]=${origin}&search[destination]=${destination}`
     ),
   }),
   selectTicket: (id) => ({
     type: "SELECT_TICKET",
-    payload: http().get(`searchticket/${id}`),
+    payload: http().get(`explore/search/flight/${id}`),
   }),
 };
