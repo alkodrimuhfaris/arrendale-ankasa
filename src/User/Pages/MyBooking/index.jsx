@@ -63,7 +63,10 @@ class MyBooking extends Component {
     } else {
       paging = this.state.path.concat('&page=').concat(page)
     }
-    this.setData(paging)
+    this.setData(paging) && 
+    this.props.history.push({
+      search: '?'+paging.slice(15),
+    })
   }
 
   inputPage = (e) => {
@@ -98,7 +101,6 @@ class MyBooking extends Component {
   }
   
   render() {
-    // console.log(this.state.path);
     return (
       <>
         <NavBar />
