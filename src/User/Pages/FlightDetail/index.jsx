@@ -53,6 +53,7 @@ export class FlightDetail extends Component {
       insurance: false,
       payment_method: "later",
       modalOpen: false,
+      alertMsg: ''
     }
   }
 
@@ -60,12 +61,14 @@ export class FlightDetail extends Component {
     const token = localStorage.getItem("token");
     await this.props.getProfile(token);
     const { data } = this.props.profile;
+    const flightId = this.props.flightId;
     if (data.length) {
       console.log('ok')
       this.setState({
         email: data[0].email,
         name: data[0].username,
         phone_number: data[0].phone_number,
+        flight_detail_id: flightId.data[0].flight_detail_id
       })
     }
   }
@@ -218,7 +221,7 @@ export class FlightDetail extends Component {
         <Footer />
         <Modal isOpen={this.state.modalOpen}>
           <ModalBody>
-            {this.props.booking.alertMsg}
+            {this.props.booking.alertMsg.concat('. Go to My Booking to process payment.')}
             {this.props.booking.isError && (
               <div>Make sure your datas are filled</div>
             )}
@@ -238,6 +241,7 @@ const mapStateToProps = (state) => ({
   flight: state.flight,
   booking: state.booking,
   ticket: state.ticket,
+  flightId: state.selectTicket
 });
 
 const mapDispatchToProps = {

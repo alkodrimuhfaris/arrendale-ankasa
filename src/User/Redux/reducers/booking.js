@@ -58,6 +58,30 @@ export default (state = initialState, action) => {
       detail: action.payload.data.detailBooking
     };
   }
+  case "PAY_PENDING": {
+    return {
+      ...state,
+      isLoading: true,
+    };
+  }
+  case "PAY_REJECTED": {
+    return {
+      ...state,
+      isLoading: false,
+      isError: true,
+      alertMsg: "There is an error at request data",
+    };
+  }
+  case "PAY_FULFILLED": {
+    return {
+      ...state,
+      isLoading: false,
+      isError:false,
+      alertMsg: action.payload.data.message,
+      data: "",
+      detail: ""
+    };
+  }
   case "POST_BOOKING_PENDING": {
     return {
       ...state,

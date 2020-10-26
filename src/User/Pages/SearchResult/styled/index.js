@@ -13,6 +13,12 @@ export const GlobalStyle = createGlobalStyle`
   }
 `;
 
+export const Card = styled.div`
+  padding: 28px 0 28px 0;
+  background: #ffffff;
+  border-radius: 15px;
+`;
+
 export const BackgroundDetailSearch = styled.div`
   width: 100%;
   height: 176px;
