@@ -77,7 +77,7 @@ const SearchDetail = (props) => {
             </Col>
             <Col lg="auto">
               <Heading6>
-                <li>{props.class}</li>
+                <li>{localStorage.getItem("flightClassName")}</li>
               </Heading6>
             </Col>
           </Row>

@@ -14,6 +14,7 @@ import SearchDetail from "../../Components/SearchDetail";
 //Styled
 import {
   GlobalStyle,
+  Card,
   TextHeader1,
   TextHeader4,
   Reset,
@@ -67,7 +68,7 @@ export class SearchResult extends Component {
                 </Col>
                 <Col md="auto" className="m-2 p-0 mr-auto">
                   <TextSecondary>
-                    ({info.count} flight found)
+                    ({info.count ? info.count: 0} flight found)
                   </TextSecondary>
                 </Col>
                 <Col md="auto" className="ml-auto m-0 p-0">
@@ -114,7 +115,11 @@ export class SearchResult extends Component {
                     price="Loading..."
                   />
                 ))}
-              {!isLoading && isError && <div>{alertMsg}</div>}
+              {!isLoading && isError && alertMsg !== "" && (
+                <Card>
+                  <TextHeader4>the ticket from {localStorage.getItem("destinationCityName")} to {localStorage.getItem("destinationCountryName")} has run out</TextHeader4>
+                </Card>
+              )}
               {!isLoading &&
                 !isError &&
                 data.length !== 0 &&

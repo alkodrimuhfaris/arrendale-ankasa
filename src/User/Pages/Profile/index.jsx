@@ -27,13 +27,13 @@ export default function Profile() {
   const { data, alertMsg } = useSelector((state) => state.profile);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    window.scrollTo(0, 200);
+  }, []);
+
   const getData = () => {
     dispatch(profileAction.getProfile(token));
   };
-
-  useEffect(() => {
-    getData();
-  }, []);
   
   useEffect(() => {
     if (data.length) {
@@ -46,6 +46,8 @@ export default function Profile() {
     }
     if(alertMsg!==""){
       setAlert(true);
+    } else {
+      setAlert(false);
     }
   }, [data, alertMsg]);
 
