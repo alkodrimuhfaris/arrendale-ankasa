@@ -1,5 +1,6 @@
 const initialState = {
   data: [],
+  filterData: {},
   info: [],
   isLoading: false,
   isError: false,
@@ -29,6 +30,12 @@ export default (state = initialState, action) => {
       isError: false,
       data: action.payload.data.result,
       info: action.payload.data.pageInfo,
+    };
+  }
+  case "FILTER_TICKET" : {
+    return {
+      ...state,
+      filterData: action.payload.data
     };
   }
   default: {

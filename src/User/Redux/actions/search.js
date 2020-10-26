@@ -16,14 +16,20 @@ export default {
   findTicket: (
     origin = 0,
     destination = 0,
+    filterSearch = {}
   ) => ({
     type: "FIND_TICKET",
     payload: http().get(
-      `explore/search/flight?search[origin]=${origin}&search[destination]=${destination}`
+      `explore/search/flight?search[origin]=${origin}&search[destination]=${destination}`, 
+      {params: {search:filterSearch}},
     ),
   }),
   selectTicket: (id) => ({
     type: "SELECT_TICKET",
     payload: http().get(`explore/search/flight/${id}`),
   }),
+  filterTicket: (data) => ({
+    type: "FILTER_TICKET",
+    payload: data
+  })
 };
