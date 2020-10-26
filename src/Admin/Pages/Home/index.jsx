@@ -118,7 +118,7 @@ const Home = (props) => {
                 <ListGroupItem className={toggle3 ? "active" : "block"} onClick={toggleHandler3} tag="button" action>Manage Airline <Badge pill>{airlineData.length}</Badge></ListGroupItem>
                 <ListGroupItem className={toggle4 ? "active" : "block"} onClick={toggleHandler4} tag="button" action>Manage Flight <Badge pill>{flightData.length}</Badge></ListGroupItem>
                 <ListGroupItem className={toggle5 ? "active" : "block"} onClick={toggleHandler5} tag="button" action style={{wordWrap: "break-word"}}>Manage Flight detail</ListGroupItem>
-                <ListGroupItem className={toggle6 ? "active" : "block"} onClick={toggleHandler6} tag="button" action style={{wordWrap: "break-word"}}>Transactions History <Badge pill>       {transactionData.length}</Badge></ListGroupItem>
+                <ListGroupItem className={toggle6 ? "active" : "block"} onClick={toggleHandler6} tag="button" action style={{wordWrap: "break-word"}}>Transactions History <Badge pill> {transactionData.length}</Badge></ListGroupItem>
               </ListGroup>
             </Col>
             {toggle1 && <Col md={9} xs={9}>
