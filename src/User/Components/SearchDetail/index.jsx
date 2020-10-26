@@ -16,6 +16,7 @@ const SearchDetail = (props) => {
 
   const onSwitchPlace = () => setIsSwitch(!isSwitch);
   const onClickSearch = () => {
+    console.log(filterSearch);
     const originId = localStorage.getItem("originCityId");
     const destinationId = localStorage.getItem("destinationCityId");
     if (!isSwitch) {

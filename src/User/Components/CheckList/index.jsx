@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./styled/style.css";
 import { Collapse, Button, Label, Input, Row } from "reactstrap";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 import upIcon from "../../Assets/up.svg";
 import filterAction from "../../Redux/actions/search";
@@ -20,6 +20,7 @@ const CheckList = () => {
   const [ticketPrice, setTicketPrice] = useState(false);
   const toggleTicketPrice = () => setTicketPrice(!ticketPrice);
   const dispatch = useDispatch();
+  const filterSearch = useSelector(state => state.findTicket.filterData);
 
   const [transitVal, setTransitVal] = useState([0,0,0]);
   const [facilityVal, setFacilityVal] = useState([null,null,null]);
@@ -147,8 +148,11 @@ const CheckList = () => {
       price: price,
       airlines_name: airlinesName
     };
+    console.log(data);
 
     dispatch(filterAction.filterTicket(data));
+
+    console.log(filterSearch);
     
   },[transitVal, facilityVal, departTime, arrivedTime, airlinesName, price]);
 

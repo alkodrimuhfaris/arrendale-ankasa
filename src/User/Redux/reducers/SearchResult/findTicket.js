@@ -35,7 +35,7 @@ export default (state = initialState, action) => {
   case "FILTER_TICKET" : {
     return {
       ...state,
-      filterData: action.payload.data
+      filterData: action.payload
     };
   }
   default: {
