@@ -8,7 +8,28 @@
   border-radius: 15px;
 }
 
+.list {
+  height: calc(100vh + 70px);
+}
+
 .card {
   border-width: 0;
   border-radius: 15px;
+}
+
+.btn-secondary,
+.btn-secondary:focus {
+  background-color: #2395ff;
+  border-width: 0;
+}
+
+.btn-secondary:disabled,
+.btn-secondary:hover {
+  background-color: #7d9bba;
+  border-width: 0;
+}
+
+.last {
+  border-top-right-radius: 10px !important;
+  border-bottom-right-radius: 10px !important;
 }

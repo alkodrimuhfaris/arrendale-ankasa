@@ -1,12 +1,28 @@
 /* eslint-disable react/prop-types */
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Container, Row, Col } from "reactstrap";
-import { Heading6, Heading4, LinkChange } from "./styled";
+import { Heading6, Heading4, LinkChange, SwitchButton } from "./styled";
 
 import mediumFlight from "../../Assets/medium-flight.svg";
 import horizontalSwitch from "../../Assets/horizontal-switch.svg";
 
+import searchActions from "../../Redux/actions/search";
+
 const SearchDetail = (props) => {
+  const [isSwitch, setIsSwitch] = useState(false);
+  const dispatch = useDispatch();
+
+  const onSwitchPlace = () => setIsSwitch(!isSwitch);
+  const onClickSearch = () => {
+    const originId = localStorage.getItem("originCityId");
+    const destinationId = localStorage.getItem("destinationCityId");
+    if (!isSwitch) {
+      dispatch(searchActions.findTicket(originId, destinationId));
+    } else {
+      dispatch(searchActions.findTicket(destinationId, originId));
+    }
+  };
   return (
     <Container className="mt-5 mb-5">
       <Row className="align-items-center">
@@ -28,15 +44,23 @@ const SearchDetail = (props) => {
           <Row className="justify-content-between">
             <Col lg="auto">
               <Heading4>
-                {props.fromCity} ({props.fromCountry})
+                {!isSwitch && localStorage.getItem("originCityName")}
+                {isSwitch && localStorage.getItem("destinationCityName")}
+                ({!isSwitch && localStorage.getItem("originCountryCode")}
+                {isSwitch && localStorage.getItem("destinationCountryCode")})
               </Heading4>
             </Col>
             <Col lg="auto">
-              <img src={horizontalSwitch} alt="" />
+              <SwitchButton onClick={onSwitchPlace}>
+                <img src={horizontalSwitch} alt="" />
+              </SwitchButton>
             </Col>
             <Col lg="auto">
               <Heading4>
-                {props.toCity} ({props.toCountry})
+                {isSwitch && localStorage.getItem("originCityName")}
+                {!isSwitch && localStorage.getItem("destinationCityName")}(
+                {isSwitch && localStorage.getItem("originCountryCode")}
+                {!isSwitch && localStorage.getItem("destinationCountryCode")})
               </Heading4>
             </Col>
           </Row>
@@ -51,13 +75,15 @@ const SearchDetail = (props) => {
             </Col>
             <Col lg="auto">
               <Heading6>
-                <li>{props.class}</li>
+                <li>{localStorage.getItem("flightClassName")}</li>
               </Heading6>
             </Col>
           </Row>
         </Col>
         <Col className="text-right">
-          <LinkChange to="/find">Change Search</LinkChange>
+          <LinkChange to="/search/result" onClick={onClickSearch}>
+            Change Search
+          </LinkChange>
         </Col>
       </Row>
     </Container>

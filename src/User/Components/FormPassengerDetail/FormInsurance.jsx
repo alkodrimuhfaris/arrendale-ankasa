@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import { FormGroup, Container, Col, Row } from "reactstrap";
 import { Card, LabelCheckBox, Heading4, Heading6, InputUser, Span } from "./styled";
 
-const FormInsurance = () => {
+const FormInsurance = (props) => {
   return (
     <Card>
       <Container className="pb-4 border-bottom">
@@ -10,7 +11,7 @@ const FormInsurance = () => {
           <Col>
             <FormGroup check>
               <LabelCheckBox check>
-                <InputUser type="checkbox" /> Travel Insurance
+                <InputUser type="checkbox" name="insurance" value={props.insurance} onChange={props.change}  /> Travel Insurance
               </LabelCheckBox>
             </FormGroup>
           </Col>

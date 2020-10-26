@@ -17,8 +17,6 @@ import mail from "../../Assets/mail.svg";
 import bell from "../../Assets/bell.svg";
 import profile from "../../Assets/profile.jpg";
 
-import profileAction from "../../Redux/actions/profile";
-
 const { REACT_APP_BACKEND_URL } = process.env;
 
 class NavigationBar extends Component {
@@ -26,15 +24,19 @@ class NavigationBar extends Component {
     super(props);
     this.state = {
       navbarOpen: false,
-      isLogin: this.props.auth.isLogin,
+      isLogin: false,
       isAdmin: false,
-      token: this.props.auth.token,
+      token: "",
       modalOpen: false
     };
   }
 
-  componentDidMount() {
-    this.props.getData(this.state.token);
+  async componentDidMount() {
+    await this.props.auth;
+    this.setState({
+      isLogin: this.props.auth.isLogin,
+      token: this.props.auth.token,
+    });
   }
 
   render() {
@@ -79,7 +81,7 @@ class NavigationBar extends Component {
               {!this.state.isAdmin && (
                 <Nav tabs className="border-0">
                   <NavItem>
-                    <NavLink className="text-center text-decoration-none" href="#">
+                    <NavLink className="text-center text-decoration-none" href="/flight/detail">
                       Find Ticket
                     </NavLink>
                   </NavItem>
@@ -132,8 +134,4 @@ const mapStateToProps = (state) => ({
   profile: state.profile
 });
 
-const mapDispatchToProps = {
-  getData: profileAction.getProfile
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(NavigationBar);
+export default connect(mapStateToProps)(NavigationBar);
