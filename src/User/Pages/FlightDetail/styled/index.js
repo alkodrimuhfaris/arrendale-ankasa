@@ -53,3 +53,11 @@ font-size: 18px;
 line-height: 27px;
 color: #FFFFFF;
 `;
+
+export const PaymentMethod = styled.div`
+  width: 100%;
+  height: 176px;
+  background: #ffffff;
+  border-radius: 15px;
+  margin-top: 50px;
+`;

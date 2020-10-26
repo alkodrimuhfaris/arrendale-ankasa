@@ -4,6 +4,7 @@ const initialState = {
   pageInfo: {},
   isLoading: false,
   isError: false,
+  isSuccess: false,
   alertMsg: "",
 };
 

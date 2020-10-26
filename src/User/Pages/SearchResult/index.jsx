@@ -14,6 +14,7 @@ import SearchDetail from "../../Components/SearchDetail";
 //Styled
 import {
   GlobalStyle,
+  Card,
   TextHeader1,
   TextHeader4,
   Reset,
@@ -28,15 +29,12 @@ import verticalSwitch from "../../Assets/vertical-switch.svg";
 //API
 import SearchResultApi from "../../API/SearchResult/";
 
-//Actions
-import SearchActions from "../../Redux/actions/searchResult";
 
 export class SearchResult extends Component {
-  componentDidMount() {
-    this.props.findTicket();
-  }
   render() {
-    const { isLoading, isError, data, alertMsg } = this.props.searchResult;
+    const { isLoading, isError, data, info, alertMsg } = this.props.searchResult;
+    // eslint-disable-next-line no-undef
+    const { REACT_APP_BACKEND_URL } = process.env;
     return (
       <>
         <GlobalStyle />
@@ -45,10 +43,6 @@ export class SearchResult extends Component {
           <img src={bigFlight} alt="" />
         </BackgroundDetailSearch>
         <SearchDetail
-          fromCity={SearchResultApi.detailSearch[0].fromCity}
-          fromCountry={SearchResultApi.detailSearch[0].fromCountry}
-          toCity={SearchResultApi.detailSearch[0].toCity}
-          toCountry={SearchResultApi.detailSearch[0].toCountry}
           departure={SearchResultApi.detailSearch[0].departure}
           passenger={SearchResultApi.detailSearch[0].passenger}
           class={SearchResultApi.detailSearch[0].class}
@@ -74,7 +68,7 @@ export class SearchResult extends Component {
                 </Col>
                 <Col md="auto" className="m-2 p-0 mr-auto">
                   <TextSecondary>
-                    ({SearchResultApi.detailSearch[0].totalTicket} flight found)
+                    ({info.count ? info.count: 0} flight found)
                   </TextSecondary>
                 </Col>
                 <Col md="auto" className="ml-auto m-0 p-0">
@@ -105,37 +99,45 @@ export class SearchResult extends Component {
                   price={item.price}
                 />
               ))} */}
-              {isLoading && !isError && [...Array(8)].forEach(() => (
-                <CardTicket
-                  logoAirlines="Loading..."
-                  nameAirlines="Loading..."
-                  departure="Loading..."
-                  departureTime="Loading..."
-                  arrived="Loading..."
-                  arrivedTime="Loading..."
-                  period="Loading..." //KOSONG
-                  transit="Loading..."
-                  facilities="Loading..." //KOSONG
-                  price="Loading..."
-                />
-              ))}
-              {!isLoading && isError && (
-                <div>{alertMsg}</div>
+              {isLoading &&
+                !isError &&
+                [...Array(8)].forEach(() => (
+                  <CardTicket
+                    logoAirlines="Loading..."
+                    nameAirlines="Loading..."
+                    departure="Loading..."
+                    departureTime="Loading..."
+                    arrived="Loading..."
+                    arrivedTime="Loading..."
+                    period="Loading..." //KOSONG
+                    transit="Loading..."
+                    facilities="Loading..." //KOSONG
+                    price="Loading..."
+                  />
+                ))}
+              {!isLoading && isError && alertMsg !== "" && (
+                <Card>
+                  <TextHeader4>the ticket from {localStorage.getItem("destinationCityName")} to {localStorage.getItem("destinationCountryName")} has run out</TextHeader4>
+                </Card>
               )}
-              {!isLoading && !isError && data.length !== 0 && data.map(item => (
-                <CardTicket
-                  logoAirlines={item.airlines_logo}
-                  nameAirlines={item.name}
-                  departure={item.origin_city_country}
-                  departureTime={item.departure_time}
-                  arrived={item.destination_city_country}
-                  arrivedTime={item.arrived_time}
-                  period={SearchResultApi.data[1].period} //KOSONG
-                  transit={item.transit}
-                  facilities={SearchResultApi.data[1].facilities} //KOSONG
-                  price={item.price}
-                />
-              ))}
+              {!isLoading &&
+                !isError &&
+                data.length !== 0 &&
+                data.map((item) => (
+                  <CardTicket
+                    logoAirlines={REACT_APP_BACKEND_URL + item.airline_logo}
+                    nameAirlines={item.airlines}
+                    departure={item.origin_city_country}
+                    departureTime={item.departure_time}
+                    arrived={item.destination_city_country}
+                    arrivedTime={item.arrived_time}
+                    period={SearchResultApi.data[1].period} //KOSONG
+                    transit={item.transit_id}
+                    facilities={SearchResultApi.data[1].facilities} //KOSONG
+                    price={item.price}
+                    ticketId={item.flight_detail_id}
+                  />
+                ))}
             </Col>
           </Row>
         </Container>
@@ -146,9 +148,6 @@ export class SearchResult extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  searchResult: state.searchResult,
+  searchResult: state.findTicket,
 });
-const mapDispatchToProps = {
-  findTicket: SearchActions.findTicket
-};
-export default connect(mapStateToProps, mapDispatchToProps)(SearchResult);
+export default connect(mapStateToProps, null)(SearchResult);

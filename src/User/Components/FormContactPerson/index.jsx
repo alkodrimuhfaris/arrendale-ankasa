@@ -11,26 +11,26 @@ const FormContactPerson = (props) => {
       <Form>
         <FormGroup>
           <LabelInput for="name">Full Name</LabelInput>
-          <InputUser type="text" name="name" id="name" placeholder="Enter your Name" value={props.name} />
+          <InputUser type="text" name="name" id="name" placeholder="Enter your Name" onChange={props.change} value={props.name} />
         </FormGroup>
         <FormGroup>
           <LabelInput for="email">Email</LabelInput>
-          <InputUser type="email" name="email" id="email" placeholder="Enter your Email" value={props.email} />
+          <InputUser type="email" name="email" id="email" placeholder="Enter your Email" onChange={props.change} value={props.email} />
         </FormGroup>
         <FormGroup>
           <LabelInput for="regionPhone">Phone Number</LabelInput>
           <Row>
             <Col lg={2} className="pr-0">
-              <InputUser type="select" name="regionPhone" id="regionPhone">
-                <option>+ 62</option>
-                <option>+ 14</option>
-                <option>+ 22</option>
-                <option>+ 54</option>
-                <option>+ 20</option>
+              <InputUser type="select" name="regionPhone" id="regionPhone" onChange={props.change}>
+                <option value="+62">+ 62</option>
+                <option value="+14">+ 14</option>
+                <option value="+22">+ 22</option>
+                <option value="+54">+ 54</option>
+                <option value="+20">+ 20</option>
               </InputUser>
             </Col>
             <Col lg={10} className="p-0">
-              <InputUser type="number" name="phone" id="phone" placeholder="Enter your Phone" value={props.phone} />
+              <InputUser type="number" name="phone_number" id="phone" placeholder="Enter your Phone" onChange={props.change} value={props.phone_number} />
             </Col>
           </Row>
         </FormGroup>
