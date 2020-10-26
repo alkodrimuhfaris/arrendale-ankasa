@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Container, Row, Col } from "reactstrap";
 import { Heading6, Heading4, LinkChange, SwitchButton } from "./styled";
 
@@ -11,6 +11,7 @@ import searchActions from "../../Redux/actions/search";
 
 const SearchDetail = (props) => {
   const [isSwitch, setIsSwitch] = useState(false);
+  const filterSearch = useSelector(state => state.findTicket.filterData);
   const dispatch = useDispatch();
 
   const onSwitchPlace = () => setIsSwitch(!isSwitch);
@@ -18,9 +19,9 @@ const SearchDetail = (props) => {
     const originId = localStorage.getItem("originCityId");
     const destinationId = localStorage.getItem("destinationCityId");
     if (!isSwitch) {
-      dispatch(searchActions.findTicket(originId, destinationId));
+      dispatch(searchActions.findTicket(originId, destinationId, filterSearch));
     } else {
-      dispatch(searchActions.findTicket(destinationId, originId));
+      dispatch(searchActions.findTicket(destinationId, originId, filterSearch));
     }
   };
   return (
