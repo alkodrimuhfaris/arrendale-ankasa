@@ -16,11 +16,12 @@ export default {
   findTicket: (
     origin = 0,
     destination = 0,
-    className
+    className,
+    departureDate
   ) => ({
     type: "FIND_TICKET",
     payload: http().get(
-      `explore/search/flight?search[origin]=${origin}&search[destination]=${destination}&search[class_name]=${className}`
+      `explore/search/flight?search[origin]=${origin}&search[destination]=${destination}&search[class_name]=${className}&search[departure_date]=${departureDate}`
     ),
   }),
   selectTicket: (id) => ({

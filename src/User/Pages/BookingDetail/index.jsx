@@ -1,6 +1,8 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-key */
 import React, { Component } from "react";
 import {Container, Row, Col} from "reactstrap";
+import { connect } from "react-redux";
 
 //Components
 import NavBar from "../../Components/NavBar";
@@ -9,7 +11,7 @@ import BookingPass from "../../Components/BookingPass";
 import BarCode from "../../Components/BarCode";
 
 //API
-import BookingDetailApi from "../../API/BookingDetail";
+// import BookingDetailApi from "../../API/BookingDetail";
 
 //Styled
 import {
@@ -17,6 +19,8 @@ import {
   Card,
   Heading1
 } from "./styled";
+
+import dateFormat from "../../Helper/dateFormat";
 
 export class BookingDetail extends Component {
 
@@ -27,7 +31,9 @@ export class BookingDetail extends Component {
       
 
   render() {
-    
+    const { detail} = this.props.booking;
+    // eslint-disable-next-line no-undef
+    const { REACT_APP_BACKEND_URL } = process.env;
     return (
       <>
         <GlobalStyle />
@@ -40,16 +46,16 @@ export class BookingDetail extends Component {
                   <Heading1>Booking Pass</Heading1>
                 </Col>
                 <Col md={8}>
-                  {BookingDetailApi.data.map((item) => (
+                  {detail.map((item) => (
                     <BookingPass
-                      airlineLogo={item.airlineLogo}
-                      from={item.from}
-                      to={item.to}
-                      code={item.code}
-                      class={item.class}
-                      terminal={item.terminal}
-                      gate={item.gate}
-                      departure={item.departure}
+                      airlineLogo={REACT_APP_BACKEND_URL+item.airlines_logo}
+                      from={item.origin_city_country}
+                      to={item.destination_city_country}
+                      code={item.flight_code}
+                      class={item.class_name}
+                      terminal="A"
+                      gate="221"
+                      departure={dateFormat(item.departure_date)}
                     />
                   ))}
                 </Col>
@@ -57,7 +63,7 @@ export class BookingDetail extends Component {
                   md={4}
                   className="mx-auto m-auto"
                 >
-                  <BarCode code={BookingDetailApi.data[0].barcodeValue} />
+                  <BarCode code={detail[0].ticket_code} />
                 </Col>
               </Row>
             </Container>
@@ -69,4 +75,7 @@ export class BookingDetail extends Component {
   }
 }
 
-export default BookingDetail;
+const mapStateToProps = (state) => ({
+  booking: state.booking,
+});
+export default connect(mapStateToProps, null)(BookingDetail);
