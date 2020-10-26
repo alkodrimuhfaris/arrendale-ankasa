@@ -11,7 +11,7 @@ import BookingPass from "../../Components/BookingPass";
 import BarCode from "../../Components/BarCode";
 
 //API
-import BookingDetailApi from "../../API/BookingDetail";
+// import BookingDetailApi from "../../API/BookingDetail";
 
 //Styled
 import {
@@ -63,7 +63,7 @@ export class BookingDetail extends Component {
                   md={4}
                   className="mx-auto m-auto"
                 >
-                  <BarCode code={BookingDetailApi.data[0].barcodeValue} />
+                  <BarCode code={detail[0].ticket_code} />
                 </Col>
               </Row>
             </Container>
