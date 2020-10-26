@@ -102,7 +102,6 @@ class MyBooking extends Component {
     this.setState({
       alertOpen: false,
     })
-    // if ()
     this.props.booking.pageInfo.count > 0 &&
     this.pages(1)
   }
@@ -212,7 +211,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  getData: bookingAction.getBooking
+  getData: bookingAction.getBooking,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MyBooking);

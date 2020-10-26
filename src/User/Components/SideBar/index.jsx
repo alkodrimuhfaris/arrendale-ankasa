@@ -72,7 +72,7 @@ export default function SideBar(props) {
           <div className='outline rounded-circle d-flex align-items-center justify-content-center'>
             <div>
               <img className='rounded-circle' 
-                src={avatar!==undefined?
+                src={avatar!==null?
                   REACT_APP_BACKEND_URL.concat(avatar):
                   placeholder} 
                 alt='avatar'
@@ -102,7 +102,9 @@ export default function SideBar(props) {
           <Row>
             <Col className='small'>X Card</Col>
             <Col className='small text-right'>
-              <Currency value={balance} displayType={"text"} thousandSeparator={true} prefix={"$ "} />
+              {balance!==null
+                ?<Currency value={balance} displayType={"text"} thousandSeparator={true} prefix={"$ "} />
+                :<div>$ 0</div>}
             </Col>
           </Row>
         </div>

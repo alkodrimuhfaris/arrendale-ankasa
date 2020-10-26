@@ -1,4 +1,5 @@
 import http from "../../Helper/http";
+import qs from "querystring";
 
 export default {
   getBooking: (token, path) => ({
@@ -15,5 +16,9 @@ export default {
   getDetail: (token, id) => ({
     type: "GET_DETAIL",
     payload: http(token).get(`mybook/${id}`)
+  }),
+  payment: (token, data) => ({
+    type: "PAY",
+    payload: http(token).post("payment/commit", qs.stringify(data))
   })
 };

@@ -58,35 +58,28 @@ export default (state = initialState, action) => {
       detail: action.payload.data.detailBooking
     };
   }
-  case "POST_BOOKING_PENDING": {
+  case "PAY_PENDING": {
     return {
       ...state,
       isLoading: true,
     };
   }
-  case "POST_BOOKING_REJECTED": {
+  case "PAY_REJECTED": {
     return {
       ...state,
       isLoading: false,
       isError: true,
-      alertMsg: "Cannot book ticket",
+      alertMsg: "There is an error at request data",
     };
   }
-  case "POST_BOOKING_FULFILLED": {
+  case "PAY_FULFILLED": {
     return {
       ...state,
       isLoading: false,
-      isError: false,
-      isSuccess: true,
-      alertMsg: "Ticket has booked"
-    };
-  }
-  case "CLEAR_MESSAGE": {
-    return {
-      ...state,
-      isLoading: false,
-      isError: false,
-      isSucces: false,
+      isError:false,
+      alertMsg: action.payload.data.message,
+      data: "",
+      detail: ""
     };
   }
   default: {
