@@ -1,5 +1,7 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { connect } from "react-redux";
 
 import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
@@ -14,7 +16,28 @@ import Profile from "./Pages/Profile";
 
 import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
 
+import authAction from "../User/Redux/actions/auth";
+
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      token: "",
+      isLogin: false,
+    };
+  }
+
+  async componentDidMount() {
+    if (localStorage.getItem("token")) {
+      this.props.setToken(localStorage.getItem("token"));
+    }
+    await this.props.auth;
+    this.setState({
+      token: this.props.auth.token,
+      isLogin: this.props.auth.isLogin
+    });
+  }
+
   render() {
     return (
       //     DONT TOUCH ROUTE PATH PLEASE
@@ -33,7 +56,7 @@ class App extends React.Component {
           <PrivateRoute exact path="/booking">
             <MyBooking />
           </PrivateRoute>
-          <PrivateRoute exact path="/booking/detail">
+          <PrivateRoute exact path="/booking/detail/:id">
             <BookingDetail />
           </PrivateRoute>
           <PrivateRoute exact path="/profile">
@@ -45,4 +68,13 @@ class App extends React.Component {
     );
   }
 }
-export default App;
+
+const mapStateToProps = (state) => ({
+  auth: state.auth
+});
+
+const mapDispatchToProps = {
+  setToken: authAction.setToken,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -17,6 +17,7 @@ import facebookImg from "../../Assets/facebook.svg";
 import AuthSideBar from "../../Components/AuthSideBar";
 
 import authAction from "../../Redux/actions/auth";
+import profileAction from "../../Redux/actions/profile";
 
 class Signup extends React.Component {
   constructor(props) {
@@ -47,10 +48,14 @@ class Signup extends React.Component {
     const { token } = this.props.auth
     localStorage.setItem('token', token)
     if (this.props.auth.isLogin) {
-      this.props.history.push('/');
+      this.props.getData(token) &&
+      this.props.history.push(
+        this.props.location.state === undefined
+        ?'/'
+        :this.props.location.state.location
+      )
     }
   }
-  
 
   render(){
     const {isError, alertMsg} = this.props.auth
@@ -60,7 +65,9 @@ class Signup extends React.Component {
           <AuthSideBar />
           <Col md={5} className="vh-100 w-100 px-5 py-3">
             <div className="head-signup d-flex align-items-center">
-              <img className="logo mr-3" src={logo} alt="logo"/>
+              <Link to='/'>
+                <img className="logo mr-3" src={logo} alt="logo"/>
+              </Link>
               <div>
                 <span className="h4 font-weight-bold">Ankasa</span>
               </div>
@@ -117,7 +124,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  login: authAction.login
+  login: authAction.login,
+  getData: profileAction.getProfile
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Signup);

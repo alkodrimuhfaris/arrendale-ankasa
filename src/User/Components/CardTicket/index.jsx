@@ -1,6 +1,8 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable react/prop-types */
 import React from "react";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import {
   Card,
   Logo,
@@ -13,7 +15,7 @@ import {
   SelectButton,
   TextButton,
   ViewDetails,
-  Icon
+  Icon,
 } from "./styled";
 import { Row, Col, Container } from "reactstrap";
 
@@ -23,7 +25,16 @@ import meal from "../../Assets/meal.svg";
 import wifi from "../../Assets/wifi.svg";
 import downIcon from "../../Assets/down.svg";
 
+import searchActions from "../../Redux/actions/search";
+
 const CardTicket = (props) => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const onClickSearch = async (id) => {
+    await dispatch(searchActions.selectTicket(id));
+    history.push("/flight/detail");
+  };
   return (
     <Card className="mt-3">
       <Container>
@@ -112,7 +123,7 @@ const CardTicket = (props) => {
             </Row>
           </Col>
           <Col sm="auto">
-            <SelectButton type="button" onClick={props.onClick}>
+            <SelectButton type="button" onClick={() => onClickSearch(props.ticketId)}>
               <TextButton>Select</TextButton>
             </SelectButton>
           </Col>
@@ -121,7 +132,7 @@ const CardTicket = (props) => {
           <Col sm="auto">
             <ViewDetails to={props.viewDetails} onClick={props.onClick}>
               View Details
-              <Icon src={downIcon} alt="" className="ml-2"/>
+              <Icon src={downIcon} alt="" className="ml-2" />
             </ViewDetails>
           </Col>
         </Row>
