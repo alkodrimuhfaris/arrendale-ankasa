@@ -91,7 +91,11 @@ class MyBooking extends Component {
   }
 
   showAlert = () => {
-    if (!this.state.alertMsg.includes('Booking from id')){
+    if (this.state.alertMsg.includes('Booking from id') || this.state.alertMsg === ''){
+      this.setState({
+        alertOpen: false
+      })
+    } else {
       this.setState({
         alertOpen: true
       })

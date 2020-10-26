@@ -82,6 +82,37 @@ export default (state = initialState, action) => {
       detail: ""
     };
   }
+  case "POST_BOOKING_PENDING": {
+    return {
+      ...state,
+      isLoading: true,
+    };
+  }
+  case "POST_BOOKING_REJECTED": {
+    return {
+      ...state,
+      isLoading: false,
+      isError: true,
+      alertMsg: "Cannot book ticket",
+    };
+  }
+  case "POST_BOOKING_FULFILLED": {
+    return {
+      ...state,
+      isLoading: false,
+      isError: false,
+      isSuccess: true,
+      alertMsg: "Ticket has booked"
+    };
+  }
+  case "CLEAR_MESSAGE": {
+    return {
+      ...state,
+      isLoading: false,
+      isError: false,
+      isSucces: false,
+    };
+  }
   default: {
     return state;
   }

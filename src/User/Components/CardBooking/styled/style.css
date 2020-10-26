@@ -24,7 +24,7 @@
 }
 
 .payment.modal-dialog {
-  max-width: 600px !important;
+  max-width: 1000px !important;
 }
 
 .payment .modal-title {
@@ -37,4 +37,5 @@
 
 .payment .pay {
   background-color: #2395ff;
+  color: #fff;
 }

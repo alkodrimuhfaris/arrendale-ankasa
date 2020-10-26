@@ -5,7 +5,7 @@ import {
   ModalHeader, Table, Badge, ModalFooter 
 } from "reactstrap";
 import "./styled/style.css";
-import { FaChevronDown, FaInfoCircle, FaRegTimesCircle } from "react-icons/fa";
+import { FaChevronDown, FaInfoCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Currency from 'react-currency-format'
@@ -23,6 +23,7 @@ class CardBooking extends Component {
     super(props);
     this.state = {
       modalOpen: false,
+      alertOpen: false,
       depDate: dateFormat(this.props.depDate),
       depTime: this.props.depTime.slice(0,5)
     };
@@ -40,10 +41,14 @@ class CardBooking extends Component {
       booking_id: id
     }
     await this.props.setPayment(this.props.token, data)
+    this.setState({
+      modalOpen: false,
+      alertOpen: true,
+    })
   }
 
   render() {
-    const { data, detail } = this.props.booking
+    const { data, detail, alertMsg } = this.props.booking
     return (
       <>
         <Card className='mt-4'>
@@ -96,125 +101,132 @@ class CardBooking extends Component {
         {data && (
           <Modal className='payment' centered isOpen={this.state.modalOpen}>
             <ModalHeader>
-              <Row className='w-100 no-gutters'>
-                <Col md={10} className='h3 font-weight-bold m-0'>
-                  Payment
-                </Col>
-                <Col className='text-right'>
-                  <Button onClick={()=>this.setState({modalOpen: false})} className='p-2'><FaRegTimesCircle /></Button>
-                </Col>
-              </Row>
+              <div className='h3 font-weight-bold m-0'>
+                Payment
+              </div>
             </ModalHeader>
             <ModalBody>
               <Row className='d-flex align-items-center'>
-                <Col md={{size: 2, offset: 2}}>
-                  <div>
-                    <img src={REACT_APP_BACKEND_URL.concat(data.airlines_logo)} alt='logo airlines' />
-                  </div>
+                <Col md={6}>
+                  <Row>
+                    <Col md={12} className='d-flex align-items-center justify-content-center'>
+                      <Row>
+                        <Col md={4} className='my-3'>
+                          <div>
+                            <img src={REACT_APP_BACKEND_URL.concat(data.airlines_logo)} alt='logo airlines' />
+                          </div>
+                        </Col>
+                        <Col md={3}>
+                          <div className='h2 m-0 font-weight-bold text-center my-3'>
+                            {this.props.origin}
+                          </div>
+                        </Col>
+                        <Col md={2} style={{height: 40}} className='text- my-3'>
+                          <img style={{height: '100%', width: 'auto'}} src={flight} alt='...' />
+                        </Col>
+                        <Col md={3}>
+                          <div className='h2 m-0 font-weight-bold text-center my-3'>
+                            {this.props.dest}
+                          </div>
+                        </Col>
+                      </Row>
+                    </Col>
+                    <Col md={12} className='my-3'>
+                      <div className='small tex-muted'>
+                        Departure Date
+                      </div>
+                      <div className='h4 m-0 font-weight-bold text-center'>
+                        {this.state.depDate+' - '+this.state.depTime}
+                      </div>
+                    </Col>
+                    <Col md={3} className='my-3'>
+                      <div className='small tex-muted'>
+                        Code
+                      </div>
+                      <div className='h4 m-0 font-weight-bold text-center'>
+                        {this.props.fCode}
+                      </div>
+                    </Col>
+                    <Col md={3} className='my-3'>
+                      <div className='small tex-muted'>
+                        Class
+                      </div>
+                      <div className='h4 m-0 font-weight-bold text-center'>
+                        {data.class_name}
+                      </div>
+                    </Col>
+                    <Col md={3} className='my-3'>
+                      <div className='small tex-muted'>
+                        Terminal
+                      </div>
+                      <div className='h4 m-0 font-weight-bold text-center'>
+                        {/* {data.class_name} */}
+                        A
+                      </div>
+                    </Col>
+                    <Col md={3} className='my-3'>
+                      <div className='small tex-muted'>
+                        Gate
+                      </div>
+                      <div className='h4 m-0 font-weight-bold text-center'>
+                        {/* {data.class_name} */}
+                        221
+                      </div>
+                    </Col>
+                  </Row>
                 </Col>
-                <Col md={2}>
-                  <div className='h2 m-0 font-weight-bold text-center'>
-                    {this.props.origin}
-                  </div>
-                </Col>
-                <Col md={2} style={{height: 40}} className='text-center'>
-                  <img style={{height: '100%', width: 'auto'}} src={flight} alt='...' />
-                </Col>
-                <Col md={2}>
-                  <div className='h2 m-0 font-weight-bold text-center'>
-                    {this.props.dest}
-                  </div>
-                </Col>
-                <Col md={12} className='my-3'>
-                  <div className='small tex-muted'>
-                    Departure Date
-                  </div>
-                  <div className='h4 m-0 font-weight-bold text-center'>
-                    {this.state.depDate+' - '+this.state.depTime}
-                  </div>
-                </Col>
-                <Col md={3} className='my-3'>
-                  <div className='small tex-muted'>
-                    Code
-                  </div>
-                  <div className='h4 m-0 font-weight-bold text-center'>
-                    {this.props.fCode}
-                  </div>
-                </Col>
-                <Col md={3} className='my-3'>
-                  <div className='small tex-muted'>
-                    Class
-                  </div>
-                  <div className='h4 m-0 font-weight-bold text-center'>
-                    {data.class_name}
-                  </div>
-                </Col>
-                <Col md={3} className='my-3'>
-                  <div className='small tex-muted'>
-                    Terminal
-                  </div>
-                  <div className='h4 m-0 font-weight-bold text-center'>
-                    {/* {data.class_name} */}
-                    A
-                  </div>
-                </Col>
-                <Col md={3} className='my-3'>
-                  <div className='small tex-muted'>
-                    Gate
-                  </div>
-                  <div className='h4 m-0 font-weight-bold text-center'>
-                    {/* {data.class_name} */}
-                    221
-                  </div>
-                </Col>
-                <Col md={12} className='my-3'>
-                  <div className='small tex-muted'>
-                    Passager Detail
-                  </div>
-                  <Table>
-                      <thead>
-                        <tr>
-                          <th className='small text-muted'>No.</th>
-                          <th className='small text-muted'>Passager Name</th>
-                          <th className='small text-muted'>Passager Nationality</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {detail.map((i, o)=>(
-                          <tr>
-                            <th scope='row'>{o+1}</th>
-                            <td>{i.passanger_title+' '+i.passanger_name}</td>
-                            <td>{i.passanger_nationality}</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </Table>
-                </Col>
-                <Col md={8}>
-                  <div className='h5 m-0 font-weight-bold'>
-                    Total Payment
-                  </div>
-                </Col>
-                <Col md={4}>
-                  <div className='h4 m-0 font-weight-bold text-right' style={{color: "#2395FF"}}>
-                    <Currency value={data.price} displayType={"text"} thousandSeparator={true} prefix={"$ "} suffix={',00'} />
-                  </div>
-                </Col>
-                <Col md={12} className='text-right'>
-                  {data.insurance===1?
-                    <Badge color='primary'>
-                      <div><FaInfoCircle /> Travel Insurance included</div>
-                    </Badge> :
-                    <Badge color='warning'>
-                      <div><FaInfoCircle />No Travel Insurance included</div>
-                    </Badge>
-                  }
+                <Col md={6}>
+                  <Row>
+                    <Col md={12} className='my-3'>
+                      <div className='small tex-muted'>
+                        Passager Detail
+                      </div>
+                      <Table>
+                          <thead>
+                            <tr>
+                              <th className='small text-muted'>No.</th>
+                              <th className='small text-muted'>Passager Name</th>
+                              <th className='small text-muted'>Passager Nationality</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {detail && detail.map((i, o)=>(
+                              <tr>
+                                <th scope='row'>{o+1}</th>
+                                <td>{i.passanger_title+' '+i.passanger_name}</td>
+                                <td>{i.passanger_nationality}</td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </Table>
+                    </Col>
+                    <Col md={8}>
+                      <div className='h5 m-0 font-weight-bold'>
+                        Total Payment
+                      </div>
+                    </Col>
+                    <Col md={4}>
+                      <div className='h4 m-0 font-weight-bold text-right' style={{color: "#2395FF"}}>
+                        <Currency value={data.price} displayType={"text"} thousandSeparator={true} prefix={"$ "} suffix={',00'} />
+                      </div>
+                    </Col>
+                    <Col md={12} className='text-right'>
+                      {data.insurance===1?
+                        <Badge color='primary'>
+                          <div><FaInfoCircle /> Travel Insurance included</div>
+                        </Badge> :
+                        <Badge color='warning'>
+                          <div><FaInfoCircle />Travel Insurance not included</div>
+                        </Badge>
+                      }
+                    </Col>
+                  </Row>
                 </Col>
               </Row>
             </ModalBody>
             <ModalFooter>
               <Button onClick={()=>this.pay(this.props.id)} className='pay'>
-                Payment
+                Pay Ticket
               </Button>
               <Button onClick={()=>this.setState({modalOpen: false})}>
                 Close
@@ -222,6 +234,19 @@ class CardBooking extends Component {
             </ModalFooter>
           </Modal>
         )}
+        <Modal centered isOpen={this.state.alertOpen}>
+          <ModalBody className='text-center'>{alertMsg}</ModalBody>
+          <ModalFooter className='payment'>
+            <Link to={`/booking/detail/${this.props.id}`} className='text-decoration-none'>
+              <Button className='pay font-weight-bold'>
+                View Ticket
+              </Button>
+            </Link>
+            <Button onClick={()=>this.setState({alertOpen: false})}>
+              Close
+            </Button>
+          </ModalFooter>
+        </Modal>
       </>
     );
   }
