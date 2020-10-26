@@ -42,11 +42,7 @@ export class SearchResult extends Component {
         <BackgroundDetailSearch>
           <img src={bigFlight} alt="" />
         </BackgroundDetailSearch>
-        <SearchDetail
-          departure={SearchResultApi.detailSearch[0].departure}
-          passenger={SearchResultApi.detailSearch[0].passenger}
-          class={SearchResultApi.detailSearch[0].class}
-        />
+        <SearchDetail/>
         <Container className="pt-4">
           <Row>
             <Col lg={4}>
@@ -68,7 +64,7 @@ export class SearchResult extends Component {
                 </Col>
                 <Col md="auto" className="m-2 p-0 mr-auto">
                   <TextSecondary>
-                    ({info.count ? info.count: 0} flight found)
+                    ({info.count ? info.count : 0} flight found)
                   </TextSecondary>
                 </Col>
                 <Col md="auto" className="ml-auto m-0 p-0">
@@ -117,7 +113,7 @@ export class SearchResult extends Component {
                 ))}
               {!isLoading && isError && alertMsg !== "" && (
                 <Card>
-                  <TextHeader4>the ticket from {localStorage.getItem("destinationCityName")} to {localStorage.getItem("destinationCountryName")} has run out</TextHeader4>
+                  <TextHeader4 className="text-center">the ticket from {localStorage.getItem("destinationCityName")} to {localStorage.getItem("destinationCountryName")} has run out</TextHeader4>
                 </Card>
               )}
               {!isLoading &&

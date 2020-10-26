@@ -2,6 +2,7 @@ import { combineReducers } from "redux";
 
 // Import reducers
 import auth from "./auth";
+import forgotPassword from "./forgotPassword";
 import profile from "./profile";
 import flight from "./flight";
 import booking from "./booking";
@@ -16,6 +17,7 @@ import selectTicket from "./SearchResult/selectTicket";
 export default combineReducers({
   auth,
   flight,
+  forgotPassword,
   profile,
   city,
   getAllCity,
