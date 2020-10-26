@@ -99,7 +99,7 @@ const AddFlight = (props) => {
                 <Label for="input-origin" md={2} sm={3}>Transit</Label>
                 <Col>
                   <Input type="select" onChange={(e)=>{setTransitId(e.target.value);}} aria-label='name' required>
-                    <option>--Select Origin--</option>);
+                    <option>--Select Transit--</option>);
                     {Object.keys(transitData) && transitData.length && transitData.map((items, index)=>{
                       return (           
                         <option>{items.id}. {items.name}</option>
