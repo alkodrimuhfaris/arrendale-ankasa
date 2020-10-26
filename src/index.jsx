@@ -1,18 +1,21 @@
 /* eslint-disable no-undef */
+// DONT TOUCH THIS FILE PLEASE
 import React from "react";
 import ReactDOM from "react-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Provider } from "react-redux";
 import App from "./User/App";
 import Admin from "./Admin/App";
 import store from "./User/Redux/store";
-import { Provider } from "react-redux";
 import storeAdmin from "./Admin/Redux/store";
-require("dotenv").config();
 
+// DONT TOUCH THIS FILE PLEASE
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
+    <Provider store={storeAdmin}>
       <Admin />
+    </Provider>
+    <Provider store={store}>
       <App />
     </Provider>
   </React.StrictMode>,

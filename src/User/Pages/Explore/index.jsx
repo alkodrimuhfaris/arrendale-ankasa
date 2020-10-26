@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Container, Row, Col, Card, CardBody, CardImg, CardTitle, CardSubtitle, Button, } from "reactstrap";
+import { Container, Row, Col, } from "reactstrap";
 
 //import style
 import "./style/style.css";
@@ -10,15 +10,18 @@ import Navbar from "../../Components/NavBar";
 import Footer from "../../Components/Footer";
 import Carousel from "../../Components/Carousel";
 import CardSearchFlight from "../../Components/CardSearchFlight";
+import CardTrending from "../../Components/CardTrending";
 
 //import picture
 import pict1 from "../../Assets/img/destination1.png";
 import pict2 from "../../Assets/img/destination2.png";
-import pict3 from "../../Assets/img/destination3.png";
 import decor from "../../Assets/img/decoration.png";
-import btn from "../../Assets/img/btnback.png";
 
 export default class Explore extends Component {
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+  
   render() {
     return (
       <>
@@ -49,18 +52,7 @@ export default class Explore extends Component {
               <Link className="text-decoration-none font-weight-bold">view all</Link>
             </Col>
           </Row>
-          <div className="d-flex mb-5">
-            <Card className="card-tranding shadow p-2 mr-3 mb-5">
-              <CardImg className="img-trending" top width="100%" src={pict3} alt="Card image cap" />
-              <CardBody>
-                <CardTitle className="small font-weight-bold">city</CardTitle>
-                <div className="d-flex justify-content-end">
-                  <CardSubtitle className="font-weight-bold mr-5">country</CardSubtitle>
-                  <Button className="btn-prev d-flex align-items-center justify-content-center ml-4 rounded-circle"><img src={btn} alt="button" /></Button>
-                </div>
-              </CardBody>
-            </Card>
-          </div>
+          <CardTrending />
           <Carousel />
         </Container>
         <Footer />

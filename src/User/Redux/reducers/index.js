@@ -1,9 +1,29 @@
 import { combineReducers } from "redux";
 
-import auth from "../reducers/auth";
-import addFlight from "../../../Admin/Redux/reducers/addFlight";
+// Import reducers
+import auth from "./auth";
+import forgotPassword from "./forgotPassword";
+import profile from "./profile";
+import flight from "./flight";
+import booking from "./booking";
+import city from "./city";
+import getAllCity from "./SearchResult/getAllCity";
+import getCity from "./SearchResult/getCity";
+import setHistoryPlace from "./SearchResult/setHistoryPlace";
+import findTicket from "./SearchResult/findTicket";
+import selectTicket from "./SearchResult/selectTicket";
+// import searchResult from "./searchResult";
 
 export default combineReducers({
   auth,
-  addFlight
+  flight,
+  forgotPassword,
+  profile,
+  city,
+  getAllCity,
+  getCity,
+  setHistoryPlace,
+  findTicket,
+  selectTicket,
+  booking,
 });

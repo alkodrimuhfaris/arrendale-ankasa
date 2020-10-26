@@ -1,9 +1,13 @@
+/* eslint-disable no-undef */
+/* eslint-disable react/prop-types */
 import React, { Component } from "react";
 import {
   Button, Col, Container, Input, Nav,
   Navbar, NavbarBrand, NavItem, Row,
   NavLink,
 } from "reactstrap";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import "./style/style.css";
 
 // import image
@@ -12,8 +16,8 @@ import search from "../../Assets/search.svg";
 import mail from "../../Assets/mail.svg";
 import bell from "../../Assets/bell.svg";
 import profile from "../../Assets/profile.jpg";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
+
+const { REACT_APP_BACKEND_URL } = process.env;
 
 class NavigationBar extends Component {
   constructor(props) {
@@ -21,13 +25,22 @@ class NavigationBar extends Component {
     this.state = {
       navbarOpen: false,
       isLogin: false,
-      isAdmin: false
+      isAdmin: false,
+      token: "",
+      modalOpen: false
     };
   }
 
+  async componentDidMount() {
+    await this.props.auth;
+    this.setState({
+      isLogin: this.props.auth.isLogin,
+      token: this.props.auth.token,
+    });
+  }
+
   render() {
-    // eslint-disable-next-line react/prop-types
-    const {isLogin} = this.props.auth;
+    const { avatar } = this.props.profile;
     return (
       <>
         <Navbar className="bg-white">
@@ -68,18 +81,18 @@ class NavigationBar extends Component {
               {!this.state.isAdmin && (
                 <Nav tabs className="border-0">
                   <NavItem>
-                    <NavLink className="text-center text-decoration-none" href="#">
+                    <NavLink className="text-center text-decoration-none" href="/flight/detail">
                       Find Ticket
                     </NavLink>
                   </NavItem>
                   <NavItem>
-                    <NavLink className="text-center" href="/user/booking">
+                    <Link className="text-center nav-link" to="/booking">
                       My Booking
-                    </NavLink>
+                    </Link>
                   </NavItem>
                 </Nav>
               )}
-              {!isLogin && !this.state.isAdmin && (
+              {!this.state.isLogin && !this.state.isAdmin && (
                 <Nav className="d-flex flex-fill justify-content-end">
                   <NavItem>
                     <Link to='/signup'>
@@ -90,7 +103,7 @@ class NavigationBar extends Component {
                   </NavItem>
                 </Nav>
               )}
-              {isLogin && (
+              {this.state.isLogin && (
                 <Nav className="d-flex flex-fill justify-content-end">
                   <NavItem className="d-flex align-items-center justify-content-center wrapper-icon mr-4">
                     <img src={mail} alt="mail" />
@@ -99,8 +112,11 @@ class NavigationBar extends Component {
                     <img src={bell} alt="bell" />
                   </NavItem>
                   <NavItem className="rounded-circle d-flex align-items-center justify-content-center wrapper-icon profile">
-                    <Link to='/user/profile'>
-                      <img className="img-rounded rounded-circle" src={profile} alt="profile" />
+                    <Link to='/profile'>
+                      <img className="img-rounded rounded-circle" 
+                        src={avatar
+                          ?REACT_APP_BACKEND_URL.concat(avatar)
+                          :profile} alt="profile" />
                     </Link>
                   </NavItem>
                 </Nav>
@@ -114,7 +130,8 @@ class NavigationBar extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  auth: state.auth
+  auth: state.auth,
+  profile: state.profile
 });
 
 export default connect(mapStateToProps)(NavigationBar);

@@ -1,9 +1,41 @@
 .content {
-  border-bottom: 1px solid #E5E5E5;
+  border-bottom: 1px solid #e5e5e5;
 }
 
 .status-waiting {
-  background-color: #FF7F23;
+  background-color: #ff7f23;
   color: #fff;
   border-radius: 6px;
+}
+
+.status-success {
+  background-color: #4fcf4d;
+  color: #fff;
+  border-radius: 6px;
+}
+
+.detail,
+.detail:hover,
+.detail:focus {
+  background-color: #fff;
+  outline-width: 0;
+  outline-color: 0;
+  border-width: 0;
+}
+
+.payment.modal-dialog {
+  max-width: 1000px !important;
+}
+
+.payment .modal-title {
+  width: 100%;
+}
+
+.payment .btn-secondary {
+  background-color: darkgray;
+}
+
+.payment .pay {
+  background-color: #2395ff;
+  color: #fff;
 }
