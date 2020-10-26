@@ -31,6 +31,7 @@ const CardSearchFlight = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isOrigin, setIsOrigin] = useState(false);
   const [isSwitch, setIsSwitch] = useState(false);
+  const [className, setClassName] = useState("Economy");
   const [displayChoice, setDisplayChoice] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -41,11 +42,16 @@ const CardSearchFlight = () => {
     const originId = localStorage.getItem("originCityId");
     const destinationId = localStorage.getItem("destinationCityId");
     if(!isSwitch){
-      dispatch(searchActions.findTicket(originId, destinationId));
+      dispatch(searchActions.findTicket(originId, destinationId, className));
     }else{
-      dispatch(searchActions.findTicket(destinationId, originId));
+      dispatch(searchActions.findTicket(destinationId, originId, className));
     }
+    localStorage.setItem("flightClassName", className);
     history.push("/search/result");
+  };
+
+  const onSelectedClass = async (e) => {
+    await setClassName(e.target.value);
   };
 
   const onSwitchPlace = () => setIsSwitch(!isSwitch);
@@ -211,7 +217,7 @@ const CardSearchFlight = () => {
               <Col>
                 <FormGroup check>
                   <LabelInput check>
-                    <InputUser type="radio" name="class" />
+                    <InputUser type="radio" name="class" value="Economy" onClick={onSelectedClass}/>
                     Economy
                   </LabelInput>
                 </FormGroup>
@@ -219,7 +225,7 @@ const CardSearchFlight = () => {
               <Col>
                 <FormGroup check>
                   <LabelInput check>
-                    <InputUser type="radio" name="class" />
+                    <InputUser type="radio" name="class" value="Business" onClick={onSelectedClass}/>
                     Business
                   </LabelInput>
                 </FormGroup>
@@ -227,7 +233,7 @@ const CardSearchFlight = () => {
               <Col>
                 <FormGroup check>
                   <LabelInput check>
-                    <InputUser type="radio" name="class" />
+                    <InputUser type="radio" name="class" value="FirstClass" onClick={onSelectedClass}/>
                     First Class
                   </LabelInput>
                 </FormGroup>

@@ -60,12 +60,14 @@ export class FlightDetail extends Component {
     const token = localStorage.getItem("token");
     await this.props.getProfile(token);
     const { data } = this.props.profile;
+    const flightId = this.props.flightId;
     if (data.length) {
       console.log('ok')
       this.setState({
         email: data[0].email,
         name: data[0].username,
         phone_number: data[0].phone_number,
+        flight_detail_id: flightId.data[0].flight_detail_id
       })
     }
   }
@@ -238,6 +240,7 @@ const mapStateToProps = (state) => ({
   flight: state.flight,
   booking: state.booking,
   ticket: state.ticket,
+  flightId: state.selectTicket
 });
 
 const mapDispatchToProps = {
