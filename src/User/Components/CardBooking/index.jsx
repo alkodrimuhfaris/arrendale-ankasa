@@ -5,7 +5,7 @@ import {
   ModalHeader, Table, Badge, ModalFooter 
 } from "reactstrap";
 import "./styled/style.css";
-import { FaChevronDown, FaInfoCircle, FaRegTimesCircle } from "react-icons/fa";
+import { FaChevronDown, FaInfoCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Currency from 'react-currency-format'
@@ -216,7 +216,7 @@ class CardBooking extends Component {
                           <div><FaInfoCircle /> Travel Insurance included</div>
                         </Badge> :
                         <Badge color='warning'>
-                          <div><FaInfoCircle />No Travel Insurance included</div>
+                          <div><FaInfoCircle />Travel Insurance not included</div>
                         </Badge>
                       }
                     </Col>

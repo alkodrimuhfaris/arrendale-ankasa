@@ -53,6 +53,7 @@ export class FlightDetail extends Component {
       insurance: false,
       payment_method: "later",
       modalOpen: false,
+      alertMsg: ''
     }
   }
 
@@ -220,7 +221,7 @@ export class FlightDetail extends Component {
         <Footer />
         <Modal isOpen={this.state.modalOpen}>
           <ModalBody>
-            {this.props.booking.alertMsg}
+            {this.props.booking.alertMsg.concat('. Go to My Booking to process payment.')}
             {this.props.booking.isError && (
               <div>Make sure your datas are filled</div>
             )}
