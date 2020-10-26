@@ -1,0 +1,11 @@
+.body {
+    background: #F5F6FA;
+}
+
+.btn-detail,.btn-delete{
+    border: none;
+}
+
+.input-data {
+    border: 1px solid #b4b2b2;
+}

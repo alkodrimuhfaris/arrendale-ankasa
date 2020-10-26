@@ -1,18 +1,44 @@
-import React, { Component } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+/* eslint-disable no-unused-vars */
+import React, { useState, useEffect } from "react";
+import {useSelector, useDispatch} from "react-redux";
+import {BrowserRouter, Switch, Route} from "react-router-dom";
+import {Provider} from "react-redux";
+import authAction from "./Redux/actions/auth";
 
-import topUp from "./Pages/topUp";
 
-class App extends Component {
-  render() {
-    return (
-      <Router>
+// import component
+import PrivateRoute from "./Components/PrivateRoute";
+
+// import pages
+import Home from "./Pages/Home";
+import Login from "./Pages/Login";
+import ForgotPassword from "./Pages/ForgotPassword";
+
+
+
+export default function App() {
+  const dispatch = useDispatch();
+  const credentials = useSelector(state=>state.auth);
+  const {isErrorAdmin} = credentials;
+  useEffect(()=>{
+    if(localStorage.getItem("tokenadmin")){
+      dispatch(authAction.setTokenAdmin(localStorage.getItem("tokenadmin")));
+    }
+    // if (isErrorAdmin) {
+    //   dispatch(authAction.logoutAdmin());
+    // }
+  }, [dispatch, isErrorAdmin]);
+  return (
+    <>
+      <BrowserRouter>
         <Switch>
-          <Route path="/manage/user/top_up" component={topUp} exact/>
+          <PrivateRoute path="/admin/home">
+            <Home />
+          </PrivateRoute>
+          <Route path="/admin/login" render={(props)=><Login {...props} />} exact/>
+          <Route path="/admin/forgot" render={(props)=><ForgotPassword {...props} />} exact/>
         </Switch>
-      </Router>
-    );
-  }
+      </BrowserRouter>
+    </>
+  );
 }
-
-export default App;

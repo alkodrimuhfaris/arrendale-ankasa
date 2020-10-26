@@ -1,0 +1,51 @@
+.form-control {
+    border: 0;
+  }
+  
+  .head-signup {
+    padding: 20px 100px 100px 100px;
+  }
+  
+  .body-signup {
+    padding: 0 100px;
+  }
+  
+  .form-control:active {
+    box-shadow: none;
+  }
+  
+  .btn {
+    border-radius: 10px;
+  }
+  
+  .form-check-input {
+    border: 2px solid #2395FF;
+    box-sizing: border-box;
+  }
+  
+  .btn-img {
+    width: 95px;
+    height: 50px;
+  }
+
+  .view {
+    top: 262px;
+    right: 180px;
+    transform: translate(50%, 50%);
+  }
+
+  .btnview {
+    border-color: #ffffff;
+    overflow-y: hidden;
+    background-color: #ffffff;
+  }
+
+  .btnview:hover {
+    background-color: #ffffff;
+    border-color: #ffffff;
+  }
+
+  .btnview:active {
+    background-color: #ffffff;
+    border-color: #ffffff;
+  }
