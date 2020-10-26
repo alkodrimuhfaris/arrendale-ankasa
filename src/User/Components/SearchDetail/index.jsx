@@ -9,7 +9,7 @@ import horizontalSwitch from "../../Assets/horizontal-switch.svg";
 
 import searchActions from "../../Redux/actions/search";
 
-const SearchDetail = (props) => {
+const SearchDetail = () => {
   const [isSwitch, setIsSwitch] = useState(false);
   const dispatch = useDispatch();
 
@@ -17,10 +17,12 @@ const SearchDetail = (props) => {
   const onClickSearch = () => {
     const originId = localStorage.getItem("originCityId");
     const destinationId = localStorage.getItem("destinationCityId");
+    const className = localStorage.getItem("flightClassName");
+    const dateFlight = localStorage.getItem("flightDate");
     if (!isSwitch) {
-      dispatch(searchActions.findTicket(originId, destinationId));
+      dispatch(searchActions.findTicket(originId, destinationId, className, dateFlight));
     } else {
-      dispatch(searchActions.findTicket(destinationId, originId));
+      dispatch(searchActions.findTicket(destinationId, originId, className, dateFlight));
     }
   };
   return (
@@ -66,11 +68,11 @@ const SearchDetail = (props) => {
           </Row>
           <Row>
             <Col lg="auto">
-              <Heading6>{props.departure}</Heading6>
+              <Heading6>{localStorage.getItem("flightDateFormat")}</Heading6>
             </Col>
             <Col lg="auto">
               <Heading6>
-                <li>{props.passenger} Passanger</li>
+                <li>{localStorage.getItem("passenger")} Passanger</li>
               </Heading6>
             </Col>
             <Col lg="auto">

@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import DateObject from "react-date-object";
 import { Container, Row, Col, Form, FormGroup } from "reactstrap";
 import {
   Card,
@@ -19,6 +20,8 @@ import {
 
 import ChoicePlace from "./ChoicePlace";
 
+import dateFormat from "../../Helper/dateFormat";
+
 import leftIcon from "../../Assets/left.svg";
 import switchIcon from "../../Assets/blue-horizontal-switch.svg";
 import whiteFlightIcon from "../../Assets/white-flight.svg";
@@ -28,30 +31,55 @@ import roundedTripIcon from "../../Assets/rounde-trip.svg";
 import searchActions from "../../Redux/actions/search";
 
 const CardSearchFlight = () => {
+  const dateNow = new DateObject(Date.now()).format("YYYY");
   const [isOpen, setIsOpen] = useState(false);
   const [isOrigin, setIsOrigin] = useState(false);
   const [isSwitch, setIsSwitch] = useState(false);
   const [className, setClassName] = useState("Economy");
+  const [dateFlight, setDateFlight] = useState("");
+  const [child, setChild] = useState(0);
+  const [adult, setAdult] = useState(0);
   const [displayChoice, setDisplayChoice] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
 
+  useEffect(() => {
+    setDateFlight(dateNow);
+  }, []);
+
   const toggle = () => setIsOpen(!isOpen);
   const choice = () => setDisplayChoice(!displayChoice);
+
   const onClickSearch = () => {
     const originId = localStorage.getItem("originCityId");
     const destinationId = localStorage.getItem("destinationCityId");
     if(!isSwitch){
-      dispatch(searchActions.findTicket(originId, destinationId, className));
+      dispatch(searchActions.findTicket(originId, destinationId, className, dateFlight));
     }else{
-      dispatch(searchActions.findTicket(destinationId, originId, className));
+      dispatch(searchActions.findTicket(destinationId, originId, className, dateFlight));
     }
     localStorage.setItem("flightClassName", className);
+    localStorage.setItem("flightDate", dateFlight);
+    localStorage.setItem("flightDateFormat", dateFormat(dateFlight));
+    let passanger = child+adult;
+    localStorage.setItem("passenger", passanger);
     history.push("/search/result");
   };
 
   const onSelectedClass = async (e) => {
     await setClassName(e.target.value);
+  };
+
+  const onchangeDate = (e) => {
+    setDateFlight(e.target.value);
+  };
+
+  const onChangeChild = (e) => {
+    setChild(parseInt(e.target.value));
+  };
+
+  const onChangeAdult = (e) => {
+    setAdult(parseInt(e.target.value));
   };
 
   const onSwitchPlace = () => setIsSwitch(!isSwitch);
@@ -180,7 +208,8 @@ const CardSearchFlight = () => {
                 type="date"
                 name="departure"
                 id="departure"
-                value={Date.now()}
+                onChange={onchangeDate}
+                value={dateFlight}
                 placeholder="date placeholder"
               />
             </FormGroup>
@@ -190,22 +219,22 @@ const CardSearchFlight = () => {
               </Col>
               <Col>
                 <FormGroup>
-                  <InputUser type="select" name="child" id="child">
-                    <option>0 Child</option>
-                    <option>1 Child</option>
-                    <option>2 Child</option>
-                    <option>3 Child</option>
-                    <option>4 Child</option>
+                  <InputUser type="select" name="child" id="child" onChange={onChangeChild}>
+                    <option value="0">0 Child</option>
+                    <option value="1">1 Child</option>
+                    <option value="2">2 Child</option>
+                    <option value="3">3 Child</option>
+                    <option value="4">4 Child</option>
                   </InputUser>
                 </FormGroup>
               </Col>
               <Col>
                 <FormGroup>
-                  <InputUser type="select" name="adult" id="adult">
-                    <option>1 Adult</option>
-                    <option>2 Adult</option>
-                    <option>3 Adult</option>
-                    <option>4 Adult</option>
+                  <InputUser type="select" name="adult" id="adult" onChange={onChangeAdult}>
+                    <option value="1">1 Adult</option>
+                    <option value="2">2 Adult</option>
+                    <option value="3">3 Adult</option>
+                    <option value="4">4 Adult</option>
                   </InputUser>
                 </FormGroup>
               </Col>
