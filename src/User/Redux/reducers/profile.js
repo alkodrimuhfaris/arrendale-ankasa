@@ -8,6 +8,15 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
+  case "CLEAR_STATE": {
+    return {
+      data: {},
+      isLoading: false,
+      isError: false,
+      alertMsg: "",
+      avatar: ""
+    };
+  }
   case "GET_PROFILE_PENDING": {
     return {
       ...state,

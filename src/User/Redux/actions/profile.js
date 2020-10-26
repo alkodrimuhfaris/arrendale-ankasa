@@ -14,4 +14,7 @@ export default {
     type: "EDIT_PICT",
     payload: http(token).patch("user/profile/upload", data),
   }),
+  clearState: () => ({
+    type: "CLEAR_STATE"
+  }),
 };

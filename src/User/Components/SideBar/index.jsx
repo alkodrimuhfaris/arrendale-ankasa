@@ -63,6 +63,7 @@ export default function SideBar(props) {
 
   const logout = () => {
     dispatch(authAction.logout());
+    dispatch(profileAction.clearState());
   };
 
   return (
