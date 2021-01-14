@@ -141,7 +141,7 @@ const Home = (props) => {
             </Col>}
           </Row>
         </Container>
-        <Footer /></> : <div style={{position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)", objectFit: "fill"}}><img src={Loading} /></div>}
+        <Footer /></> : <div style={{position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)", objectFit: "fill"}}><img src={Loading} alt="loading-admin-indicator-001" /></div>}
     </React.Fragment>
   );
 };
