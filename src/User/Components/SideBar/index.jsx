@@ -70,15 +70,14 @@ export default function SideBar(props) {
     <>
       <div className='d-flex flex-column my-2'>
         <div className='d-flex flex-column align-items-center'>
-          <div className='outline rounded-circle d-flex align-items-center justify-content-center'>
+          <div className='outline rounded-circle d-flex align-items-center justify-content-center overflow-hidden'>
             <div>
-              <img className='rounded-circle' 
+              <img
                 src={avatar!==null?
                   REACT_APP_BACKEND_URL.concat(avatar):
                   placeholder} 
                 alt='avatar'
-                width='110.9px'
-                height='110.9px' />
+                width='100%' />
             </div>
           </div>
           <div className='my-3'>

@@ -119,21 +119,23 @@ export class SearchResult extends Component {
               {!isLoading &&
                 !isError &&
                 data.length !== 0 &&
-                data.map((item) => (
-                  <CardTicket
-                    logoAirlines={REACT_APP_BACKEND_URL + item.airline_logo}
-                    nameAirlines={item.airlines}
-                    departure={item.origin_city_country}
-                    departureTime={item.departure_time}
-                    arrived={item.destination_city_country}
-                    arrivedTime={item.arrived_time}
-                    period={SearchResultApi.data[1].period} //KOSONG
-                    transit={item.transit_id}
-                    facilities={SearchResultApi.data[1].facilities} //KOSONG
-                    price={item.price}
-                    ticketId={item.flight_detail_id}
-                  />
-                ))}
+                data.map((item) => {
+                  console.log(REACT_APP_BACKEND_URL + item.airline_logo);
+                  return (
+                    <CardTicket
+                      logoAirlines={REACT_APP_BACKEND_URL + item.airlines_logo}
+                      nameAirlines={item.airlines}
+                      departure={item.origin_city_country}
+                      departureTime={item.departure_time}
+                      arrived={item.destination_city_country}
+                      arrivedTime={item.arrived_time}
+                      period={SearchResultApi.data[1].period} //KOSONG
+                      transit={item.transit_id}
+                      facilities={SearchResultApi.data[1].facilities} //KOSONG
+                      price={item.price}
+                      ticketId={item.flight_detail_id}
+                    />
+                  );})}
             </Col>
           </Row>
         </Container>

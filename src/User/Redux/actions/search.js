@@ -1,4 +1,5 @@
 import http from "../../Helper/http";
+import qs from "qs";
 
 export default {
   getAllCity: () => ({
@@ -13,17 +14,10 @@ export default {
     type: "SET_HISTORY_PLACE",
     payload,
   }),
-  findTicket: (
-    origin = 0,
-    destination = 0,
-    className,
-    departureDate,
-    search = {}
-  ) => ({
+  findTicket: (query = {}) => ({
     type: "FIND_TICKET",
     payload: http().get(
-      `explore/search/flight?search[origin]=${origin}&search[destination]=${destination}&search[class_name]=${className}&search[departure_date]=${departureDate}`,
-      {params: search}
+      `explore/search/flight?${qs.stringify(query)}`
     ),
   }),
   selectTicket: (id) => ({

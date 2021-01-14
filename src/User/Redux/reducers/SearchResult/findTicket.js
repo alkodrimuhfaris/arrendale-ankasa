@@ -20,7 +20,7 @@ export default (state = initialState, action) => {
       ...state,
       isLoading: false,
       isError: true,
-      alertMsg: "Load Place Fail",
+      alertMsg: action.payload.response.data.message,
     };
   }
   case "FIND_TICKET_FULFILLED": {
@@ -28,7 +28,7 @@ export default (state = initialState, action) => {
       ...state,
       isLoading: false,
       isError: false,
-      data: action.payload.data.result,
+      data: action.payload.data.results,
       info: action.payload.data.pageInfo,
     };
   }
